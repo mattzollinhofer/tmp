@@ -1,0 +1,12 @@
+inherit_from: .ruby-style.yml
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+Rails:
+  Enabled: true

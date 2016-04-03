@@ -1,8 +1,12 @@
 class Assignment < ActiveRecord::Base
-  validates :time_zone_id, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.identifier } }, allow_blank: true
+  validates :time_zone_id,
+            allow_blank: true,
+            inclusion: {
+              in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.identifier }
+            }
 
   def late?
-    !complete? && due_at < Date.today
+    !complete? && due_at < Time.zone.today
   end
 
   def complete?
