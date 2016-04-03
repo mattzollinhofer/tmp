@@ -1,0 +1,11 @@
+css:
+  enabled: false
+
+ruby:
+  enabled: true
+  config_file: .ruby-style.yml
+
+javascript:
+  enabled: true
+
+fail_on_violations: true
