@@ -6,7 +6,7 @@ class Assignment < ActiveRecord::Base
             }
 
   def late?
-    !complete? && due_at < Time.zone.today
+    !complete? && due_at < Date.today
   end
 
   def complete?

@@ -9,7 +9,7 @@ RSpec.describe Assignment do
   it { is_expected.to have_attribute :time_zone_id }
 
   it 'is late when due_at is after today and not completed' do
-    subject.due_at = DateTime.new.in_time_zone(2016, 1, 9)
+    subject.due_at = DateTime.new(2016, 1, 9)
     expect(Date).to receive(:today).and_return DateTime.new(2016, 1, 10)
     expect(subject.late?).to be true
   end
