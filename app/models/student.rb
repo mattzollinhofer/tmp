@@ -11,4 +11,7 @@ class Student < ActiveRecord::Base
                                 with: /20\d{2}/i,
                                 message: 'must be a four digit year'
                               }
+  def display_name
+    nickname || user.first_name
+  end
 end
