@@ -14,9 +14,9 @@ class Student < ActiveRecord::Base
   def display_name
     #conditional nickname here
     if nickname.presence
-      puts :nickname
+      return nickname
     else
-      puts 'Bobfirst'
+      return 'Bobfirst'
     end
   end
 end
