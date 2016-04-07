@@ -11,4 +11,12 @@ class Student < ActiveRecord::Base
                                 with: /20\d{2}/i,
                                 message: 'must be a four digit year'
                               }
+  def display_name
+    #conditional nickname here
+    if nickname.presence
+      puts :nickname
+    else
+      puts 'Bobfirst'
+    end
+  end
 end

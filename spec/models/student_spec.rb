@@ -56,14 +56,16 @@ RSpec.describe Student do
     expect(subject.nickname).to eq 'Bob'
   end
     
-  xit 'displays first name if nickname does not exist' do
-    subject.first_name = 'Bobfirst'
+  it 'displays first name if nickname does not exist' do
+    subject.user = FactoryGirl.build_stubbed(:user)
+    subject.user.first_name = 'Bobfirst'
     puts
-    puts subject.first_name
+    puts subject.user.first_name
     puts subject.errors.empty?
-    expect(subject.nickname).to eq 'Bobfirst'
+    puts subject.display_name
+    expect(subject.display_name).to eq 'Bobfirst'
   end
   
-    
+#eyebug    
   
 end
