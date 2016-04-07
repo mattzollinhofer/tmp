@@ -48,6 +48,22 @@ RSpec.describe Student do
     expect(student.errors).to be_empty
   end
 
-  xit 'displays nickname if it exists'
-  xit 'displays first name if nickname does not exist'
+  it 'displays nickname if it exists' do
+    subject.nickname = 'Bob'
+    puts
+    puts subject.nickname
+    puts subject.errors.empty?
+    expect(subject.nickname).to eq 'Bob'
+  end
+    
+  xit 'displays first name if nickname does not exist' do
+    subject.first_name = 'Bobfirst'
+    puts
+    puts subject.first_name
+    puts subject.errors.empty?
+    expect(subject.nickname).to eq 'Bobfirst'
+  end
+  
+    
+  
 end
