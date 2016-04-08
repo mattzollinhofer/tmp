@@ -16,7 +16,7 @@ class Student < ActiveRecord::Base
     if nickname.presence
       return nickname
     else
-      return 'Bobfirst'
+      return user.first_name
     end
   end
 end
