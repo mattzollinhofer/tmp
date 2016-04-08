@@ -12,11 +12,6 @@ class Student < ActiveRecord::Base
                                 message: 'must be a four digit year'
                               }
   def display_name
-    #conditional nickname here
-    if nickname.presence
-      return nickname
-    else
-      return user.first_name
-    end
+    nickname || user.first_name
   end
 end
