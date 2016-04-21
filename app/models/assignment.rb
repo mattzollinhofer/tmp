@@ -1,4 +1,6 @@
 class Assignment < ActiveRecord::Base
+  belongs_to :course
+
   validates :time_zone_id,
             allow_blank: true,
             inclusion: {

@@ -8,6 +8,8 @@ RSpec.describe Assignment do
   it { is_expected.to have_attribute :completed_at }
   it { is_expected.to have_attribute :time_zone_id }
 
+  it { is_expected.to belong_to :course }
+
   it 'is late when due_at is after today and not completed' do
     subject.due_at = DateTime.new(2016, 1, 9)
     expect(Date).to receive(:today).and_return DateTime.new(2016, 1, 10)
