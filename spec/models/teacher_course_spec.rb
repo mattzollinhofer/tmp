@@ -5,4 +5,5 @@ RSpec.describe TeacherCourse do
   it { is_expected.to belong_to :course }
 
   it { is_expected.to validate_presence_of :teacher }
+  it { is_expected.to validate_presence_of :course }
 end

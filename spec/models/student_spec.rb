@@ -7,7 +7,7 @@ RSpec.describe Student do
 
   %w(graduation_year).each do |required_attribute|
     it { is_expected.to have_attribute required_attribute }
-    it { is_expected.to validate_gresence_of required_attribute }
+    it { is_expected.to validate_presence_of required_attribute }
   end
 
   it 'validates graduation_year is a number' do
