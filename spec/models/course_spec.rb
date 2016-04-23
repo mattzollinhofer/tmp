@@ -8,4 +8,13 @@ RSpec.describe Course do
   it { is_expected.to have_many(:students).through :student_courses }
   it { is_expected.to have_many :teacher_courses }
   it { is_expected.to have_many(:teachers).through :teacher_courses}
+
+  describe 'to_s' do
+    let (:brian)   { FactoryGirl.build_stubbed(:teacher) }
+    let (:christi)   { FactoryGirl.build_stubbed(:teacher) }
+    let (:subject) { Course.new(name: 'Math 100', teachers: [brian, christi]) }
+    it 'should print a friendly version of itself' do
+      expect(subject.to_s).to eq "Math 100, taught by #{brian.user.first_name}, #{christi.user.first_name}"
+    end
+  end
 end
