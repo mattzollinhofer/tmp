@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :course do
-    name "MyString"
+    sequence(:name) { |n| "English 10#{n}" }
   end
 end
