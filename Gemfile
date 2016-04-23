@@ -19,6 +19,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "better_errors"
   gem 'rubocop', require: false
   gem 'spring-commands-rspec'
   # Access an IRB console on exception pages or by using <%= console %> in views
