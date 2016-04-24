@@ -9,7 +9,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 
+#Auth
 gem 'devise'
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -19,7 +22,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "better_errors"
+  gem 'better_errors'
   gem 'rubocop', require: false
   gem 'spring-commands-rspec'
   # Access an IRB console on exception pages or by using <%= console %> in views
