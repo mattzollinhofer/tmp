@@ -2,11 +2,23 @@
 <html>
 <head>
   <title>Teachy</title>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="header">
+    <% if user_signed_in? %>
+      <span>Hi, <%= current_user.first_name %></span>
+      <span><%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %></span>
+    <% else %>
+      <span><%= link_to 'Sign In', new_user_session_path %></span>
+      <span><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></span>
+    <% end %>
+
+  </div>
 
 <%= yield %>
 
