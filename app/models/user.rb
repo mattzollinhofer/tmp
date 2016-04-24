@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :mobile_number, uniqueness: true
 
   def self.from_omniauth(access_token)
     data = access_token.info
