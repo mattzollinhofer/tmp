@@ -11,7 +11,7 @@ Devise.setup do |config|
   #Google omniauth config
   config.omniauth :google_oauth2,
                   '1051677852822-llvi1ide2fm54j33stg09mbrsnalhutj.apps.googleusercontent.com',
-                  'syTTOf4wsCTc-J33W-iJL1mb',
+                  ENV['google-api-key'],
                   { }
 
   # ==> Mailer Configuration
