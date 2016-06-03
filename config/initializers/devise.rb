@@ -9,9 +9,10 @@ Devise.setup do |config|
   # config.secret_key = 'ef1e807bbf9d3e7f41bce7ff18c3e9ff9231c30d1122165a29cdf06640d1c67d33693e5ac6b6ca404b13d07f2eb402fd75c994df75dedb299569ca5e3c74d023'
 
   #Google omniauth config
+
   config.omniauth :google_oauth2,
                   '1051677852822-llvi1ide2fm54j33stg09mbrsnalhutj.apps.googleusercontent.com',
-                  ENV['google-api-key'],
+                  ENV['GOOGLE_API_KEY'],
                   { }
 
   # ==> Mailer Configuration
