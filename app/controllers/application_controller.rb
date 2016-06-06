@@ -14,4 +14,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :mobile_number])
   end
 
+  def route_helpers
+    Rails.application.routes.url_helpers
+  end
 end

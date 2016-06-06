@@ -1,11 +1,9 @@
 class WelcomeController < ApplicationController
   def index
     if Student.find_by(user: current_user)
-      @student_welcome = StudentWelcome.new Student.find_by(user: current_user)
-      render 'student_welcome'
+      redirect_to route_helpers.welcome_path
     elsif Teacher.find_by(user: current_user)
-      @teacher_welcome = TeacherWelcome.new Teacher.find_by(user: current_user)
-      render 'teacher_welcome'
+      redirect_to route_helpers.teacher_welcome_index_path
     end
   end
 end
