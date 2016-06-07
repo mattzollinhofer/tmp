@@ -8,4 +8,8 @@ class TeacherWelcome
   def user
     teacher.user
   end
+
+  def courses
+    teacher.courses
+  end
 end
