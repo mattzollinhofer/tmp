@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  has_many :students
-
   validates :first_name, presence: true
   validates :last_name, presence: true
 
@@ -19,7 +17,8 @@ class User < ActiveRecord::Base
           first_name: data['first_name'],
           last_name: data['last_name'],
           email: data['email'],
-          password: Devise.friendly_token[0,20]
+          password: Devise.friendly_token[0,20],
+          type: 'Student'
         )
     end
     user

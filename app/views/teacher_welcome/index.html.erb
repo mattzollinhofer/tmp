@@ -1,4 +1,0 @@
-<span>Welcome, <%= @teacher_welcome.user.first_name %></span>
-
-<%= render partial: 'courses/index', locals: { courses: @teacher_welcome.courses }  %>
-<%= link_to 'Create a new course', new_course_path %>

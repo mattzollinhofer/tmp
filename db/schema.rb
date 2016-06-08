@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423203439) do
+ActiveRecord::Schema.define(version: 20160608173011) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "points_earned"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160423203439) do
     t.integer  "course_id"
   end
 
-  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
+  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20160423203439) do
     t.integer  "assignment_id"
   end
 
-  add_index "courses", ["assignment_id"], name: "index_courses_on_assignment_id"
+  add_index "courses", ["assignment_id"], name: "index_courses_on_assignment_id", using: :btree
 
   create_table "student_courses", force: :cascade do |t|
     t.integer  "student_id", null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20160423203439) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "student_courses", ["course_id"], name: "index_student_courses_on_course_id"
-  add_index "student_courses", ["student_id"], name: "index_student_courses_on_student_id"
+  add_index "student_courses", ["course_id"], name: "index_student_courses_on_course_id", using: :btree
+  add_index "student_courses", ["student_id"], name: "index_student_courses_on_student_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.integer  "user_id"
@@ -61,8 +64,8 @@ ActiveRecord::Schema.define(version: 20160423203439) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "teacher_courses", ["course_id"], name: "index_teacher_courses_on_course_id"
-  add_index "teacher_courses", ["teacher_id"], name: "index_teacher_courses_on_teacher_id"
+  add_index "teacher_courses", ["course_id"], name: "index_teacher_courses_on_course_id", using: :btree
+  add_index "teacher_courses", ["teacher_id"], name: "index_teacher_courses_on_teacher_id", using: :btree
 
   create_table "teachers", force: :cascade do |t|
     t.integer  "user_id"
@@ -89,9 +92,12 @@ ActiveRecord::Schema.define(version: 20160423203439) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "type"
+    t.string   "nickname"
+    t.integer  "graduation_year"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

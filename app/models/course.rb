@@ -6,6 +6,6 @@ class Course < ActiveRecord::Base
   has_many :teachers, through: :teacher_courses
 
   def to_s
-    "#{name}, taught by #{teachers.map(&:user).map(&:first_name).join(', ')}"
+    "#{name}, taught by #{teachers.map(&:first_name).join(', ')}"
   end
 end

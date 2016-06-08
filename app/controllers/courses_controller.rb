@@ -4,9 +4,8 @@ class CoursesController < ApplicationController
   end
 
   def create
-    teacher = Teacher.find_or_create_by(user: current_user)
-    Course.create!(course_params.merge(teachers: [teacher]))
-    redirect_to teacher_welcome_index_path
+    Course.create!(course_params.merge(teachers: [current_user]))
+    redirect_to welcome_index_path
   end
 
   private

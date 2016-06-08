@@ -1,7 +1,7 @@
 feature 'Teacher creates a new course' do
   scenario 'successfully' do
     teacher = FactoryGirl.create(:teacher)
-    login_as(teacher.user, scope: :user)
+    login_as(teacher, scope: :user)
 
     visit root_path
 
