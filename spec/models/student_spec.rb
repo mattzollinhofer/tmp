@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Student do
   it { is_expected.to have_attribute :nickname }
   it { is_expected.to have_attribute :graduation_year }
-  it { is_expected.to belong_to :user }
 
   %w(graduation_year).each do |required_attribute|
     it { is_expected.to have_attribute required_attribute }
@@ -55,7 +54,7 @@ RSpec.describe Student do
     end
 
     it 'returns first name if nickname does not exist' do
-      subject.user = FactoryGirl.build_stubbed(:user, first_name: 'John')
+      subject.first_name = 'John'
       expect(subject.display_name).to eq 'John'
     end
   end

@@ -1,5 +1,4 @@
-class Student < ActiveRecord::Base
-  belongs_to :user
+class Student < User
   has_many :student_courses
   has_many :courses, through: :student_courses
 
@@ -14,6 +13,6 @@ class Student < ActiveRecord::Base
                                 message: 'must be a four digit year'
                               }
   def display_name
-    nickname || user.first_name
+    nickname || first_name
   end
 end

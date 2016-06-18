@@ -5,5 +5,13 @@ FactoryGirl.define do
     sequence(:email)              { |n| "user#{n}@test.com" }
     sequence(:mobile_number)      { |n| "555-555-555#{n}" }
     password 'password'
+
+    factory :student, class: Student, parent: :user do
+      nickname 'Hoffa'
+      graduation_year { (Date.today).year }
+    end
+
+    factory :teacher, class: Teacher do
+    end
   end
 end

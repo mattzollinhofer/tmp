@@ -14,7 +14,7 @@ RSpec.describe Course do
     let (:christi)   { FactoryGirl.build_stubbed(:teacher) }
     let (:subject) { Course.new(name: 'Math 100', teachers: [brian, christi]) }
     it 'should print a friendly version of itself' do
-      expect(subject.to_s).to eq "Math 100, taught by #{brian.user.first_name}, #{christi.user.first_name}"
+      expect(subject.to_s).to eq "Math 100, taught by #{brian.first_name}, #{christi.first_name}"
     end
   end
 end
