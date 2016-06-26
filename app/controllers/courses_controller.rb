@@ -8,6 +8,16 @@ class CoursesController < ApplicationController
     redirect_to welcome_index_path
   end
 
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    @course.update_attributes(course_params)
+    redirect_to welcome_index_path
+  end
+
   private
 
   def course_params

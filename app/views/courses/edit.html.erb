@@ -1,0 +1,7 @@
+<h1><%= @course.name %></h1>
+<%= form_for @course do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.submit 'Update Course' %>
+<% end %>
+
