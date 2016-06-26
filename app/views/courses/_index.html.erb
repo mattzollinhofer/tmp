@@ -1,7 +1,13 @@
 <h1>All Courses</h1>
-<ul class='courses'>
-<% courses = @courses if @courses.present? %>
-<% courses.each do |course| %>
-  <li><%= course %></li>
+<% if courses.present? %>
+  <ul class='courses'>
+  <% courses.each do |course| %>
+    <li>
+      <%= course %>
+      <%= link_to 'edit', edit_course_path(course) %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any courses</p>
 <% end %>
-</ul>
