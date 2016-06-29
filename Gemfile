@@ -23,6 +23,7 @@ end
 
 group :development, :test do
   gem 'capybara'
+  gem 'poltergeist'
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
