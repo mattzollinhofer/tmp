@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Course do
   it { is_expected.to have_attribute :name }
+  it { validate_presence_of :name }
 
   it { is_expected.to have_many :assignments }
   it { is_expected.to have_many :student_courses }

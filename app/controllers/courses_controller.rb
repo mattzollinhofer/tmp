@@ -10,12 +10,16 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
+    render :edit
   end
 
   def update
     @course = Course.find(params[:id])
-    @course.update_attributes(course_params)
-    redirect_to welcome_index_path
+    if @course.update_attributes(course_params)
+      redirect_to welcome_index_path
+    else
+      render :edit
+    end
   end
 
   private
