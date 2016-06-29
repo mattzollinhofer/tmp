@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'pg'
 
+gem 'formtastic', '~> 3.0'
+
 #Auth
 gem 'devise'
 gem 'omniauth-google-oauth2'
