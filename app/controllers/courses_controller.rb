@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    Course.create!(course_params.merge(teachers: [current_user]))
+    Course.create!(course_params)
     redirect_to welcome_index_path
   end
 

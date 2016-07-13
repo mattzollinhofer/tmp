@@ -6,5 +6,6 @@ feature 'Teacher Visits Homepage' do
     visit '/'
 
     expect(page).to have_css 'span', text: "Welcome, #{teacher.first_name}"
+    expect(page).to have_css 'a', text: 'Planning'
   end
 end

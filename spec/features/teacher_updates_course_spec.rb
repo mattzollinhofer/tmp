@@ -1,7 +1,8 @@
 feature 'Teacher updates course' do
   scenario 'successfully' do
+    course  = FactoryGirl.create(:course)
     teacher = FactoryGirl.create(:teacher)
-    course  = FactoryGirl.create(:course, teachers: [teacher])
+    class_period = FactoryGirl.create(:class_period, teachers: [teacher], course: course)
 
     login_as(teacher, scope: :user)
 
@@ -15,8 +16,9 @@ feature 'Teacher updates course' do
   end
 
   scenario 'unsuccessfully' do
+    course  = FactoryGirl.create(:course)
     teacher = FactoryGirl.create(:teacher)
-    course  = FactoryGirl.create(:course, teachers: [teacher])
+    class_period = FactoryGirl.create(:class_period, teachers: [teacher], course: course)
 
     login_as(teacher, scope: :user)
 

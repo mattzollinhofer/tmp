@@ -10,5 +10,6 @@ feature 'Teacher creates a new course' do
     click_on 'Create Course'
 
     expect(page).to have_css '.courses li', text: 'Course Name 101'
+    expect(page).not_to have_css '.courses li', text: 'taught by'
   end
 end

@@ -6,6 +6,6 @@ class StudentWelcome
   end
 
   def courses
-    student.courses
+    student.class_periods.map &:course
   end
 end

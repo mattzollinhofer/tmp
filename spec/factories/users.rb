@@ -5,6 +5,7 @@ FactoryGirl.define do
     sequence(:email)              { |n| "user#{n}@test.com" }
     sequence(:mobile_number)      { |n| "555-555-555#{n}" }
     password 'password'
+    admin false
 
     factory :student, class: Student, parent: :user do
       nickname 'Hoffa'
@@ -12,6 +13,10 @@ FactoryGirl.define do
     end
 
     factory :teacher, class: Teacher do
+    end
+
+    factory :admin, class: Teacher do
+      admin true
     end
   end
 end
