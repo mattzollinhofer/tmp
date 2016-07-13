@@ -5,7 +5,7 @@ feature 'Teacher deletes a course', js: true do
 
     login_as(teacher, scope: :user)
 
-    visit root_path
+    visit courses_path
     expect(page).to have_css 'li', text: course.name
 
     page.dismiss_confirm do

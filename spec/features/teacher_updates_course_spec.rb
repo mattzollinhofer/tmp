@@ -6,7 +6,7 @@ feature 'Teacher updates course' do
 
     login_as(teacher, scope: :user)
 
-    visit root_path
+    visit courses_path
     expect(page).to have_css 'li', text: course.name
     click_on 'edit'
     fill_in 'course[name]', with: 'Course Name Foo'
@@ -22,7 +22,7 @@ feature 'Teacher updates course' do
 
     login_as(teacher, scope: :user)
 
-    visit root_path
+    visit courses_path
     expect(page).to have_css 'li', text: course.name
     click_on 'edit'
     fill_in 'course[name]', with: ''

@@ -7,8 +7,7 @@ feature 'Student Visits Homepage' do
 
     visit '/'
 
-    expect(page).to have_css 'h1', text: 'Courses'
-    expect(page).to have_css 'p', text: "You don't have any courses"
+    expect(page).to have_css 'span', text: "Welcome, #{student.first_name}"
   end
 end
 

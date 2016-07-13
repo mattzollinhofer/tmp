@@ -3,7 +3,7 @@ feature 'Teacher creates a new course' do
     teacher = FactoryGirl.create(:teacher)
     login_as(teacher, scope: :user)
 
-    visit root_path
+    visit courses_path
 
     click_on 'Create a new course'
     fill_in 'course[name]', with: 'Course Name 101'
