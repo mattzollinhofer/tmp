@@ -3,19 +3,27 @@ require 'rails_helper'
 RSpec.describe Course do
   it { is_expected.to have_attribute :name }
   it { validate_presence_of :name }
+  it do
+    should validate_inclusion_of(:year)
+             .in_range(1900..Date.today.year+50)
+             .with_message('should be a four-digit year')
+  end
 
   it { is_expected.to have_many :assignments }
-  it { is_expected.to have_many :student_courses }
-  it { is_expected.to have_many(:students).through :student_courses }
-  it { is_expected.to have_many :teacher_courses }
-  it { is_expected.to have_many(:teachers).through :teacher_courses}
 
   describe 'to_s' do
     let (:brian)   { FactoryGirl.build_stubbed(:teacher) }
     let (:christi)   { FactoryGirl.build_stubbed(:teacher) }
-    let (:subject) { Course.new(name: 'Math 100', teachers: [brian, christi]) }
+    let (:subject) { Course.new(name: 'Math 100', year: 1999) }
+
     it 'should print a friendly version of itself' do
-      expect(subject.to_s).to eq "Math 100, taught by #{brian.first_name}, #{christi.first_name}"
+      expect(subject.to_s).to eq "Math 100 (1999-2000)"
+    end
+  end
+
+  describe 'year' do
+    it 'defaults to the current year' do
+      expect(subject.year).to eq Time.now.year
     end
   end
 end

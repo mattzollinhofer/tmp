@@ -1,11 +1,8 @@
 class TeacherWelcome
-  attr_reader :teacher
+  attr_reader :teacher, :courses
 
-  def initialize(teacher)
+  def initialize(teacher, courses)
     @teacher = teacher
-  end
-
-  def courses
-    teacher.courses
+    @courses = courses
   end
 end

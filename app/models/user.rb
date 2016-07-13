@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates_inclusion_of :admin, in: [true, false]
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -22,5 +23,9 @@ class User < ActiveRecord::Base
         )
     end
     user
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 end

@@ -3,12 +3,14 @@ feature 'Teacher creates a new course' do
     teacher = FactoryGirl.create(:teacher)
     login_as(teacher, scope: :user)
 
-    visit root_path
+    visit courses_path
 
     click_on 'Create a new course'
     fill_in 'course[name]', with: 'Course Name 101'
+    fill_in 'course[year]', with: '1999'
     click_on 'Create Course'
 
-    expect(page).to have_css '.courses li', text: 'Course Name 101'
+    expect(page).to have_css '.courses li', text: 'Course Name 101 (1999-2000)'
+    expect(page).not_to have_css '.courses li', text: 'taught by'
   end
 end

@@ -1,13 +1,33 @@
 class Course < ActiveRecord::Base
-  has_many :assignments
-  has_many :student_courses
-  has_many :students, through: :student_courses
-  has_many :teacher_courses
-  has_many :teachers, through: :teacher_courses
+  has_many :assignments, inverse_of: :course
+  has_many :class_periods, inverse_of: :course
 
   validates :name, presence: true
+  validates :year,
+             inclusion: {
+                in: 1900..Date.today.year+50,
+                message: 'should be a four-digit year'
+             },
+             format: {
+               with: /\d{4}/i,
+               message: 'should be a four-digit year'
+             }
+
+  def year
+    self[:year] || default_course_year
+  end
 
   def to_s
-    "#{name}, taught by #{teachers.map(&:first_name).join(', ')}"
+    "#{name} (#{display_year})"
+  end
+
+  private
+
+  def display_year
+    "#{year}-#{year+1}"
+  end
+
+  def default_course_year
+    Time.now.year
   end
 end

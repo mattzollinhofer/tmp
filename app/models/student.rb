@@ -1,6 +1,6 @@
 class Student < User
-  has_many :student_courses
-  has_many :courses, through: :student_courses
+  has_many :student_classes
+  has_many :class_periods, through: :student_classes
 
   validates :graduation_year, presence: true,
                               inclusion: {

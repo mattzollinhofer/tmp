@@ -5,11 +5,14 @@ RSpec.describe User do
   it { is_expected.to have_attribute :last_name }
   it { is_expected.to have_attribute :email }
   it { is_expected.to have_attribute :mobile_number }
+  it { is_expected.to have_attribute :admin }
 
   %w(first_name last_name email).each do |required_attribute|
     it { is_expected.to have_attribute required_attribute }
     it { is_expected.to validate_presence_of required_attribute }
   end
+
+  it { is_expected.to validate_inclusion_of(:admin).in_array([true, false]) }
 
   it 'validates the uniqueness of email' do
     original = FactoryGirl.create(:user, email: 'test@test.com')
