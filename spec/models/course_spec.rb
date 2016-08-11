@@ -9,7 +9,7 @@ RSpec.describe Course do
              .with_message('should be a four-digit year')
   end
 
-  it { is_expected.to have_many :assignments }
+  it { is_expected.to have_many :units }
 
   describe 'to_s' do
     let (:brian)   { FactoryGirl.build_stubbed(:teacher) }

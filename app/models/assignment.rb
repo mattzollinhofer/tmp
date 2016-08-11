@@ -1,5 +1,5 @@
 class Assignment < ActiveRecord::Base
-  belongs_to :course, inverse_of: :assignments
+  belongs_to :units, inverse_of: :assignments
 
   validates :time_zone_id,
             allow_blank: true,

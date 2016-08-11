@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   resources :welcome, only: :index
-  resources :courses, only: [:index, :create, :new, :edit, :update, :destroy]
+  resources :courses do
+    resources :units, only: [:new, :index, :create]
+  end
+  resources :units, only: [:show, :edit, :destroy, :update]
 
   resources :student_welcome, only: :index
   resources :teacher_welcome, only: :index
