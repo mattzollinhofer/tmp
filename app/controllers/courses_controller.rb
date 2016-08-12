@@ -3,6 +3,10 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
+  def show
+    @course = Course.find(params[:id])
+  end
+
   def new
     @course = Course.new
   end
@@ -14,7 +18,6 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
-    render :edit
   end
 
   def update
@@ -35,6 +38,8 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:name, :year)
+    params.require(:course)
+          .permit(:name, :year)
   end
+
 end

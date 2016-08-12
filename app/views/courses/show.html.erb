@@ -1,0 +1,18 @@
+<p><%= link_to 'Back to Courses', courses_path %></p>
+<h1><%= @course %></h1>
+<h2>Units</h2>
+<ul class='units'>
+  <% if @course.units.present? %>
+    <% @course.units.each do |unit| %>
+      <li data-unit-id=<%=unit.id%> class='unit'>
+        <%=link_to unit.name, unit_path(unit)%>
+        <%= link_to 'edit', edit_unit_path(unit) %>
+        <%= link_to 'delete', unit_path(unit), method: :delete,
+          data: { confirm: "Are you sure you want to delete unit: #{unit.name}" } %>
+      </li>
+    <% end %>
+  <% else %>
+    <li class='empty unit'>This course has no units</li>
+  <% end %>
+</ul>
+<p><%= link_to 'Create a New Unit', new_course_unit_path(@course) %></p>
