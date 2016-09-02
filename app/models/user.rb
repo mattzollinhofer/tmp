@@ -14,12 +14,11 @@ class User < ActiveRecord::Base
     user = User.where(:email => data['email']).first
 
     unless user
-        user = User.create(
+        user = Student.create(
           first_name: data['first_name'],
           last_name: data['last_name'],
           email: data['email'],
-          password: Devise.friendly_token[0,20],
-          type: 'Student'
+          password: Devise.friendly_token[0,20]
         )
     end
     user
