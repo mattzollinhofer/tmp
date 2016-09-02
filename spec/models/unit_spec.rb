@@ -8,7 +8,7 @@ RSpec.describe Unit do
 
   describe '#default_order' do
     it 'returns nil if not associated to a course' do
-      unit = FactoryGirl.build_stubbed :unit
+      unit = Unit.new
       expect(unit.order).to be_nil
     end
 

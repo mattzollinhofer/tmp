@@ -5,10 +5,11 @@ RSpec.describe Assignment do
   it { is_expected.to have_attribute :points_possible }
   it { is_expected.to have_attribute :order }
   it { is_expected.to have_attribute :due_at }
+  it { is_expected.to have_attribute :name }
   it { is_expected.to have_attribute :completed_at }
   it { is_expected.to have_attribute :time_zone_id }
 
-  it { is_expected.to belong_to :course }
+  it { is_expected.to belong_to :unit }
 
   it 'is late when due_at is after today and not completed' do
     subject.due_at = DateTime.new(2016, 1, 9)

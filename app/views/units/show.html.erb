@@ -2,5 +2,17 @@
 <h1><%= @unit %></h1>
 <h2>Assignments</h2>
 <ul class='assignments'>
+  <% if @unit.assignments.present? %>
+    <% @unit.assignments.each do |assignment| %>
+      <li data-assignment-id=<%=assignment.id%> class='assignment'>
+        <%=link_to assignment.name, assignment_path(assignment)%>
+        <%= link_to 'edit', edit_assignment_path(assignment) %>
+        <%= link_to 'delete', assignment_path(assignment), method: :delete,
+          data: { confirm: "Are you sure you want to delete assignment: #{assignment.name}" } %>
+      </li>
+    <% end %>
+  <% else %>
+    <li class='empty assignment'>This unit has no assignments</li>
+  <% end %>
 </ul>
-<p><%#= link_to 'Create a New Assignment', new_unit_assignment_path(@unit) %></p>
+<p><%= link_to 'Create a New Assignment', new_unit_assignment_path(@unit) %></p>
