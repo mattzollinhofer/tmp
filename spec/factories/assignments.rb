@@ -7,6 +7,6 @@ FactoryGirl.define do
     completed_at '2016-04-01 08:08:13'
     time_zone_id 'EST'
 
-    association :course, strategy: :build
+    association :unit, strategy: :build
   end
 end

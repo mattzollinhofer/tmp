@@ -5,6 +5,7 @@ RSpec.describe Assignment do
   it { is_expected.to have_attribute :points_possible }
   it { is_expected.to have_attribute :order }
   it { is_expected.to have_attribute :due_at }
+  it { is_expected.to have_attribute :name }
   it { is_expected.to have_attribute :completed_at }
   it { is_expected.to have_attribute :time_zone_id }
 

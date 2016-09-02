@@ -1,5 +1,6 @@
 class Unit < ActiveRecord::Base
   belongs_to :course, inverse_of: :units
+  has_many :assignments, inverse_of: :unit
   after_initialize :default_order
 
   def default_order
