@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :units, only: [:show, :edit, :destroy, :update] do
     resources :assignments, only: [:new, :create]
   end
-  resources :assignments, only: :show
+  resources :assignments, only: [:show, :edit, :destroy, :update]
 
   resources :student_welcome, only: :index
   resources :teacher_welcome, only: :index

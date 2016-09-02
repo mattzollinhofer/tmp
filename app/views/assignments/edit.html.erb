@@ -1,0 +1,11 @@
+<h1><%= @assignment.name %></h1>
+<%= semantic_form_for @assignment do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :name %>
+    <%= form.input :order %>
+    <%= form.input :unit_id, as: :hidden %>
+  <% end %>
+  <%= form.actions do %>
+    <%= form.action :submit %>
+  <% end %>
+<% end %>
