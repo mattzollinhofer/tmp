@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Assignment do
-  it { is_expected.to have_attribute :points_earned }
+  it { is_expected.to have_attribute :stars_possible }
   it { is_expected.to have_attribute :points_possible }
   it { is_expected.to have_attribute :order }
   it { is_expected.to have_attribute :due_at }

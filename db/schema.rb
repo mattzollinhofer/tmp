@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902031736) do
+ActiveRecord::Schema.define(version: 20160903022545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
-    t.integer  "points_earned"
+    t.integer  "stars_possible"
     t.integer  "points_possible"
     t.integer  "order"
     t.datetime "due_at"
