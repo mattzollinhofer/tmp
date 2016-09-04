@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Student do
   it { is_expected.to have_attribute :nickname }
+
+  it 'pulls graduation year from the last two digits of the email address' do
+    email = 'fool16@school.com'
+    expect(Student.new(email: email).graduation_year).to eq Date.today.year.to_s.first(2)+'16'
+  end
+
   #it { is_expected.to have_attribute :graduation_year }
 
   #%w(graduation_year).each do |required_attribute|

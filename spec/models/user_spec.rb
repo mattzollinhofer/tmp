@@ -20,5 +20,4 @@ RSpec.describe User do
     duplicate.valid?
     expect(duplicate.errors[:email]).to include 'has already been taken'
   end
-
 end

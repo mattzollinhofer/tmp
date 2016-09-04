@@ -15,4 +15,12 @@ class Student < User
   def display_name
     nickname || first_name
   end
+
+  def graduation_year
+    @graduation_year ||= parse_graduation_year_from_email
+  end
+
+  def parse_graduation_year_from_email
+    Date.today.year.to_s.first(2) + email.split('@').first.last(2)
+  end
 end
