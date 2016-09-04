@@ -37,10 +37,6 @@ RSpec.describe User do
             access_token = double(:access_token, info: {email: 'fool16@school.com'})
             expect(User.from_omniauth(access_token)).to be_a Student
           end
-          it 'uses the two digit number as the graduation year' do
-            access_token = double(:access_token, info: {email: 'fool16@school.com'})
-            expect(User.from_omniauth(access_token).graduation_year).to eq 16
-          end
         end
 
         it 'creates a new teacher when the email does not end in a two digit number' do

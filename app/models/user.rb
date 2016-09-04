@@ -25,16 +25,9 @@ class UserCreator
     user = User.where(email: email).first
 
     unless user
-      user_class = user_class_from_email email
-      user = case
-      when user_class == Student
-        Student.create(user_attributes(data).merge(graduation_year:email.split('@').first.last(2)))
-      when user_class == Teacher
-        Teacher.create(user_attributes(data))
-      end
-      #user_creator = "#{user_class_from_email(email)}Creator}".constantize
-      #user_builder.build(user_attributes(data))
+      user = user_class_from_email(email).new(user_attributes(data))
     end
+
     user
   end
 
