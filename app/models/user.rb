@@ -9,10 +9,6 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates_inclusion_of :admin, in: [true, false]
 
-  def self.from_omniauth(omniauth_token)
-    UserCreator.from_omniauth omniauth_token
-  end
-
   def name
     "#{first_name} #{last_name}"
   end
