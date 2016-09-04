@@ -1,0 +1,2 @@
+<%= render partial: 'layouts/logged_in' %>
+<%= link_to 'Planning', planning_url if current_user.is_a? Teacher %>
