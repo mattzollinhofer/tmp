@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160904213947) do
     t.integer  "course_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "period"
   end
 
   add_index "class_periods", ["course_id"], name: "index_class_periods_on_course_id", using: :btree

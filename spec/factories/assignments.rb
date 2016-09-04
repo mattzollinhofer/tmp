@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :assignment do
-    points_earned 86
-    points_possible 100
+    sequence(:name)    { |n| "Assignement Bar #{n}" }
+    points_possible 4
+    stars_possible 3
     sequence(:order) { |n| n }
 
     association :unit, strategy: :build
