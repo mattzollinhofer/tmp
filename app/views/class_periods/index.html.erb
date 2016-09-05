@@ -1,0 +1,14 @@
+<h1>All Class Periods</h1>
+<ul class='class-periods'>
+  <% if @class_periods.present? %>
+    <% @class_periods.each do |class_period| %>
+      <li class='class-period'>
+        <%=link_to class_period.course, class_period.course.name.capitalize%> - Period: <%=class_period.period%>
+        <%= link_to 'edit', edit_class_period_path(class_period) %>
+      </li>
+    <% end %>
+  <% else %>
+    <li>No Class Periods</li>
+  <% end %>
+</ul>
+<p><%= link_to 'Create a new class period', new_class_period_path %></p>

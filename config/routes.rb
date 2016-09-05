@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :assignments, only: [:show, :edit, :destroy, :update]
 
+  resources :class_periods, only: [:index, :new, :create, :edit, :show, :update]
   resources :student_welcome, only: :index
   resources :teacher_welcome, only: :index
 

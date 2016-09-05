@@ -1,11 +1,1 @@
-<h1><%= @course.name %></h1>
-<%= semantic_form_for @course do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :name %>
-    <%= form.input :year %>
-  <% end %>
-  <%= form.actions do %>
-    <%= form.action :submit %>
-  <% end %>
-<% end %>
-
+<%= render partial: 'form', locals: { course: @course } %>
