@@ -11,17 +11,18 @@ class Assignment < ActiveRecord::Base
 
 
   validates :order, :name, presence: true
-  validates :time_zone_id,
-            allow_blank: true,
-            inclusion: {
-              in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.identifier }
-            }
+  #TODO move to student_class
+  #validates :time_zone_id,
+  #          allow_blank: true,
+  #          inclusion: {
+  #            in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.identifier }
+  #          }
 
-  def late?
-    !complete? && due_at < Date.today
-  end
+  #def late?
+  #  !complete? && due_at < Date.today
+  #end
 
-  def complete?
-    completed_at.present?
-  end
+  #def complete?
+  #  completed_at.present?
+  #end
 end
