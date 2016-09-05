@@ -5,7 +5,7 @@ class UserCreator
     user = User.where(email: email).first
 
     unless user
-      user = user_class_from_email(email).new(user_attributes(data))
+      user = user_class_from_email(email).create(user_attributes(data))
     end
 
     user
