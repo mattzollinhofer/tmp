@@ -1,4 +1,4 @@
-feature 'Teacher is Assigned to Teach Class' do
+feature 'Teacher is Assigned to Teach Class', js: true do
   scenario 'successfully' do
     teacher1 = FactoryGirl.create(:teacher)
     teacher2 = FactoryGirl.create(:teacher)
@@ -31,5 +31,10 @@ feature 'Teacher is Assigned to Teach Class' do
     fill_in 'class_period[period]', with: '3'
     click_on 'Update Class period'
     expect(page).to have_css '.class-periods li', text: "#{course.to_s} - Period: 3 - Taught by: #{teacher2.name}"
+
+    page.accept_confirm do
+      click_link 'delete'
+    end
+    expect(page).not_to have_css '.class-periods li', text: "#{course.to_s}"
   end
 end

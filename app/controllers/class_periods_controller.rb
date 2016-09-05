@@ -30,12 +30,12 @@ class ClassPeriodsController < ApplicationController
     end
   end
 
-#  def destroy
-#    @class_periods = ClassPeriod.find(params[:id])
-#    @class_periods.destroy
-#    redirect_to course_path @class_periods.course
-#  end
-#
+  def destroy
+    @class_period = ClassPeriod.find(params[:id])
+    @class_period.destroy
+    redirect_to class_periods_path
+  end
+
   private
 
   def class_period_params
