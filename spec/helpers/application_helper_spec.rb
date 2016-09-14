@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationHelper do
+RSpec.describe ClassPeriodHelper do
   describe 'class_period_label' do
     let (:course)  { FactoryGirl.build_stubbed(:course) }
     let (:teachers)  { FactoryGirl.build_list(:teacher, 2) }
