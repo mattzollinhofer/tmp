@@ -7,7 +7,7 @@ RSpec.describe ClassPeriodHelper do
     let (:class_period) { FactoryGirl.build_stubbed(:class_period, teachers: teachers, course: course) }
 
     it 'includes the link to the course' do
-      expect(class_period_label(class_period)).to include("#{link_to course, course.name.capitalize}")
+      expect(class_period_label(class_period)).to include(course_path(course))
     end
     it 'includes the period it is being taught' do
       expect(class_period_label(class_period)).to include("Period: #{class_period.period}")
