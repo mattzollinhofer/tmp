@@ -1,11 +1,15 @@
 class WelcomeController < ApplicationController
   def index
-    @welcome = if current_user.class == Student
-                 StudentWelcome.new current_user
-               elsif current_user.class == Teacher
-                 TeacherWelcome.new(current_user, Course.all)
-               end
+    send :"welcome_#{current_user.type.downcase}"
+  end
 
-    render "welcome/#{current_user.type.downcase}"
+  def welcome_teacher
+    @welcome = TeacherWelcome.new(current_user, Course.all)
+    render 'welcome/teacher'
+  end
+
+  def welcome_student
+    @welcome = StudentWelcome.new current_user
+    render 'welcome/student'
   end
 end
