@@ -3,10 +3,10 @@ class ClassPeriodsController < ApplicationController
     @class_periods = ClassPeriod.all
   end
 
-#  def show
-#    @class_periods = ClassPeriod.find(params[:id])
-#  end
-#
+  def show
+    @class_period = ClassPeriod.find(params[:id])
+  end
+
   def new
     #@course = Course.find params[:course_id]
     @class_period = ClassPeriod.new

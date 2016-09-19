@@ -16,6 +16,6 @@ feature 'Teacher Visits Homepage' do
     expect(page).to have_css '.class-periods li',
       text: "Period: #{class_period.period}"
     expect(page).to have_css '.class-periods li',
-      text: "- Taught by: #{class_period.teachers.map(&:name).join(', ')}"
+      text: "- Taught by: #{class_period.teacher_names}"
   end
 end
