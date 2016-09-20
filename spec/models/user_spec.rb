@@ -12,8 +12,6 @@ RSpec.describe User do
     it { is_expected.to validate_presence_of required_attribute }
   end
 
-  it { is_expected.to validate_inclusion_of(:admin).in_array([true, false]) }
-
   it 'validates the uniqueness of email' do
     original = FactoryGirl.create(:user, email: 'test@test.com')
     duplicate = FactoryGirl.build(:user, email: original.email)
