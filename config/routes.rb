@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   resources :student_welcome, only: :index
   resources :teacher_welcome, only: :index
 
+  resources :gradebook, only: :show
+
   get '/planning' => 'planning#index', as: 'planning'
 end
