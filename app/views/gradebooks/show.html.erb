@@ -1,0 +1,10 @@
+<h1><%= class_period_short_label @class_period %></h1>
+<div><%= taught_by_teachers(@class_period) %></div>
+<table class='gradebook'>
+  <thead>
+    <th class='assignments-header'>Assignment</th>
+    <% @class_period.students.each do |student| %>
+      <th class='student-assignment-header'><%=student.display_name%></th>
+    <% end %>
+  </thead>
+</table>
