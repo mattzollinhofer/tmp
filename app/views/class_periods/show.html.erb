@@ -1,2 +1,8 @@
 <h1><%= class_period_short_label @class_period %></h1>
 <span><%= taught_by_teachers(@class_period) %></span>
+<h2>Students</h2>
+<ul class='students'>
+  <% @class_period.students.each do |student| %>
+    <li><%= student.display_name %></li>
+  <% end %>
+</ul>
