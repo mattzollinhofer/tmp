@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   root 'welcome#index'
-  resources :welcome, only: :index
+  resource :welcome, only: :index
   resources :courses do
     resources :units, only: [:new, :create]
   end
