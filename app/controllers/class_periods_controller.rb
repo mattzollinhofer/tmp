@@ -39,7 +39,7 @@ class ClassPeriodsController < ApplicationController
   private
 
   def class_period_params
-    params.require(:class_period).permit(:period, :course_id, teacher_ids: [])
+    params.require(:class_period).permit(:period, :course_id, student_ids: [], teacher_ids: [])
   end
 
 end

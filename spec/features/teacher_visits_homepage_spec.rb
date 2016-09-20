@@ -3,7 +3,7 @@ require 'course_helper'
 feature 'Teacher Visits Homepage' do
   scenario 'successfully' do
     course = FactoryGirl.create(:course_with_units_and_assignments)
-    class_period = FactoryGirl.create(:class_period, course: course)
+    class_period = FactoryGirl.create(:class_period_with_teachers, course: course)
     teacher = class_period.teachers.first
     login_as(teacher, scope: :user)
 
