@@ -13,7 +13,7 @@ feature 'Teacher Visits Homepage' do
     expect(page).to have_css 'span', text: "Welcome, #{teacher.first_name}"
     expect(page).to have_css '.class-periods li a',
                     text: "#{course.name.capitalize}"
-    expect(page).to have_css ".class-periods li a[href='/gradebook/#{class_period.id}']"
+    expect(page).to have_css ".class-periods li a[href='/gradebooks/#{class_period.id}']"
     expect(page).to have_css '.class-periods li',
                     text: "Period: #{class_period.period}"
   end
