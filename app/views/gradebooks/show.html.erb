@@ -2,9 +2,14 @@
 <div><%= taught_by_teachers(@class_period) %></div>
 <table class='gradebook'>
   <thead>
+    <th class=''>Students</th>
     <th class='assignments-header'>Assignment</th>
-    <% @class_period.students.each do |student| %>
-      <th class='student-assignment-header'><%=student.display_name%></th>
-    <% end %>
   </thead>
+  <tbody>
+    <% @class_period.students.each do |student| %>
+      <tr class='student row'>
+        <td><%=student.display_name%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
