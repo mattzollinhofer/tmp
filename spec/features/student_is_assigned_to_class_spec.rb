@@ -8,7 +8,7 @@ feature 'Student is Assigned to Class' do
     visit class_periods_path
     expect(page).to have_css '.class-period a', text: "#{class_period.course.name}"
 
-    click_on 'edit'
+    click_on 'manage students'
     select student.display_name, from: 'class_period_student_ids'
     click_on 'Update Class period'
 
