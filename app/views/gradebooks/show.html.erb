@@ -3,12 +3,13 @@
 <table class='gradebook'>
   <thead>
     <th class=''>Students</th>
-    <th class='assignments-header'>Assignment</th>
+    <th class='assignments-header'>Assignments</th>
   </thead>
   <tbody>
     <% @class_period.students.each do |student| %>
       <tr class='student row'>
-        <td><%=student.display_name%></td>
+        <td class='name'><%=student.display_name%></td>
+        <td class='assignments'></td>
       </tr>
     <% end %>
   </tbody>

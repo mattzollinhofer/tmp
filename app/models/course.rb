@@ -21,6 +21,12 @@ class Course < ActiveRecord::Base
     "#{name} (#{display_year})"
   end
 
+  def total_assignments
+    @total_assignments = 0
+    units.each{ |unit| @total_assignments += unit.assignments.size }
+    @total_assignments
+  end
+
   private
 
   def display_year
@@ -30,4 +36,5 @@ class Course < ActiveRecord::Base
   def default_course_year
     Time.now.year
   end
+
 end

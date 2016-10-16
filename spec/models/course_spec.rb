@@ -26,4 +26,15 @@ RSpec.describe Course do
       expect(subject.year).to eq Time.now.year
     end
   end
+
+  describe 'total_assignments' do
+    it 'reports the total number of assignments for all units' do
+      unit1 = FactoryGirl.build_stubbed(:unit, assignments: FactoryGirl.build_stubbed_list(:assignment, 2))
+      unit2 = FactoryGirl.build_stubbed(:unit, assignments: [FactoryGirl.build_stubbed(:assignment)])
+      course = Course.new(units: [unit1, unit2])
+
+      total_assignments = unit1.assignments.size + unit2.assignments.size
+      expect(course.total_assignments).to eq total_assignments
+    end
+  end
 end

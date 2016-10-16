@@ -1,7 +1,10 @@
-feature 'Student is Assigned to Class' do
+feature 'Student is removed from class' do
+  include ClassPeriodHelper
+
   scenario 'successfully' do
     student = FactoryGirl.create(:student, first_name: 'foo', last_name: 'bar')
     course = FactoryGirl.create(:course_with_units_and_assignments)
+    course.total_assignments
     class_period = FactoryGirl.create(:class_period_with_teachers, course: course)
     login_as(class_period.teachers.first, scope: :user)
 
@@ -12,8 +15,13 @@ feature 'Student is Assigned to Class' do
     select student.display_name, from: 'class_period_student_ids'
     click_on 'Update Class period'
 
-    visit class_period_path(class_period)
+    expect(page).to have_select('class_period[student_ids][]', selected: "#{student.display_name}")
 
-    expect(page).to have_css '.students li', text: "#{student.display_name}"
+    visit gradebook_path class_period
+    #save_and_open_page
+    puts course.total_assignments
+    expect(page).to have_css '.student .assignment', count: course.total_assignments
+    expect(page).to have_css '.student .assignment', text: course.units.first.assignments.first
+
   end
 end
