@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904213947) do
+ActiveRecord::Schema.define(version: 20161001181000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20160904213947) do
   end
 
   add_index "assignments", ["unit_id"], name: "index_assignments_on_unit_id", using: :btree
+
+  create_table "class_assignments", force: :cascade do |t|
+    t.datetime "completed_at"
+    t.integer  "points_earned"
+    t.integer  "stars_earned"
+    t.integer  "student_class_id"
+    t.integer  "assignment_id"
+  end
+
+  add_index "class_assignments", ["assignment_id"], name: "index_class_assignments_on_assignment_id", using: :btree
+  add_index "class_assignments", ["student_class_id"], name: "index_class_assignments_on_student_class_id", using: :btree
 
   create_table "class_periods", force: :cascade do |t|
     t.integer  "course_id",  null: false
@@ -114,4 +125,6 @@ ActiveRecord::Schema.define(version: 20160904213947) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "assignments", "units"
+  add_foreign_key "class_assignments", "assignments"
+  add_foreign_key "class_assignments", "student_classes"
 end
