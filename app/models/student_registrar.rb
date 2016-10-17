@@ -6,7 +6,7 @@ class StudentRegistrar
   end
 
   def enroll(students: [])
-    return if students.empty?
+    return if students.blank?
 
     ActiveRecord::Base.transaction do
       @class_period.students = students
@@ -18,7 +18,12 @@ class StudentRegistrar
   private
 
   def synchronize_assignments_for students
-    #ClassPeriod.where()
+    @class_period.course.assignments.each do |assignment|
+      students.each do |student|
+        ClassAssignment.create(assignment: assignment,
+                               student_class: @class_period.student_classes.where(student: student).first )
+      end
+    end
   end
 
 end
