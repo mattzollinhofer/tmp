@@ -27,6 +27,20 @@ RSpec.describe Course do
     end
   end
 
+  describe 'assignments' do
+    it 'returns assignments for all units' do
+      unit1 = Unit.new(name: 'foo',
+                       assignments: FactoryGirl.build_stubbed_list(:assignment, 3))
+      unit2 = Unit.new(name: 'foo',
+                       assignments: FactoryGirl.build_stubbed_list(:assignment, 1))
+
+      course = Course.new(units: [unit1, unit2])
+
+      expect(course.assignments.count).to eq(4)
+      expect(course.assignments.map(&:name)).to include unit2.assignments.first.name
+    end
+  end
+
   describe 'total_assignments' do
     it 'reports the total number of assignments for all units' do
       unit1 = FactoryGirl.build_stubbed(:unit, assignments: FactoryGirl.build_stubbed_list(:assignment, 2))
