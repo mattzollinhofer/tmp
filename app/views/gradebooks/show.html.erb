@@ -1,5 +1,5 @@
 <h1><%= class_period_short_label @class_period %></h1>
-<div><%= taught_by_teachers(@class_period) %></div>
+<div><%= taught_by_teachers @class_period %></div>
 <table class='gradebook'>
   <thead>
     <th class=''>Students</th>
@@ -9,7 +9,10 @@
     <% @class_period.students.each do |student| %>
       <tr class='student row'>
         <td class='name'><%=student.display_name%></td>
-        <td class='assignments'></td>
+        <td class='assignment'>
+          <% student_class = student.student_classes.where(class_period: @class_period) %>
+          <%= ClassAssignment.where(student_class: student_class).map(&:assignment).map(&:name).join(', ') %>
+        </td>
       </tr>
     <% end %>
   </tbody>
