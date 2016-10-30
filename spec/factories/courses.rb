@@ -8,9 +8,5 @@ FactoryGirl.define do
       course.units = [build(:unit_with_assignments)]
       course.units.each { |unit| unit.course_id = course.id }
     end
-    after(:create) do |course|
-      course.units = [create(:unit_with_assignments)]
-      course.units.each { |unit| unit.course_id = course.id }
-    end
   end
 end

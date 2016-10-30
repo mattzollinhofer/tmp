@@ -11,9 +11,5 @@ FactoryGirl.define do
       unit.assignments = build_list(:assignment, 2, unit: unit)
       unit.assignments.each { |a| a.unit_id = unit.id }
     end
-    after(:create) do |unit|
-      unit.assignments = create_list(:assignment, 2, unit: unit)
-      unit.assignments.each { |a| a.unit_id = unit.id }
-    end
   end
 end
