@@ -1,18 +1,25 @@
 <h1><%= class_period_short_label @class_period %></h1>
 <div><%= taught_by_teachers @class_period %></div>
+<% assignments = @class_period.course.assignments %>
 <table class='gradebook'>
   <thead>
     <th class=''>Students</th>
-    <th class='assignments-header'>Assignments</th>
+    <% assignments.each do |assignment| %>
+      <th class='assignments-header'><%=assignment.name%></th>
+    <% end %>
   </thead>
   <tbody>
     <% @class_period.students.each do |student| %>
       <tr class='student row'>
         <td class='name'><%=student.display_name%></td>
-        <td class='assignment'>
-          <% student_class = student.student_classes.where(class_period: @class_period) %>
-          <%= ClassAssignment.where(student_class: student_class).map(&:assignment).map(&:name).join(', ') %>
-        </td>
+        <% student_class = student.student_classes.where(class_period: @class_period) %>
+        <% assignments.each do |assignment| %>
+          <% assignment.class_assignments.where(student_class: student_class).each do |class_assignment| %>
+            <td class='assignment'><%= class_assignment.points_earned %></td>
+          <% end %>
+          <%#= ClassAssignment.where(student: student) %>
+          <%#= ClassAssignment.where(student_class: student_class).map(&:assignment).map(&:name).join(', ') %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
