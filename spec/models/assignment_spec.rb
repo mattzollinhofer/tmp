@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Assignment do
+  it { is_expected.to have_many :class_assignments }
   it { is_expected.to have_attribute :stars_possible }
   it { is_expected.to have_attribute :points_possible }
   it { is_expected.to have_attribute :order }

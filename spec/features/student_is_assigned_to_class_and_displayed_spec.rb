@@ -1,4 +1,4 @@
-feature 'Student is added to class' do
+feature 'Student is added to class and then displayed to the gradebook' do
   include ClassPeriodHelper
 
   scenario 'successfully' do
@@ -15,9 +15,19 @@ feature 'Student is added to class' do
     click_on 'Update Class period'
 
     expect(page).to have_select('class_period[student_ids][]', selected: "#{student.display_name}")
+    class_assignments = ClassAssignment.where(student_class: StudentClass.find_by(student: student))
+    class_assignments.first.points_earned = 4
+    class_assignments.first.save!
+    class_assignments.second.points_earned = 7
+    class_assignments.second.save!
+
 
     visit gradebook_path class_period
-    expect(page).to have_css '.student .assignment', text: course.units.first.assignments.map(&:name).join(', ')
+    course.assignments.each do |assignment|
+      expect(page).to have_css '.gradebook th.assignments-header', text: assignment.name
+    end
+    expect(page).to have_css '.student .assignment', text: 4
+    expect(page).to have_css '.student .assignment', text: 7
 
   end
 end

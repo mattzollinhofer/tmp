@@ -1,4 +1,5 @@
 class Assignment < ActiveRecord::Base
+  has_many :class_assignments
   belongs_to :unit, inverse_of: :assignments
   after_initialize :default_order
 
