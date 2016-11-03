@@ -41,7 +41,7 @@ class ClassPeriodsController < ApplicationController
   end
 
   def update_students
-    registrar = StudentRegistrar.new(class_period: ClassPeriod.find(params[:id]))
+    registrar = Registrar.new(class_period: ClassPeriod.find(params[:id]))
     registrar.enroll(students: Student.where(id: class_period_params[:student_ids]).to_a)
     redirect_to manage_students_class_period_path
   end

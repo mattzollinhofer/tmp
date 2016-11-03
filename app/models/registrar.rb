@@ -1,4 +1,4 @@
-class StudentRegistrar
+class Registrar
   attr_reader :class_period
 
   def initialize(class_period:)
