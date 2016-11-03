@@ -19,7 +19,7 @@ class StudentRegistrar
   private
 
   def synchronize_assignments_for students
-    @class_period.course.assignments.each do |assignment|
+    @class_period.assignments.each do |assignment|
       students.each do |student|
         student_class = @class_period.student_classes.find_by(student: student)
         next if assignment_exists_for_student_class? assignment, student_class
