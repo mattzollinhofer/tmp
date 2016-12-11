@@ -15,7 +15,7 @@
         <% student_class = student.student_classes.where(class_period: @class_period) %>
         <% assignments.each do |assignment| %>
           <% assignment.class_assignments.where(student_class: student_class).each do |class_assignment| %>
-            <td class='assignment'><%= class_assignment.points_earned %></td>
+            <td class='assignment'><%= class_assignment.points_earned || 'NA' %></td>
           <% end %>
           <%#= ClassAssignment.where(student: student) %>
           <%#= ClassAssignment.where(student_class: student_class).map(&:assignment).map(&:name).join(', ') %>
