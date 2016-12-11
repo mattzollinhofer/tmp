@@ -32,7 +32,7 @@
 
 <script>
   $(document).ready(function(){
-    $('body.gradebooks.show').on('blur', '.assignment input.points_earned', function(e){
+    $('body.gradebooks.show').on('change', '.assignment input.points_earned', function(e){
       $(e.target).parents('form').submit();
     });
   });
