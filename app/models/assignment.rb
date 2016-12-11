@@ -1,5 +1,5 @@
 class Assignment < ActiveRecord::Base
-  has_many :class_assignments
+  has_many :class_assignments, dependent: :destroy
   belongs_to :unit, inverse_of: :assignments
   after_initialize :default_order
 
