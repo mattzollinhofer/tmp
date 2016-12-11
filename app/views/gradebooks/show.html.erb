@@ -17,8 +17,8 @@
         <% assignments.each do |assignment| %>
           <td class='assignment'>
             <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
-            <%= semantic_form_for class_assignment do |f| %>
-              <%= f.input :points_earned %>
+            <%= semantic_form_for class_assignment, remote: true do |f| %>
+              <%= f.input :points_earned, input_html: {class: 'points_earned'} %>
               <noscript>
                 <%= f.actions %>
               </noscript>
@@ -29,3 +29,11 @@
     <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    $('body.gradebooks.show').on('blur', '.assignment input.points_earned', function(e){
+      $(e.target).parents('form').submit();
+    });
+  });
+</script>

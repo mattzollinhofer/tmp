@@ -6,7 +6,11 @@ class ClassAssignmentController < ApplicationController
     else
       flash[:error] = 'Failed to update assignment'
     end
-    redirect_to :back
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { head :ok }
+    end
   end
 
   private
