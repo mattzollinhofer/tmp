@@ -10,18 +10,18 @@
   </thead>
   <tbody>
     <% @class_period.students.each do |student| %>
+      <% student_class = student.student_classes.find_by(class_period: @class_period)%>
       <tr class='student row'>
         <td class='name'><%=student.display_name%></td>
-        <% student_class = student.student_classes.where(class_period: @class_period) %>
+
         <% assignments.each do |assignment| %>
-          <% assignment.class_assignments.where(student_class: student_class).each do |class_assignment| %>
-            <td class='assignment'>
-              <%= semantic_form_for class_assignment do |f| %>
-                <%= f.input :points_earned %>
-                <%= f.actions %>
-              <% end %>
-            </td>
-          <% end %>
+          <td class='assignment'>
+            <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
+            <%= semantic_form_for class_assignment do |f| %>
+              <%= f.input :points_earned %>
+              <%= f.actions %>
+            <% end %>
+          </td>
         <% end %>
       </tr>
     <% end %>
