@@ -19,7 +19,9 @@
             <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
             <%= semantic_form_for class_assignment do |f| %>
               <%= f.input :points_earned %>
-              <%= f.actions %>
+              <noscript>
+                <%= f.actions %>
+              </noscript>
             <% end %>
           </td>
         <% end %>
