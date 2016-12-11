@@ -1,6 +1,6 @@
 <h1><%= class_period_short_label @class_period %></h1>
 <div><%= taught_by_teachers @class_period %></div>
-<% assignments = @class_period.course.assignments %>
+<% assignments = @class_period.assignments %>
 <table class='gradebook'>
   <thead>
     <th class=''>Students</th>
