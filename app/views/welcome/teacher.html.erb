@@ -1,5 +1,4 @@
 <div class='welcome teacher'>
-  <span>Welcome, <%= @welcome.teacher.first_name %></span>
   <ul class='class-periods'>
     <% @welcome.teacher.class_periods.each do |class_period| %>
       <li class='class-period'>

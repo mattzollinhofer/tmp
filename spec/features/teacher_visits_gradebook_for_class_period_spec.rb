@@ -11,7 +11,7 @@ feature 'Teacher Visits Gradebook' do
 
     visit gradebook_path class_period
 
-    expect(page).to have_css 'h1', text: class_period_short_label(class_period)
+    expect(page).to have_css 'h2', text: class_period_short_label(class_period)
     expect(page).to have_css 'table.gradebook'
     expect(page).to have_css 'th.assignments-header'
     expect(page).to have_css 'th', text: "Student"

@@ -1,5 +1,5 @@
-<h1><%= class_period_short_label @class_period %></h1>
-<div><%= taught_by_teachers @class_period %></div>
+<h2><%= class_period_short_label @class_period %></h1>
+<div class='teacher pull-right'><%= taught_by_teachers @class_period %></div>
 <% assignments = @class_period.assignments %>
 <table class='table table-striped gradebook'>
   <thead>

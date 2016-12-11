@@ -1,3 +1,13 @@
-<div class="nav-bar">
-  <%= render partial: "layouts/#{current_user.class.to_s.downcase}" %>
-</div>
+<nav>
+  <ul class='nav nav-pills'>
+    <li role='presentation'><h1><%= link_to('Teachy!', root_path) %></li>
+    <li role='presentation' class='dropdown pull-right'>
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Hi, <%= current_user&.first_name || 'Guest' %> <span class="caret"></span>
+      </a>
+      <ul class='dropdown-menu'>
+        <%= render partial: "layouts/#{current_user.class.to_s.downcase}" %>
+      </ul>
+    </li>
+  </ul>
+</nav>
