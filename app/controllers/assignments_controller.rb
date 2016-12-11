@@ -6,6 +6,12 @@ class AssignmentsController < ApplicationController
 
   def create
     @assignment = Assignment.create!(assignment_params)
+
+    @assignment.class_periods.each do |class_period|
+      class_period.student_classes.each do |student_class|
+        ClassAssignment.create!(assignment: @assignment, student_class: student_class)
+      end
+    end
     redirect_to unit_path @assignment.unit
   end
 
