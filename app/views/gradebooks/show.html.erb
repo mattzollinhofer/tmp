@@ -1,7 +1,7 @@
 <h1><%= class_period_short_label @class_period %></h1>
 <div><%= taught_by_teachers @class_period %></div>
 <% assignments = @class_period.assignments %>
-<table class='gradebook'>
+<table class='table table-striped gradebook'>
   <thead>
     <th class=''>Students</th>
     <% assignments.each do |assignment| %>
@@ -11,7 +11,7 @@
   <tbody>
     <% @class_period.students.each do |student| %>
       <% student_class = student.student_classes.find_by(class_period: @class_period)%>
-      <tr class='student row'>
+      <tr class='student'>
         <td class='name'><%=student.display_name%></td>
 
         <% assignments.each do |assignment| %>

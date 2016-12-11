@@ -10,6 +10,8 @@ gem 'turbolinks'
 gem 'pg'
 
 gem 'formtastic', '~> 3.0'
+gem 'bootstrap-sass'
+gem 'formtastic-bootstrap'
 
 #Auth
 gem 'devise'
