@@ -7,6 +7,8 @@ class ClassPeriod < ActiveRecord::Base
   has_many   :student_classes
   has_many   :students, through: :student_classes
 
+  delegate :assignments, to: :course
+
   def teachers
     super.presence || [NullTeacher.new]
   end

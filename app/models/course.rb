@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  has_many :units, inverse_of: :course
+  has_many :units, inverse_of: :course, dependent: :destroy
   has_many :class_periods, inverse_of: :course
 
   validates :name, presence: true
@@ -21,6 +21,22 @@ class Course < ActiveRecord::Base
     "#{name} (#{display_year})"
   end
 
+  def assignments
+    return @assignments if @assignments
+
+    @assignments = []
+    units.each{ |unit| @assignments += unit.assignments }
+    @assignments
+  end
+
+  def total_assignments
+    return @total_assignments if @total_assignments
+
+    @total_assignments = 0
+    units.each{ |unit| @total_assignments += unit.assignments.size }
+    @total_assignments
+  end
+
   private
 
   def display_year
@@ -30,4 +46,5 @@ class Course < ActiveRecord::Base
   def default_course_year
     Time.now.year
   end
+
 end

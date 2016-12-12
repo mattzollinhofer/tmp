@@ -29,6 +29,6 @@ feature 'Teacher updates course' do
     fill_in 'course[year]', with: ''
     click_on 'Update Course'
 
-    expect(page).to have_css '#course_name_input.error .inline-errors', text: "can't be blank"
+    expect(page).to have_css '#course_name_input.error', text: "can't be blank"
   end
 end

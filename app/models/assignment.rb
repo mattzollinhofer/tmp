@@ -1,4 +1,5 @@
 class Assignment < ActiveRecord::Base
+  has_many :class_assignments, dependent: :destroy
   belongs_to :unit, inverse_of: :assignments
   after_initialize :default_order
 
@@ -9,6 +10,9 @@ class Assignment < ActiveRecord::Base
     self.order = unit.assignments.length + 1
   end
 
+  def class_periods
+    unit.course.class_periods
+  end
 
   validates :order, :name, presence: true
   #TODO move to student_class

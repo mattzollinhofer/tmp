@@ -36,6 +36,16 @@ class ClassPeriodsController < ApplicationController
     redirect_to class_periods_path
   end
 
+  def manage_students
+    @class_period = ClassPeriod.find(params[:id])
+  end
+
+  def update_students
+    registrar = Registrar.new(class_period: ClassPeriod.find(params[:id]))
+    registrar.enroll(students: Student.where(id: class_period_params[:student_ids]).to_a)
+    redirect_to manage_students_class_period_path
+  end
+
   private
 
   def class_period_params

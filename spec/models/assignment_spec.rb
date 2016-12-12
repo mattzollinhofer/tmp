@@ -1,12 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Assignment do
+  it { is_expected.to have_many :class_assignments }
   it { is_expected.to have_attribute :stars_possible }
   it { is_expected.to have_attribute :points_possible }
   it { is_expected.to have_attribute :order }
   it { is_expected.to have_attribute :name }
 
   it { is_expected.to belong_to :unit }
+
+  describe '#class_period' do
+    it 'provides the class_period for this assignment' do
+      class_period = ClassPeriod.new(period: 7)
+      course = Course.new(name: 'course-foo', year: 2020, class_periods: [class_period])
+      unit = Unit.new(name: 'unit 1', course: course)
+      assignment = Assignment.new(name: 'a1', unit: unit)
+
+      expect(assignment.class_periods.first.period).to eq 7
+    end
+  end
 
   #TODO move to student_assignment
   #it { is_expected.not_to have_attribute :time_zone_id }

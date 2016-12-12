@@ -11,9 +11,19 @@ Rails.application.routes.draw do
   end
   resources :assignments, only: [:show, :edit, :destroy, :update]
 
-  resources :class_periods, only: [:index, :new, :create, :edit, :show, :update, :destroy]
+  resources :class_periods, only: [:index, :new, :create, :edit, :show, :update, :destroy] do
+    member do
+      get 'manage_students'
+      patch 'update_students'
+      put 'update_students'
+    end
+  end
   resources :student_welcome, only: :index
   resources :teacher_welcome, only: :index
+
+  resources :class_assignment, only: :update
+
+  resources :gradebooks, only: :show
 
   get '/planning' => 'planning#index', as: 'planning'
 end

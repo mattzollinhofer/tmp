@@ -3,8 +3,9 @@
   <% if @class_periods.present? %>
     <% @class_periods.each do |class_period| %>
       <li class='class-period'>
-        <%=link_to(class_period_label(class_period), class_period_path(class_period))%>
+        <%= link_to(class_period_label(class_period), class_period_path(class_period)) %>
         <%= link_to 'edit', edit_class_period_path(class_period) %>
+        <%= link_to 'manage students', manage_students_class_period_path(class_period) %>
         <%= link_to 'delete', class_period_path(class_period), method: :delete,
                     data: { confirm: "Are you sure you want to delete class period: #{class_period.period}" } %>
       </li>

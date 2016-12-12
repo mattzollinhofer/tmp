@@ -4,4 +4,10 @@ class StudentClass < ActiveRecord::Base
 
   belongs_to :class_period
   validates :class_period, presence: true
+
+  has_many :class_assignments
+
+  def assignments
+    class_assignments.map(&:assignment)
+  end
 end
