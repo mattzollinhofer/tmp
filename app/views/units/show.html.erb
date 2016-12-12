@@ -1,6 +1,6 @@
 <p><%= link_to "Back to #{@unit.course.name}", course_path(@unit.course) %></p>
-<h1><%= @unit %></h1>
-<h2>Assignments</h2>
+<h2><%= @unit %></h2>
+<h3>Assignments</h3>
 <ul class='assignments'>
   <% if @unit.assignments.present? %>
     <% @unit.assignments.each do |assignment| %>

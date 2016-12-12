@@ -1,6 +1,6 @@
 <p><%= link_to 'Back to Courses', courses_path %></p>
-<h1><%= @course %></h1>
-<h2>Units</h2>
+<h2><%= @course %></h2>
+<h3>Units</h3>
 <ul class='units'>
   <% if @course.units.present? %>
     <% @course.units.each do |unit| %>
