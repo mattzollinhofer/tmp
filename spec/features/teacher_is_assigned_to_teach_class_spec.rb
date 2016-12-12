@@ -1,16 +1,14 @@
-feature 'Teacher is Assigned to Teach Class', js: true do
+feature 'Teacher is Assigned to Teach Class' do
   scenario 'successfully' do
     teacher1 = FactoryGirl.create(:teacher)
     teacher2 = FactoryGirl.create(:teacher)
     login_as(teacher1, scope: :user)
     course = FactoryGirl.create(:course_with_units_and_assignments)
 
-    visit planning_path
+    visit courses_path
 
-    expect(page).to have_css 'li', text: 'Manage Students'
     expect(page).to have_css 'a', text: 'Manage Courses'
     expect(page).to have_css 'a', text: 'Manage Class Periods'
-    expect(page).to have_css 'li', text: 'Manage Teachers'
 
     click_on 'Manage Class Periods'
     expect(page).to have_css '.class-periods li', text: "No Class Periods"
@@ -36,10 +34,5 @@ feature 'Teacher is Assigned to Teach Class', js: true do
     fill_in 'class_period[period]', with: '3'
     click_on 'Update Class period'
     expect(page).to have_css '.class-periods li', text: "#{course.name} Period: 3 - Taught by: #{teacher1.name} and #{teacher2.name}"
-
-    page.accept_confirm do
-      click_link 'delete'
-    end
-    expect(page).not_to have_css '.class-periods li', text: "#{course.name}"
   end
 end

@@ -1,3 +1,6 @@
-<li role='presentation'><%= link_to 'Planning', planning_url if current_user.is_a? Teacher %></li>
-<li role="separator" class="divider"></li>
+<% if current_user.is_a? Teacher %>
+  <li role='presentation'><%= link_to 'Manage Courses', courses_path %></li>
+  <li role='presentation'><%= link_to 'Manage Class Periods', class_periods_path%></li>
+  <li role="separator" class="divider"></li>
+<% end %>
 <%= render partial: 'layouts/logged_in' %>

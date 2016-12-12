@@ -9,7 +9,6 @@ feature 'Teacher Visits Homepage' do
 
     visit '/'
 
-    expect(page).to have_css '.nav', text: 'Planning'
     expect(page).to have_css 'a', text: "Hi, #{teacher.first_name}"
     expect(page).to have_css '.class-periods li a',
                     text: "#{course.name.capitalize}"

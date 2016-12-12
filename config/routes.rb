@@ -24,6 +24,4 @@ Rails.application.routes.draw do
   resources :class_assignment, only: :update
 
   resources :gradebooks, only: :show
-
-  get '/planning' => 'planning#index', as: 'planning'
 end
