@@ -24,7 +24,8 @@
           <td class='assignment'>
             <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
             <%= semantic_form_for class_assignment, remote: true do |f| %>
-              <%= f.input :points_earned, input_html: {class: 'points_earned'} %>
+              <%= f.input :points_earned, label: false, input_html: {class: 'points_earned', placeholder: 'Points'}, prompt: 'points' %>
+              <%= f.input :stars_earned, label: false, input_html: {class: 'stars_earned', placeholder: 'Stars'} %>
               <noscript>
                 <%= f.actions %>
               </noscript>
