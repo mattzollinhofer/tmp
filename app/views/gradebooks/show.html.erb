@@ -1,11 +1,17 @@
-<h2><%= class_period_short_label @class_period %></h2>
-<div class='teacher pull-right'><%= taught_by_teachers @class_period %></div>
+<div class='row'>
+  <div class='col-xs-12 col-sm-6'>
+    <h2 class='pull-left'><%= class_period_short_label @class_period %></h2>
+  </div>
+  <div class='hidden-xs col-sm-6'>
+    <div class='teacher pull-right'><%= taught_by_teachers @class_period %></div>
+  </div>
+</div>
 <% assignments = @class_period.assignments %>
 <table class='table table-striped gradebook'>
   <thead>
     <th class=''>Students</th>
     <% assignments.each do |assignment| %>
-      <th class='assignments-header'><%=assignment.name%></th>
+      <th class='assignments-header text-center'><%=assignment.name%></th>
     <% end %>
   </thead>
   <tbody>
