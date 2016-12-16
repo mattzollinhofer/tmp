@@ -42,5 +42,7 @@
     $('body.gradebooks.show').on('change', '.assignment input.points_earned', function(e){
       $(e.target).parents('form').submit();
     });
+
+    $('table.gradebook').arrowTable();
   });
 </script>
