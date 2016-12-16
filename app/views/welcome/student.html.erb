@@ -1,3 +1,17 @@
-<span>Welcome, <%= @welcome.student.first_name %></span>
+<div class='welcome student'>
+  <% if @welcome.class_periods.empty? %>
+    <%= render partial: 'shared/jumbo',
+                        locals: {
+                        jumbo_text: 'No Classes?',
+                        sub_text: 'Talk to a teacher to get into a class.' } %>
+  <% end %>
+  <ul class='class-periods'>
+    <% @welcome.class_periods.each do |class_period| %>
+      <li class='class-period'>
+        <%= link_to(class_period_short_label(class_period), playbook_path(class_period)) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <% #show last student unit view %>

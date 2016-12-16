@@ -1,4 +1,6 @@
 class Assignment < ActiveRecord::Base
+  default_scope { order(order: :asc)  }
+
   has_many :class_assignments, dependent: :destroy
   belongs_to :unit, inverse_of: :assignments
   after_initialize :default_order
@@ -12,6 +14,14 @@ class Assignment < ActiveRecord::Base
 
   def class_periods
     unit.course.class_periods
+  end
+
+  def points_possible
+    self[:points_possible] || 0
+  end
+
+  def stars_possible
+    self[:stars_possible] || 0
   end
 
   validates :order, :name, presence: true

@@ -1,15 +1,35 @@
-<h2>All Courses</h2>
-<ul class='courses'>
-<% @courses.each do |course| %>
-  <a href="<%= course_path(course) %>">
-    <li data-course-id=<%= course.id %>>
-      <a href="<%= course_path(course) %>"><%= course %></a>
-      (<%= "Units: #{course.units.map(&:name).join(',')}" if course.units.present? %>)
-      <%#(<%= "Assignments: #{course.assignments.map(&:name).join(',')}" if course.assignments.present? %>
-      <%= link_to 'edit', edit_course_path(course) %>
-      <%= link_to 'delete', course_path(course), method: :delete,
-                  data: { confirm: "Are you sure you want to delete course: #{course.name}" } %>
-    </li>
+<div class='row'>
+  <div class='col-md-6'>
+    <h2>All Courses</h2>
+  </div>
+  <div class='col-md-6'>
+    <div class='pull-right'>
+      <%= link_to 'New Course', new_course_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+
+<% if @courses.present? %>
+  <ul class='courses list-group'>
+    <% @courses.each do |course| %>
+      <li data-course-id=<%= course.id %> class='course list-group-item clearfix'>
+        <a href="<%= course_path(course) %>"><%= course %></a>
+        <div class='btn-group pull-right'>
+          <%= link_to edit_course_path(course), class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+          <% end %>
+          <%= link_to course_path(course), method: :delete, class: 'btn btn-default',
+                      data: { confirm: "Are you sure you want to delete: #{course.name}" } do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= render partial: 'shared/jumbo',
+                      locals: {
+                      jumbo_text: 'There are no courses!',
+                      button_text: 'Create One',
+                      url: new_course_path } %>
 <% end %>
-</ul>
-<p><%= link_to 'Create a new course', new_course_path %></p>

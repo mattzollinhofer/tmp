@@ -1,18 +1,36 @@
-<p><%= link_to "Back to #{@unit.course.name}", course_path(@unit.course) %></p>
-<h2><%= @unit %></h2>
-<h3>Assignments</h3>
-<ul class='assignments'>
-  <% if @unit.assignments.present? %>
+<div class='row'>
+  <div class='col-md-6'>
+    <h2><%= @unit %></h2>
+  </div>
+  <div class='col-md-6'>
+    <div class='pull-right'>
+      <%= link_to 'New Assignment', new_unit_assignment_path(@unit), class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+
+<% if @unit.assignments.present? %>
+  <h3>Assignments</h3>
+  <ul class='assignments list-group'>
     <% @unit.assignments.each do |assignment| %>
-      <li data-assignment-id=<%=assignment.id%> class='assignment'>
+      <li data-assignment-id=<%=assignment.id%> class='assignment list-group-item clearfix'>
         <%=assignment.name%> - Points: <%=assignment.points_possible%> - Stars: <%=assignment.stars_possible%>
-        <%= link_to 'edit', edit_assignment_path(assignment) %>
-        <%= link_to 'delete', assignment_path(assignment), method: :delete,
-          data: { confirm: "Are you sure you want to delete assignment: #{assignment.name}" } %>
-      </li>
-    <% end %>
-  <% else %>
-    <li class='empty assignment'>This unit has no assignments</li>
+        <div class='btn-group pull-right'>
+          <%= link_to edit_assignment_path(assignment), class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+          <% end %>
+          <%= link_to assignment_path(assignment), method: :delete, class: 'btn btn-default',
+                      data: { confirm: "Are you sure you want to delete: #{assignment.name}" } do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+          <% end %>
+        </div>
+    </li>
   <% end %>
-</ul>
-<p><%= link_to 'Create a New Assignment', new_unit_assignment_path(@unit) %></p>
+  </ul>
+<% else %>
+  <%= render partial: 'shared/jumbo',
+                      locals: {
+                      jumbo_text: 'There are no assignments!',
+                      button_text: 'Create One',
+                      url: new_unit_assignment_path(@unit) } %>
+<% end %>

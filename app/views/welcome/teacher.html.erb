@@ -1,14 +1,17 @@
 <div class='welcome teacher'>
-  <% if @welcome.teacher.class_periods.empty? %>
-    <div class='well'>You aren't assigned to teach any classes. Head to the <%= link_to 'class period planning section', class_periods_url %> to get some.</div>
+  <% if @welcome.teacher.class_periods.present? %>
+    <div class='class-periods list-group'>
+      <% @welcome.teacher.class_periods.each do |class_period| %>
+        <%= link_to(class_period_short_label(class_period),
+                    gradebook_path(class_period),
+                    class:'class-period list-group-item clearfix') %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render partial: 'shared/jumbo',
+                        locals: {
+                        jumbo_text: 'Not teaching any classes?!',
+                        button_text: 'Teach Something',
+                        url: class_periods_url } %>
   <% end %>
-  <ul class='class-periods'>
-    <% @welcome.teacher.class_periods.each do |class_period| %>
-      <li class='class-period'>
-        <%= link_to(class_period_short_label(class_period), gradebook_path(class_period)) %>
-      </li>
-    <% end %>
-  </ul>
 </div>
-
-<% #show last teacher unit view %>

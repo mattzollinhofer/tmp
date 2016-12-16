@@ -3,35 +3,57 @@
     <h2 class='pull-left'><%= class_period_short_label @class_period %></h2>
   </div>
   <div class='hidden-xs col-sm-6'>
-    <div class='teacher pull-right'><%= taught_by_teachers @class_period %></div>
+    <div class='pull-right'><%= taught_by_teachers @class_period %></div>
   </div>
 </div>
 <% assignments = @class_period.assignments %>
-<table class='table table-striped gradebook'>
+<table class='table table-striped table-striped-column gradebook'>
   <thead>
     <th class=''>Students</th>
     <% assignments.each do |assignment| %>
-      <th class='assignments-header text-center'><%=assignment.name%></th>
+      <% if assignment.points_possible > 0 %>
+        <th class='assignments-header rotate'><div><span><%=assignment.name%></span></div></th>
+      <% end %>
+
+      <% if assignment.stars_possible > 0 %>
+        <th class='assignments-header rotate'><div><span><%="#{assignment.name} stars"%></span></div></th>
+      <% end %>
     <% end %>
+    <th></th>
   </thead>
   <tbody>
     <% @class_period.students.each do |student| %>
-      <% student_class = student.student_classes.find_by(class_period: @class_period)%>
+      <% student_class = student.student_classes.find_by(class_period: @class_period) %>
       <tr class='student'>
         <td class='name'><%=student.display_name%></td>
 
         <% assignments.each do |assignment| %>
-          <td class='assignment'>
-            <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
-            <%= semantic_form_for class_assignment, remote: true do |f| %>
-              <%= f.input :points_earned, label: false, input_html: {class: 'points_earned', placeholder: 'Points'}, prompt: 'points' %>
-              <%= f.input :stars_earned, label: false, input_html: {class: 'stars_earned', placeholder: 'Stars'} %>
-              <noscript>
-                <%= f.actions %>
-              </noscript>
-            <% end %>
-          </td>
+          <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
+
+          <% if assignment.points_possible > 0 %>
+            <td class='assignment'>
+              <%= semantic_form_for class_assignment, remote: true do |f| %>
+                <%= f.input :points_earned, as: :string, label: false, input_html: {class: 'autosave points_earned'}, prompt: 'points' %>
+                <noscript>
+                  <%= f.actions %>
+                </noscript>
+              <% end %>
+            </td>
+          <% end %>
+
+          <% if assignment.stars_possible > 0 %>
+            <td class='assignment'>
+              <%= semantic_form_for class_assignment, remote: true do |f| %>
+                <%= f.input :stars_earned, as: :string, label: false, input_html: {class: 'autosave stars_earned'} %>
+                <noscript>
+                  <%= f.actions %>
+                </noscript>
+              <% end %>
+            </td>
+          <% end %>
+
         <% end %>
+        <td class='greedy'></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,7 +61,7 @@
 
 <script>
   $(document).ready(function(){
-    $('body.gradebooks.show').on('change', '.assignment input.points_earned', function(e){
+    $('body.gradebooks.show').on('change', '.assignment input.autosave', function(e){
       $(e.target).parents('form').submit();
     });
 

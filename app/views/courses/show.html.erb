@@ -1,18 +1,36 @@
-<p><%= link_to 'Back to Courses', courses_path %></p>
-<h2><%= @course %></h2>
-<h3>Units</h3>
-<ul class='units'>
-  <% if @course.units.present? %>
+<div class='row'>
+  <div class='col-md-6'>
+    <h2><%= @course %></h2>
+  </div>
+  <div class='col-md-6'>
+    <div class='pull-right'>
+      <%= link_to 'New Unit', new_course_unit_path(@course), class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+
+<% if @course.units.present? %>
+  <h3>Units</h3>
+  <ul class='units list-group '>
     <% @course.units.each do |unit| %>
-      <li data-unit-id=<%=unit.id%> class='unit'>
-        <%=link_to unit.name, unit_path(unit)%>
-        <%= link_to 'edit', edit_unit_path(unit) %>
-        <%= link_to 'delete', unit_path(unit), method: :delete,
-          data: { confirm: "Are you sure you want to delete unit: #{unit.name}" } %>
+      <li data-unit-id=<%=unit.id%> class='unit list-group-item clearfix'>
+        <%= link_to unit.name, unit_path(unit)%>
+        <div class='btn-group pull-right'>
+          <%= link_to edit_unit_path(unit), class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+          <% end %>
+          <%= link_to unit_path(unit), method: :delete, class: 'btn btn-default',
+                      data: { confirm: "Are you sure you want to delete: #{unit.name}" } do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+          <% end %>
+        </div>
       </li>
     <% end %>
-  <% else %>
-    <li class='empty unit'>This course has no units</li>
-  <% end %>
-</ul>
-<p><%= link_to 'Create a New Unit', new_course_unit_path(@course) %></p>
+  </ul>
+<% else %>
+  <%= render partial: 'shared/jumbo',
+                      locals: {
+                      jumbo_text: 'This course has no units!',
+                      button_text: 'Create One',
+                      url: new_course_unit_path(@course) } %>
+<% end %>

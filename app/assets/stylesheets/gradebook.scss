@@ -1,11 +1,66 @@
 body.gradebooks.show {
-  form.class_assignment {
+  td.name {
+    width: 100px;
+  }
+  td.assignment {
+    white-space: nowrap;
+    padding: 3px;
+    //min-width: 30px;
+    //max-width: 59px;
+
     div.input {
+      //width: 10px;
+    }
+  }
+  form.class_assignment {
+    .form-group{
       display: inline;
+    }
+    div.input {
+      //display: inline;
     }
     .form-control{
       display: inline;
-      width: 49%;
+      width: 24px;
+      text-align: center;
+      padding: 0;
     }
   }
+  .greedy{
+    width: 99%;
+    background-color: white !important;
+  }
+
+  .table-striped-column > tbody > tr td:nth-of-type(even) {
+    background-color: #ccc;
+  }
+
+  th.rotate {
+    /* Something you can count on */
+    height: 140px;
+    white-space: nowrap;
+
+  }
+
+  th.rotate > div {
+    //transform: translate3d(40px, 1px, 0) rotate(-45deg);
+    //width: 30px;
+    //transform-origin: left bottom;
+    //box-sizing: border-box;
+
+
+    transform:
+    /* Magic Numbers */
+    translate(0, 0)
+    /* 45 is really 360 - 45 */
+    rotate(315deg);
+    width: 10px;
+  }
+  th.rotate > div > span {
+    padding: 5px 10px;
+
+  }
+
+
+
 }

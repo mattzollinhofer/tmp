@@ -1,4 +1,6 @@
 class Unit < ActiveRecord::Base
+  default_scope { order(order: :asc)  }
+
   belongs_to :course, inverse_of: :units
   has_many :assignments, inverse_of: :unit, dependent: :destroy
   after_initialize :default_order

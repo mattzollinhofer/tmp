@@ -5,7 +5,7 @@ class StudentWelcome
     @student = student
   end
 
-  def courses
-    student.class_periods.map &:course
+  def class_periods
+    student.student_classes.map(&:class_period)
   end
 end

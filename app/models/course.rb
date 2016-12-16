@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  default_scope { order(year: :asc)  }
+
   has_many :units, inverse_of: :course, dependent: :destroy
   has_many :class_periods, inverse_of: :course
 
@@ -13,8 +15,12 @@ class Course < ActiveRecord::Base
                message: 'should be a four-digit year'
              }
 
-  def year
-    self[:year] || default_course_year
+  after_initialize :default_year
+
+  def default_year
+    return year if year.present?
+
+    self.year = Time.now.year
   end
 
   def to_s
@@ -42,9 +48,4 @@ class Course < ActiveRecord::Base
   def display_year
     "#{year}-#{year+1}"
   end
-
-  def default_course_year
-    Time.now.year
-  end
-
 end
