@@ -1,17 +1,21 @@
 source 'https://rubygems.org'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap-chosen'
+end
 
 gem 'rails', '~> 4.2.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
-gem 'turbolinks'
+#gem 'turbolinks'
 gem 'pg'
 
 gem 'formtastic', '~> 3.0'
 gem 'bootstrap-sass'
 gem 'formtastic-bootstrap'
+gem 'chosen-rails'
 
 #Auth
 gem 'devise'
