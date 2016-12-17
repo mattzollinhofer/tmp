@@ -8,8 +8,8 @@
     </div>
   </div>
 </div>
-<ul class='class-periods list-group'>
-  <% if @class_periods.present? %>
+<% if @class_periods.present? %>
+  <ul class='class-periods list-group'>
     <% @class_periods.each do |class_period| %>
       <li class='class-period list-group-item clearfix'>
         <%= link_to class_period_label(class_period), class_period_path(class_period) %>
@@ -27,7 +27,11 @@
         </div>
       </li>
     <% end %>
-  <% else %>
-    <li>No Class Periods</li>
-  <% end %>
-</ul>
+  </ul>
+<% else %>
+  <%= render partial: 'shared/jumbo',
+                      locals: {
+                      jumbo_text: 'There are no class periods!',
+                      button_text: 'Create One',
+                      url: new_class_period_path } %>
+<% end %>
