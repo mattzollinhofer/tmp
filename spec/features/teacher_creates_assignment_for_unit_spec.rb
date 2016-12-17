@@ -6,7 +6,7 @@ feature 'Teacher creates, edits, and deletes an assignment for unit', js: true d
 
     visit unit_path unit
 
-    click_on 'Create a New Assignment'
+    click_on 'New Assignment'
     fill_in 'assignment_name', with: 'assignment Foo 1'
     fill_in 'assignment_points_possible', with: '4'
     fill_in 'assignment_stars_possible', with: '3'
@@ -16,7 +16,7 @@ feature 'Teacher creates, edits, and deletes an assignment for unit', js: true d
     expect(page).to have_css '.assignments li', text: 'Points: 4'
     expect(page).to have_css '.assignments li', text: 'Stars: 3'
 
-    click_on 'edit'
+    click_on 'Edit'
     fill_in 'assignment_name', with: 'assignment 1'
     fill_in 'assignment_points_possible', with: '5'
     fill_in 'assignment_stars_possible', with: '2'
@@ -27,7 +27,7 @@ feature 'Teacher creates, edits, and deletes an assignment for unit', js: true d
     expect(page).to have_css '.assignments li', text: 'Stars: 2'
 
     page.accept_confirm do
-      click_link 'delete'
+      click_link 'Delete'
     end
     expect(page).not_to have_css '.assignments li', text: 'assignment 1'
   end

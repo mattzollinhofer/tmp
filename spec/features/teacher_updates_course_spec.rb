@@ -7,7 +7,7 @@ feature 'Teacher updates course' do
 
     visit courses_path
     expect(page).to have_css 'li', text: course.name
-    click_on 'edit'
+    click_on 'Edit'
     fill_in 'course[name]', with: 'Course Name Foo'
     fill_in 'course[year]', with: '2000'
     click_on 'Update Course'
@@ -24,7 +24,7 @@ feature 'Teacher updates course' do
 
     visit courses_path
     expect(page).to have_css 'li', text: course.name
-    click_on 'edit'
+    click_on 'Edit'
     fill_in 'course[name]', with: ''
     fill_in 'course[year]', with: ''
     click_on 'Update Course'
