@@ -11,7 +11,7 @@ feature 'Teacher is Assigned to Teach Class' do
     expect(page).to have_css 'a', text: 'Manage Class Periods'
 
     click_on 'Manage Class Periods'
-    expect(page).to have_css '.class-periods li', text: "No Class Periods"
+    expect(page).to have_css '.jumbotron', text: 'There are no class periods!'
 
     click_on 'New Class Period'
     select teacher1.name, from: 'class_period_teacher_ids'

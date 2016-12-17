@@ -8,6 +8,7 @@
     </div>
   </div>
 </div>
+
 <% if @class_periods.present? %>
   <ul class='class-periods list-group'>
     <% @class_periods.each do |class_period| %>
@@ -29,9 +30,17 @@
     <% end %>
   </ul>
 <% else %>
-  <%= render partial: 'shared/jumbo',
-                      locals: {
-                      jumbo_text: 'There are no class periods!',
-                      button_text: 'Create One',
-                      url: new_class_period_path } %>
+  <% if Course.blank? %>
+    <%= render partial: 'shared/jumbo',
+                        locals: {
+                        jumbo_text: 'There are no courses!',
+                        button_text: 'Create One',
+                        url: new_course_path } %>
+  <% else %>
+    <%= render partial: 'shared/jumbo',
+                        locals: {
+                        jumbo_text: 'There are no class periods!',
+                        button_text: 'Create One',
+                        url: new_class_period_path } %>
+  <% end %>
 <% end %>
