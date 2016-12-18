@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   default_scope { order(year: :asc)  }
 
   has_many :units, inverse_of: :course, dependent: :destroy
-  has_many :class_periods, inverse_of: :course
+  has_many :class_periods, inverse_of: :course, dependent: :destroy
 
   validates :name, presence: true
   validates :year,
