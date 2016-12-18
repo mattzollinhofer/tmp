@@ -24,4 +24,7 @@ Rails.application.routes.draw do
   resources :class_assignment, only: :update
 
   resources :gradebooks, only: :show
+
+  get '/playbooks/student/:student_id/class_period/:class_period_id',
+      to: 'playbooks#show', as: :playbook
 end
