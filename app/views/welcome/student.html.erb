@@ -1,17 +1,16 @@
 <div class='welcome student'>
-  <% if @welcome.class_periods.empty? %>
+  <% if @welcome.class_periods.present? %>
+    <div class='class-periods list-group'>
+      <% @welcome.class_periods.each do |class_period| %>
+        <%= link_to(class_period_short_label(class_period),
+                    playbook_path(class_period),
+                    class:'class-period list-group-item clearfix') %>
+      <% end %>
+    </ul>
+  <% else %>
     <%= render partial: 'shared/jumbo',
                         locals: {
                         jumbo_text: 'No Classes?',
                         sub_text: 'Talk to a teacher to get into a class.' } %>
   <% end %>
-  <ul class='class-periods'>
-    <% @welcome.class_periods.each do |class_period| %>
-      <li class='class-period'>
-        <%= link_to(class_period_short_label(class_period), playbook_path(class_period)) %>
-      </li>
-    <% end %>
-  </ul>
 </div>
-
-<% #show last student unit view %>
