@@ -1,8 +1,11 @@
 <h2><%= assignment.name %></h2>
-<%= semantic_form_for [unit, assignment] do |form| %>
+
+<% form_objects = (assignment.new_record?) ? [unit, assignment] : [assignment] %>
+<%= semantic_form_for form_objects do |form| %>
   <%= form.inputs do %>
     <%= form.input :name %>
     <%= form.input :order %>
+    <%= form.input :due_at, as: :string, input_html: {class: 'datepicker'} %>
     <%= form.input :points_possible %>
     <%= form.input :stars_possible %>
     <%= form.input :unit_id, as: :hidden %>

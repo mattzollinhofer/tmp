@@ -17,6 +17,7 @@ class AssignmentsController < ApplicationController
 
   def edit
     @assignment = Assignment.find params[:id]
+    @unit = @assignment.unit
   end
 
   def update
@@ -38,6 +39,6 @@ class AssignmentsController < ApplicationController
 
   def assignment_params
     params.require(:assignment)
-          .permit(:name, :points_possible, :stars_possible, :order, :unit_id)
+          .permit(:name, :points_possible, :stars_possible, :order, :unit_id, :due_at)
   end
 end

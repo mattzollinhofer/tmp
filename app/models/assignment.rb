@@ -12,6 +12,19 @@ class Assignment < ActiveRecord::Base
     self.order = unit.assignments.length + 1
   end
 
+  def due_at
+    if attributes['due_at'].present?
+      attributes['due_at'].strftime('%m/%d/%Y')
+    else
+      super
+    end
+  end
+
+  def due_at= date
+    return if date.blank?
+    write_attribute :due_at, Date.strptime(date, "%m/%d/%Y")
+  end
+
   def class_periods
     unit.course.class_periods
   end
