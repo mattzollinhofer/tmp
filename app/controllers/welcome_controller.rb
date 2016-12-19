@@ -12,4 +12,8 @@ class WelcomeController < ApplicationController
     @welcome = StudentWelcome.new current_user
     render 'welcome/student'
   end
+
+  def welcome_guest
+    render 'welcome/guest'
+  end
 end

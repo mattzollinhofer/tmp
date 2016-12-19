@@ -23,6 +23,10 @@ class UserCreator
   end
 
   def self.user_class_from_email email
-    (email =~ /.*[0-9][0-9]@.*?/) ? Student : Teacher
+    if Rails.env.production?
+      (email =~ /.*[0-9][0-9]@.*?/) ? Student : Guest
+    else
+      (email =~ /.*?@gmail.*?/) ? Student : Teacher
+    end
   end
 end
