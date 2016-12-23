@@ -40,10 +40,28 @@ class ClassPeriodsController < ApplicationController
     @class_period = ClassPeriod.find(params[:id])
   end
 
-  def update_students
-    registrar = Registrar.new(class_period: ClassPeriod.find(params[:id]))
+  def remove_student
+    class_period = ClassPeriod.find(params[:class_period_id])
+    student_class = StudentClass.find_by(class_period: class_period, student: params[:id])
+    if student_class.destroy
+      @removed_student = student_class.student
+      flash[:success] = 'Student was removed from class period'
+    else
+      flash[:error] = 'Student was not removed from class period'
+    end
+
+    respond_to do |format|
+      format.html { redirect_to :manage_students }
+      format.js
+    end
+  end
+
+  def add_students
+    @class_period = ClassPeriod.find(params[:id])
+    registrar = Registrar.new(class_period: @class_period)
     registrar.enroll(students: Student.where(id: class_period_params[:student_ids]).to_a)
-    redirect_to class_periods_path
+
+    redirect_to :back
   end
 
   private

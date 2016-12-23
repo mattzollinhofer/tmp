@@ -12,10 +12,9 @@ feature 'Student is added to class and then displayed to the gradebook' do
 
     click_on 'Manage Students'
     select student.display_name, from: 'class_period_student_ids'
-    click_on 'Update Class period'
+    click_on 'Add Students'
 
-    click_on 'Manage Students'
-    expect(page).to have_select('class_period[student_ids][]', selected: "#{student.display_name}")
+    expect(page).to have_css ".students #student-#{student.id}"
     class_assignments = ClassAssignment.where(student_class: StudentClass.find_by(student: student))
     class_assignments.first.points_earned = 4
     class_assignments.first.save!

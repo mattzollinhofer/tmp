@@ -9,6 +9,10 @@ class ClassPeriod < ActiveRecord::Base
 
   delegate :assignments, to: :course
 
+  def addable_students
+    Student.all - students
+  end
+
   def teachers
     super.presence || [NullTeacher.new]
   end
