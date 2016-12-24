@@ -8,7 +8,7 @@ feature 'User Logs Out' do
 
     click_on 'Sign Out'
 
-    expect(page).to have_css 'h2', text: 'Sign in'
-    expect(page).to have_css 'a', text: 'Sign in with Google'
+    expect(page).to have_css '.h1', text: 'Sign In!!'
+    expect(page).to have_css 'a', text: 'With Gmail'
   end
 end
