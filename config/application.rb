@@ -32,7 +32,7 @@ module Teachy
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
 
     # Try loading a YAML file at `./config/env.[environment].yml`, if it exists
     # Kudos to Thomas Fuchs (http://mir.aculo.us) for the initial implementation
