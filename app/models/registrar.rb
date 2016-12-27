@@ -1,24 +1,24 @@
 class Registrar
-  attr_reader :class_period
 
-  def initialize(class_period:)
-    @class_period = class_period
-  end
-
-  def enroll(students: [])
+  def enroll(class_period_id:, students: [])
     return if students.blank?
-    students = ensure_all_students_included(Array(students))
+    return if class_period_id.blank?
+
+    students = Student.where(id: students)
+    class_period = ClassPeriod.find(class_period_id)
+
+    students = ensure_all_students_included(Array(students), class_period)
 
     ActiveRecord::Base.transaction do
       class_period.students = students
-      synchronize_assignments_for students
+      synchronize_assignments_for(students, class_period)
       class_period.save!
     end
   end
 
   private
 
-  def synchronize_assignments_for students
+  def synchronize_assignments_for(students, class_period)
     class_period.assignments.each do |assignment|
       students.each do |student|
         student_class = class_period.student_classes.find_by(student: student)
@@ -32,7 +32,7 @@ class Registrar
     ClassAssignment.where(assignment: assignment, student_class: student_class).present?
   end
 
-  def ensure_all_students_included students
+  def ensure_all_students_included(students, class_period)
     (students + class_period.students).uniq
   end
 

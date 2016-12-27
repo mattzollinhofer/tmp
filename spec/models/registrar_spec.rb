@@ -4,7 +4,7 @@ describe Registrar do
   describe '#enroll' do
     it 'does nothing when no students are provided' do
       expect(ActiveRecord::Base).not_to receive :transaction
-      Registrar.new(class_period:nil).enroll(students: nil)
+      Registrar.new.enroll(class_period_id: 2, students: nil)
     end
 
     it 'assigns new students to the class period' do
@@ -12,8 +12,8 @@ describe Registrar do
       students = FactoryGirl.create_list(:student, 3)
       class_period = FactoryGirl.create(:class_period, students: students)
 
-      Registrar.new(class_period: class_period).enroll(students: (students << new_student))
-      expect(class_period.students).to include new_student
+      Registrar.new.enroll(class_period_id: class_period.id, students: (students << new_student))
+      expect(class_period.reload.students).to include new_student
     end
 
     it 'creates assignments for new students' do
@@ -22,8 +22,7 @@ describe Registrar do
       class_period = FactoryGirl.create(:class_period, students: [student], course: course)
 
       expect(ClassAssignment.count).to eq 0
-      registrar = Registrar.new class_period: class_period
-      registrar.enroll(students: [student])
+      registrar = Registrar.new.enroll(class_period_id: class_period.id, students: [student])
       expect(ClassAssignment.count).to eq 2
       expect(ClassAssignment.where(student_class: student.student_classes.first).count).to eq 2
       expect(student.student_classes.first.assignments.map(&:name)).to eq(Assignment.all.map(&:name))
@@ -34,8 +33,8 @@ describe Registrar do
       class_period = FactoryGirl.create(:class_period, students: students)
 
       expect(class_period.students.count).to eq 3
-      Registrar.new(class_period: class_period).enroll(students: students)
-      expect(class_period.students.count).to eq 3
+      Registrar.new.enroll(class_period_id: class_period.id, students: students)
+      expect(class_period.reload.students.count).to eq 3
     end
 
     it 'does not create duplicate assignments for students previously enrolled' do
@@ -44,10 +43,10 @@ describe Registrar do
       class_period = FactoryGirl.create(:class_period, students: [student], course: course)
 
       expect(ClassAssignment.count).to eq 0
-      registrar = Registrar.new class_period: class_period
-      registrar.enroll(students: [student])
+      registrar = Registrar.new
+      registrar.enroll(class_period_id: class_period.id, students: [student])
       expect(ClassAssignment.count).to eq 2
-      registrar.enroll(students: [student])
+      registrar.enroll(class_period_id: class_period.id, students: [student])
       expect(ClassAssignment.count).to eq 2
     end
 
@@ -58,10 +57,10 @@ describe Registrar do
       class_period = FactoryGirl.create(:class_period, course: course)
 
       expect(class_period.students.count).to eq 0
-      registrar = Registrar.new class_period: class_period
-      registrar.enroll(students: [old_student])
+      registrar = Registrar.new
+      registrar.enroll(class_period_id: class_period.id, students: [old_student])
       expect(class_period.students.count).to eq 1
-      registrar.enroll(students: [new_student])
+      registrar.enroll(class_period_id: class_period.id, students: [new_student])
       expect(class_period.students.count).to eq 2
       expect(ClassAssignment.count).to eq 4
     end
@@ -73,7 +72,7 @@ describe Registrar do
   #    class_period = FactoryGirl.create(:class_period)
   #    expect(class_period).to receive(:course).and_throw('error!!')
 
-  #    expect(Registrar.new(class_period: class_period).enroll(students: new_student)).to raise { 'error!!' }
+  #    expect(Registrar.new(class_period_id: class_period).enroll(students: new_student)).to raise { 'error!!' }
   #    expect(class_period.students).to eq nil
   #end
 end

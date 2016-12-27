@@ -58,8 +58,7 @@ class ClassPeriodsController < ApplicationController
 
   def add_students
     @class_period = ClassPeriod.find(params[:id])
-    registrar = Registrar.new(class_period: @class_period)
-    registrar.enroll(students: Student.where(id: class_period_params[:student_ids]).to_a)
+    Registrar.new.enroll(class_period_id: params[:id], students: class_period_params[:student_ids])
 
     redirect_to :back
   end
