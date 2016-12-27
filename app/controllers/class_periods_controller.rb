@@ -41,10 +41,9 @@ class ClassPeriodsController < ApplicationController
   end
 
   def remove_student
-    class_period = ClassPeriod.find(params[:class_period_id])
-    student_class = StudentClass.find_by(class_period: class_period, student: params[:id])
-    if student_class.destroy
-      @removed_student = student_class.student
+    unenrolled = Registrar.new.unenroll(class_period_id: params[:class_period_id], student_id: params[:id])
+    if unenrolled
+      @removed_student = unenrolled.student
       flash[:success] = 'Student was removed from class period'
     else
       flash[:error] = 'Student was not removed from class period'
@@ -68,5 +67,4 @@ class ClassPeriodsController < ApplicationController
   def class_period_params
     params.require(:class_period).permit(:period, :course_id, student_ids: [], teacher_ids: [])
   end
-
 end

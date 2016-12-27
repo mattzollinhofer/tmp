@@ -66,6 +66,23 @@ describe Registrar do
     end
   end
 
+  describe '#unenroll' do
+    it 'destroys the student_class record associated with the student and class period' do
+      student = FactoryGirl.create(:student)
+      class_period = FactoryGirl.create(:class_period, students: [student])
+      expect(StudentClass.count).to eq 1
+      expect(Registrar.new.unenroll(class_period_id: class_period.id, student_id: student.id))
+        .to be_an_instance_of(StudentClass)
+      expect(StudentClass.count).to eq 0
+    end
+    it 'returns false when provided a blank student_id' do
+      expect(Registrar.new.unenroll(class_period_id: nil, student_id: 3)).to eq false
+    end
+    it 'returns false when provided a blank class_period_id' do
+      expect(Registrar.new.unenroll(class_period_id: 23, student_id: nil)).to eq false
+    end
+  end
+
   #TODO lookup how to throw and expect exceptions
   #it 'does not save students in class period if ClassAssignment raise an exception' do
   #    new_student = FactoryGirl.create(:student)

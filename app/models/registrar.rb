@@ -16,6 +16,14 @@ class Registrar
     end
   end
 
+  def unenroll(class_period_id:, student_id:)
+    return false if student_id.blank?
+    return false if class_period_id.blank?
+
+    student_class = StudentClass.find_by(class_period: class_period_id, student: student_id)
+    student_class.destroy
+  end
+
   private
 
   def synchronize_assignments_for(students, class_period)
