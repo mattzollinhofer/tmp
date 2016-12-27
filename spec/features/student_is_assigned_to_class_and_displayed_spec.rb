@@ -4,7 +4,7 @@ feature 'Student is added to class and then displayed to the gradebook' do
   scenario 'successfully' do
     student = FactoryGirl.create(:student, first_name: 'foo', last_name: 'bar')
     course = FactoryGirl.create(:course_with_units_and_assignments)
-    class_period = FactoryGirl.create(:class_period_with_teachers, course: course)
+    class_period = FactoryGirl.create(:class_period, :with_teachers, course: course)
     login_as(class_period.teachers.first, scope: :user)
 
     visit class_periods_path
