@@ -29,12 +29,20 @@ class Assignment < ActiveRecord::Base
     unit.course.class_periods
   end
 
-  def points_possible
-    self[:points_possible] || 0
+  def worksheet_points_possible
+    self[:worksheet_points_possible] || 0
   end
 
-  def stars_possible
-    self[:stars_possible] || 0
+  def star_points_possible
+    self[:star_points_possible] || 0
+  end
+
+  def ixl_points_possible
+    self[:ixl_points_possible] || 0
+  end
+
+  def notes_points_possible
+    self[:notes_points_possible] || 0
   end
 
   validates :order, :name, presence: true

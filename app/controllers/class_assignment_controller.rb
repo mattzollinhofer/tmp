@@ -16,6 +16,6 @@ class ClassAssignmentController < ApplicationController
   private
 
   def class_assignment_params
-    params.require(:class_assignment).permit(:points_earned, :stars_earned)
+    params.require(:class_assignment).permit(:points_earned, :stars_earned, :notes_earned, :ixl_earned)
   end
 end

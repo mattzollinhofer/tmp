@@ -14,7 +14,7 @@
   <ul class='assignments list-group'>
     <% @unit.assignments.each do |assignment| %>
       <li data-assignment-id=<%=assignment.id%> class='assignment list-group-item clearfix'>
-        <%=assignment.name%> - Points: <%=assignment.points_possible%> - Stars: <%=assignment.stars_possible%>
+        <%=assignment.name%> - Points: <%=assignment.worksheet_points_possible%> - Stars: <%=assignment.star_points_possible%> - IXL: <%=assignment.ixl_points_possible%> - Notes: <%=assignment.notes_points_possible%>
         <div class='btn-group pull-right'>
           <%= link_to edit_assignment_path(assignment), class: 'btn btn-default' do %>
             <%= fa_icon 'pencil', text: 'Edit' %>

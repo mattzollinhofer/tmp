@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Assignment do
   it { is_expected.to have_many :class_assignments }
-  it { is_expected.to have_attribute :stars_possible }
-  it { is_expected.to have_attribute :points_possible }
+  it { is_expected.to have_attribute :star_points_possible }
+  it { is_expected.to have_attribute :worksheet_points_possible }
+  it { is_expected.to have_attribute :notes_points_possible }
+  it { is_expected.to have_attribute :ixl_points_possible }
   it { is_expected.to have_attribute :order }
   it { is_expected.to have_attribute :name }
 
@@ -17,6 +19,29 @@ RSpec.describe Assignment do
       assignment = Assignment.new(name: 'a1', unit: unit)
 
       expect(assignment.class_periods.first.period).to eq 7
+    end
+  end
+
+  context 'point_attributes' do
+    describe 'worksheets' do
+      it 'returns 0 if no value is specified' do
+        expect(Assignment.new.worksheet_points_possible).to eq 0
+      end
+    end
+    describe 'stars' do
+      it 'returns 0 if no value is specified' do
+        expect(Assignment.new.star_points_possible).to eq 0
+      end
+    end
+    describe 'ixl' do
+      it 'returns 0 if no value is specified' do
+        expect(Assignment.new.ixl_points_possible).to eq 0
+      end
+    end
+    describe 'notes' do
+      it 'returns 0 if no value is specified' do
+        expect(Assignment.new.notes_points_possible).to eq 0
+      end
     end
   end
 

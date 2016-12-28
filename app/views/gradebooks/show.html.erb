@@ -7,16 +7,21 @@
   </div>
 </div>
 <% assignments = @gradebook.assignments %>
-<table class='table table-striped table-striped-column gradebook'>
+<table class='table table-striped gradebook'>
   <thead>
     <th class=''>Students</th>
     <% assignments.each do |assignment| %>
-      <% if assignment.points_possible > 0 %>
-        <th class='assignments-header rotate'><div><span><%=assignment.name%></span></div></th>
+      <% if assignment.notes_points_possible > 0 %>
+        <th class='assignments-header rotate'><div><span><%=assignment.name%> Notes</span></div></th>
       <% end %>
-
-      <% if assignment.stars_possible > 0 %>
-        <th class='assignments-header rotate'><div><span><%="#{assignment.name} stars"%></span></div></th>
+      <% if assignment.worksheet_points_possible > 0 %>
+        <th class='assignments-header rotate'><div><span><%=assignment.name%> Worksheet</span></div></th>
+      <% end %>
+      <% if assignment.star_points_possible > 0 %>
+        <th class='assignments-header rotate'><div><span><%=assignment.name%> Stars</span></div></th>
+      <% end %>
+      <% if assignment.ixl_points_possible > 0 %>
+        <th class='assignments-header rotate'><div><span><%=assignment.name%> IXL</span></div></th>
       <% end %>
     <% end %>
     <th></th>
@@ -29,7 +34,18 @@
         <% assignments.each do |assignment| %>
           <% class_assignment = @gradebook.class_assignment_for(student, assignment)%>
 
-          <% if assignment.points_possible > 0 %>
+          <% if assignment.notes_points_possible > 0 %>
+            <td class='assignment notes'>
+              <%= semantic_form_for class_assignment, remote: true do |f| %>
+                <%= f.input :notes_earned, as: :string, label: false, input_html: {class: 'autosave notes_earned'} %>
+                <noscript>
+                  <%= f.actions %>
+                </noscript>
+              <% end %>
+            </td>
+          <% end %>
+
+          <% if assignment.worksheet_points_possible > 0 %>
             <td class='assignment'>
               <%= semantic_form_for class_assignment, remote: true do |f| %>
                 <%= f.input :points_earned, as: :string, label: false, input_html: {class: 'autosave points_earned'}, prompt: 'points' %>
@@ -40,10 +56,21 @@
             </td>
           <% end %>
 
-          <% if assignment.stars_possible > 0 %>
+          <% if assignment.star_points_possible > 0 %>
             <td class='assignment'>
               <%= semantic_form_for class_assignment, remote: true do |f| %>
                 <%= f.input :stars_earned, as: :string, label: false, input_html: {class: 'autosave stars_earned'} %>
+                <noscript>
+                  <%= f.actions %>
+                </noscript>
+              <% end %>
+            </td>
+          <% end %>
+
+          <% if assignment.ixl_points_possible > 0 %>
+            <td class='assignment ixl'>
+              <%= semantic_form_for class_assignment, remote: true do |f| %>
+                <%= f.input :ixl_earned, as: :string, label: false, input_html: {class: 'autosave ixl_earned'} %>
                 <noscript>
                   <%= f.actions %>
                 </noscript>

@@ -27,8 +27,8 @@ feature 'Student is added to class and then displayed to the gradebook' do
       expect(page).to have_css '.gradebook th.assignments-header', text: assignment.name
     end
 
-    expect(page).to have_css '.student input.points_earned[value="4"]'
-    expect(page).to have_css '.student input.points_earned[value="7"]'
+    expect(page).to have_css '.student input.worksheet_points_earned[value="4"]'
+    expect(page).to have_css '.student input.worksheet_points_earned[value="7"]'
 
   end
 end
