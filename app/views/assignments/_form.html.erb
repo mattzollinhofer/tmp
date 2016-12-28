@@ -6,10 +6,10 @@
     <%= form.input :name %>
     <%= form.input :order %>
     <%= form.input :due_at, as: :string, input_html: {class: 'datepicker'} %>
+    <%= form.input :notes_points_possible %>
     <%= form.input :worksheet_points_possible %>
     <%= form.input :star_points_possible %>
     <%= form.input :ixl_points_possible %>
-    <%= form.input :notes_points_possible %>
     <%= form.input :unit_id, as: :hidden %>
   <% end %>
   <%= form.actions do %>
