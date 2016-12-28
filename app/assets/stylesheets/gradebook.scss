@@ -61,6 +61,18 @@ body.gradebooks.show {
 
   }
 
-
-
+  td{
+    &.notes{
+      background-color: green;
+    }
+    &.worksheet{
+      background-color: red;
+    }
+    &.stars{
+      background-color: orange;
+    }
+    &.ixl{
+      background-color: blue;
+    }
+  }
 }

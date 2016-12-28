@@ -46,9 +46,9 @@
           <% end %>
 
           <% if assignment.worksheet_points_possible > 0 %>
-            <td class='assignment'>
+            <td class='assignment worksheet'>
               <%= semantic_form_for class_assignment, remote: true do |f| %>
-                <%= f.input :points_earned, as: :string, label: false, input_html: {class: 'autosave points_earned'}, prompt: 'points' %>
+                <%= f.input :points_earned, as: :string, label: false, input_html: {class: 'autosave worksheet_points_earned'}, prompt: 'points' %>
                 <noscript>
                   <%= f.actions %>
                 </noscript>
@@ -57,7 +57,7 @@
           <% end %>
 
           <% if assignment.star_points_possible > 0 %>
-            <td class='assignment'>
+            <td class='assignment stars'>
               <%= semantic_form_for class_assignment, remote: true do |f| %>
                 <%= f.input :stars_earned, as: :string, label: false, input_html: {class: 'autosave stars_earned'} %>
                 <noscript>
