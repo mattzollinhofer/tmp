@@ -16,6 +16,27 @@ describe Gradebook do
     expect(Gradebook.new(class_period).students.count).to eq 4
   end
 
+  it 'totals the possible points for all assignments' do
+    assignments = FactoryGirl.build_list(:assignment, 3)
+    assignments << FactoryGirl.build_stubbed(:assignment, ixl_points_possible: nil)
+    class_period = FactoryGirl.build_stubbed(:class_period)
+    allow(class_period).to receive(:assignments).and_return assignments
+
+    expect(Gradebook.new(class_period).total_points_possible). to eq 39
+  end
+
+  it 'totals the points earned by a student' do
+    class_period = FactoryGirl.create(:class_period, :with_curriculum, :with_students)
+    student = Student.first
+
+    ClassAssignment.create(assignment: class_period.assignments.first, student_class: student.student_classes.first,
+                           points_earned: 1)
+    ClassAssignment.create(assignment: class_period.assignments.second, student_class: student.student_classes.first,
+                           points_earned: 2, notes_earned: 1)
+
+    expect(Gradebook.new(class_period).total_points_for(student)).to eq 4
+  end
+
   it 'retrieves the points earned for a student assignment' do
     class_period = FactoryGirl.create(:class_period, :with_curriculum)
     student = FactoryGirl.create(:student)

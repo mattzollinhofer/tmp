@@ -1,7 +1,9 @@
 class ClassAssignmentController < ApplicationController
   def update
-    @class_assignment = ClassAssignment.find params[:id]
-    if @class_assignment.update_attributes(class_assignment_params)
+    class_assignment = ClassAssignment.find params[:id]
+    if class_assignment.update_attributes(class_assignment_params)
+      @student = class_assignment.student_class.student
+      @total_points = ClassAssignment.all_points_for(class_assignment.student_class)
       flash[:success] = 'Updated assignment'
     else
       flash[:error] = 'Failed to update assignment'
@@ -9,7 +11,7 @@ class ClassAssignmentController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js { head :ok }
+      format.js
     end
   end
 

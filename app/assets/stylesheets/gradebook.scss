@@ -2,6 +2,9 @@ body.gradebooks.show {
   td.name {
     width: 100px;
   }
+  .total-points{
+    text-align: center;
+  }
   td.assignment {
     white-space: nowrap;
     padding: 3px;
@@ -45,6 +48,9 @@ body.gradebooks.show {
   }
 
   td{
+    &.total-points{
+      background-color: #ccc;
+    }
     &.notes{
       background-color: green;
     }
