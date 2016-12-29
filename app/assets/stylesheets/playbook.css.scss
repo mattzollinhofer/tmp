@@ -1,0 +1,9 @@
+.playbooks{
+  td, th{
+    text-align: center;
+
+    &.name, &.assignment{
+      text-align: left;
+    }
+  }
+}

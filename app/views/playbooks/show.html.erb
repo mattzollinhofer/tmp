@@ -11,17 +11,23 @@
 <% student_class = @student.student_classes.find_by(class_period: @class_period) %>
 <table class='table table-striped table-striped-column gradebook'>
   <thead>
-    <th class=''>Topic</th>
+    <th class='assignment'>Assignment</th>
     <th>Due Date</th>
-    <th>Points</th>
+    <th>Notes</th>
+    <th>Worksheet</th>
+    <th>Stars</th>
+    <th>IXL</th>
   </thead>
   <tbody>
     <% assignments.each do |assignment| %>
       <tr>
-        <td class='assignments-header'><div><span><%=assignment.name%></span></div></td>
+        <td class='name'><div><span><%=assignment.name%></span></div></td>
         <td class='due-date'><%= assignment.due_at %></td>
         <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
-        <td class='points-earned'><%= ClassAssignment.find_by(assignment: assignment, student_class: student_class).points_earned.presence || '' %></td>
+        <td class='notes-earned'><%= class_assignment.notes_earned.presence || '' %></td>
+        <td class='points-earned'><%= class_assignment.points_earned.presence || '' %></td>
+        <td class='stars-earned'><%= class_assignment.stars_earned.presence || '' %></td>
+        <td class='ixl-earned'><%= class_assignment.ixl_earned.presence || '' %></td>
       </tr>
     <% end %>
   </tbody>
