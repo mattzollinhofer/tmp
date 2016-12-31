@@ -8,6 +8,7 @@ class Gradebook
   end
 
   def total_points_possible
+    #TODO memoize this value?
     assignments.map do |assignment|
       assignment.notes_points_possible +
       assignment.ixl_points_possible +
@@ -16,7 +17,15 @@ class Gradebook
     end.sum
   end
 
+  def percentage_for(student)
+    return 0 if total_points_possible == 0
+
+    ((total_points_for(student).to_f / total_points_possible.to_f) * 100).round
+  end
+
   def total_points_for(student)
+    #TODO memoize this value?
+
     student_class = student.student_classes.find_by(class_period: class_period)
     ClassAssignment.all_points_for(student_class)
   end

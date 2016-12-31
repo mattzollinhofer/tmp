@@ -25,6 +25,27 @@ describe Gradebook do
     expect(Gradebook.new(class_period).total_points_possible). to eq 39
   end
 
+  describe '#percentage_for' do
+    it 'returns 0 if total points is 0' do
+      class_period = FactoryGirl.create(:class_period, :with_students)
+      student = Student.first
+
+      expect(Gradebook.new(class_period).percentage_for(student)).to eq 0
+    end
+
+    it 'provides the percentage of earned points to possible points for a student' do
+      class_period = FactoryGirl.create(:class_period, :with_curriculum, :with_students)
+      student = Student.first
+
+      ClassAssignment.create(assignment: class_period.assignments.first, student_class: student.student_classes.first,
+                             points_earned: 1)
+      ClassAssignment.create(assignment: class_period.assignments.second, student_class: student.student_classes.first,
+                             points_earned: 2, notes_earned: 1)
+
+      expect(Gradebook.new(class_period).percentage_for(student)).to eq 20
+    end
+  end
+
   it 'totals the points earned by a student' do
     class_period = FactoryGirl.create(:class_period, :with_curriculum, :with_students)
     student = Student.first

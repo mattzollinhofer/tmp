@@ -10,6 +10,7 @@
 <table class='table table-striped gradebook'>
   <thead>
     <th class=''>Students</th>
+    <th class='percentage'>%</th>
     <th class='total-points'>Total (<%= @gradebook.total_points_possible%>)</th>
     <% assignments.each do |assignment| %>
       <% if assignment.notes_points_possible > 0 %>
@@ -31,6 +32,7 @@
     <% @gradebook.students.each do |student| %>
       <tr id='student-<%=student.id%>' class='student'>
         <td class='name'><%=student.display_name%></td>
+        <td class='percentage'><%=number_to_percentage(@gradebook.percentage_for(student), precision: 0)%></td>
         <td class='total-points'><%=@gradebook.total_points_for(student)%></td>
 
         <% assignments.each do |assignment| %>
