@@ -1,8 +1,11 @@
 class TeacherWelcome
-  attr_reader :teacher, :courses
+  attr_reader :teacher
 
-  def initialize(teacher, courses)
+  def initialize(teacher)
     @teacher = teacher
-    @courses = courses
+  end
+
+  def manageable_units
+    teacher.class_periods.map(&:units).flatten
   end
 end

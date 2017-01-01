@@ -7,7 +7,7 @@ class ClassPeriod < ActiveRecord::Base
   has_many   :student_classes, dependent: :destroy
   has_many   :students, through: :student_classes
 
-  delegate :assignments, to: :course
+  delegate :assignments, :units, to: :course
 
   def addable_students
     Student.all - students

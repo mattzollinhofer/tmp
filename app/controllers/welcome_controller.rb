@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   end
 
   def welcome_teacher
-    @welcome = TeacherWelcome.new(current_user, Course.all)
+    @welcome = TeacherWelcome.new(current_user)
     render 'welcome/teacher'
   end
 
