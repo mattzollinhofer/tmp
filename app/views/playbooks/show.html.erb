@@ -24,10 +24,25 @@
         <td class='name'><div><span><%=assignment.name%></span></div></td>
         <td class='due-date'><%= assignment.due_at %></td>
         <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
-        <td class='notes-earned'><%= class_assignment.notes_earned.presence || '' %></td>
-        <td class='points-earned'><%= class_assignment.points_earned.presence || '' %></td>
+        <td class='notes-earned'>
+          <% if assignment.notes_points_possible > 0 %>
+            <%= class_assignment.notes_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
+            <span class='points-possible'> / <%=assignment.notes_points_possible%></span>
+          <% end %>
+        </td>
+        <td class='points-earned'>
+          <% if assignment.worksheet_points_possible > 0 %>
+            <%= class_assignment.points_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
+            <span class='points-possible'> / <%=assignment.worksheet_points_possible%></span>
+          <% end %>
+        </td>
         <td class='stars-earned'><%= class_assignment.stars_earned.presence || '' %></td>
-        <td class='ixl-earned'><%= class_assignment.ixl_earned.presence || '' %></td>
+        <td class='ixl-earned'>
+          <% if assignment.ixl_points_possible > 0 %>
+            <%= class_assignment.ixl_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
+            <span class='points-possible'> / <%=assignment.ixl_points_possible%></span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
