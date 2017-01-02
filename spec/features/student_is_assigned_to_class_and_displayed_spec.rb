@@ -22,7 +22,7 @@ feature 'Student is added to class and then displayed to the gradebook' do
     class_assignments.second.save!
 
     #save_and_open_page
-    visit gradebook_path class_period
+    visit gradebook_path class_period, course.units.first
     course.assignments.each do |assignment|
       expect(page).to have_css '.gradebook th.assignments-header', text: assignment.name
     end

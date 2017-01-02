@@ -3,7 +3,7 @@ class ClassAssignmentController < ApplicationController
     class_assignment = ClassAssignment.find params[:id]
     if class_assignment.update_attributes(class_assignment_params)
       @student = class_assignment.student_class.student
-      @total_points = ClassAssignment.all_points_for(class_assignment.student_class)
+      @total_points = ClassAssignment.all_points_for(class_assignment.student_class, class_assignment.assignment.unit)
       flash[:success] = 'Updated assignment'
     else
       flash[:error] = 'Failed to update assignment'
