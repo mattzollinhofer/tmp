@@ -10,6 +10,6 @@ class TeacherWelcome
   end
 
   def manageable_units
-    teacher.class_periods.map(&:units).flatten
+    teacher.class_periods.map(&:units).flatten.uniq
   end
 end
