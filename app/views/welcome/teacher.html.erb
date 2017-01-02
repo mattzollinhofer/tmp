@@ -3,7 +3,7 @@
     <div class='col-xs-12 col-md-6'>
       <div class='h4'>Class Periods You're Teaching</div>
       <div class='class-periods list-group'>
-        <% @welcome.teacher.class_periods.each do |class_period| %>
+        <% @welcome.class_periods.each do |class_period| %>
           <%= link_to(class_period_short_label(class_period),
                       gradebook_path(class_period, unit_id: class_period.units.first),
                       class:'class-period list-group-item clearfix') %>

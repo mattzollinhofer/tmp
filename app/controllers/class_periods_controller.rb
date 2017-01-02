@@ -1,6 +1,6 @@
 class ClassPeriodsController < ApplicationController
   def index
-    @class_periods = ClassPeriod.all
+    @class_periods = ClassPeriod.all.includes(:course, :teachers).references(:teachers)
   end
 
   def show
