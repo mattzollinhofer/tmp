@@ -11,7 +11,7 @@
   </div>
   <div class='col-xs-10'>
     <% assignments = @gradebook.assignments %>
-    <% if assignments.present? %>
+    <% if @gradebook.setup_complete? %>
       <table class='table table-striped gradebook'>
         <thead>
           <th class=''>Students</th>
@@ -95,11 +95,16 @@
       </table>
       <div class='pull-right'><%= taught_by_teachers @gradebook.class_period %></div>
     <% else %>
-      <%= render partial: 'shared/jumbo',
-                          locals: {
-                            jumbo_text: "No assignments for #{@gradebook.unit.name}!",
-                            button_text: 'Create One',
-                            url: new_unit_assignment_path(@gradebook.unit) } %>
+      <% if @gradebook.assignments.blank? %>
+        <%= render partial: 'shared/jumbo',
+                            locals: {
+                              jumbo_text: "No assignments for #{@gradebook.unit.name}!",
+                              button_text: 'Create One',
+                              url: new_unit_assignment_path(@gradebook.unit) } %>
+      <% elsif %>
+        <%= render partial: 'shared/jumbo',
+                            locals: { jumbo_text: "No students for #{class_period_short_label @gradebook.class_period}!" } %>
+      <% end %>
     <% end %>
   </div>
 </div>

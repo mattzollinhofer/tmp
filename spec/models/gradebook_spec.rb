@@ -59,6 +59,18 @@ describe Gradebook do
     expect(Gradebook.new(class_period, class_period.course.units.first).points_for(student)).to eq 4
   end
 
-  it "has each student's assignment records for this class"
-  it 'creates any missing assignments for a student in this class'
+  describe '#setup_complete' do
+    it 'returns false if there are no students' do
+      class_period = FactoryGirl.create(:class_period, :with_curriculum)
+      expect(Gradebook.new(class_period, class_period.course.units.first).setup_complete?).to eq false
+    end
+    it 'returns false if there are no assignments' do
+      class_period = FactoryGirl.create(:class_period, :with_students)
+      expect(Gradebook.new(class_period, class_period.course.units.first).setup_complete?).to eq false
+    end
+    it 'returns true if both students and assignments are present' do
+      class_period = FactoryGirl.create(:class_period, :with_curriculum, :with_students)
+      expect(Gradebook.new(class_period, class_period.course.units.first).setup_complete?).to eq true
+    end
+  end
 end

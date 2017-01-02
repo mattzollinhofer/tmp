@@ -9,6 +9,8 @@ class Gradebook
   end
 
   def assignments
+    return [] if @unit.blank?
+
     @unit.assignments
   end
 
@@ -38,5 +40,9 @@ class Gradebook
   def class_assignment_for(student, assignment)
     student_class = StudentClass.find_by(student: student, class_period: class_period)
     ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class)
+  end
+
+  def setup_complete?
+    students.present? && assignments.present?
   end
 end
