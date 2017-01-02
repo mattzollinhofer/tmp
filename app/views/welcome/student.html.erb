@@ -3,7 +3,9 @@
     <div class='class-periods list-group'>
       <% @welcome.class_periods.each do |class_period| %>
         <%= link_to(class_period_short_label(class_period),
-                    playbook_path(class_period_id: class_period.id, student_id: @welcome.student.id),
+                    playbook_path(unit_id: class_period.units.first,
+                                  class_period_id: class_period.id,
+                                  student_id: @welcome.student.id),
                     class:'class-period list-group-item clearfix') %>
       <% end %>
     </ul>

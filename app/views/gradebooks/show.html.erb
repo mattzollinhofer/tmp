@@ -14,7 +14,7 @@
     <th class='total-points'>Total (<%= @gradebook.total_points_possible%>)</th>
     <% assignments.each do |assignment| %>
       <% if assignment.notes_points_possible > 0 %>
-             <th class='assignments-header rotate'><div><span>(<%=assignment.notes_points_possible%>) <%=assignment.name%> Notes</span></div></th>
+        <th class='assignments-header rotate'><div><span>(<%=assignment.notes_points_possible%>) <%=assignment.name%> Notes</span></div></th>
       <% end %>
       <% if assignment.worksheet_points_possible > 0 %>
         <th class='assignments-header rotate'><div><span>(<%=assignment.worksheet_points_possible%>) <%=assignment.name%> Worksheet</span></div></th>

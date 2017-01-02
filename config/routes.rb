@@ -27,6 +27,6 @@ Rails.application.routes.draw do
 
   resources :gradebooks, only: :show
 
-  get '/playbooks/student/:student_id/class_period/:class_period_id',
+  get '/playbooks/student/:student_id/class_period/:class_period_id/unit/:unit_id',
       to: 'playbooks#show', as: :playbook
 end
