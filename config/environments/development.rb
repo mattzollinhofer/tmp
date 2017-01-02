@@ -43,4 +43,11 @@ Rails.application.configure do
 
   # For Devise, we'll need to add this for staging/production
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.rails_logger = true
+    Bullet.console = true
+    Bullet.add_footer = true
+  end
 end

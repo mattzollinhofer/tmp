@@ -39,6 +39,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'launchy'
+  gem 'bullet'
 end
 
 group :development do
