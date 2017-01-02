@@ -25,6 +25,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 
 gem "skylight"
+gem 'rollbar'
 
 group :production do
   gem 'rails_12factor'
