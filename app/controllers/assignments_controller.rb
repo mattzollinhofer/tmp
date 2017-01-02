@@ -40,6 +40,6 @@ class AssignmentsController < ApplicationController
   def assignment_params
     params.require(:assignment)
           .permit(:name, :worksheet_points_possible, :star_points_possible, :ixl_points_possible,
-                  :notes_points_possible, :order, :unit_id, :due_at)
+                  :notes_points_possible, :ixl_description, :ixl_url, :order, :unit_id, :due_at)
   end
 end

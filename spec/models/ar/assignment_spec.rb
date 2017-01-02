@@ -6,6 +6,8 @@ RSpec.describe Assignment do
   it { is_expected.to have_attribute :worksheet_points_possible }
   it { is_expected.to have_attribute :notes_points_possible }
   it { is_expected.to have_attribute :ixl_points_possible }
+  it { is_expected.to have_attribute :ixl_description }
+  it { is_expected.to have_attribute :ixl_url }
   it { is_expected.to have_attribute :order }
   it { is_expected.to have_attribute :name }
 

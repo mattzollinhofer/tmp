@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228023041) do
+ActiveRecord::Schema.define(version: 20170102160407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20161228023041) do
     t.integer  "ixl_points_possible"
     t.integer  "worksheet_points_possible"
     t.integer  "star_points_possible"
+    t.string   "ixl_description"
+    t.string   "ixl_url"
   end
 
   add_index "assignments", ["unit_id"], name: "index_assignments_on_unit_id", using: :btree

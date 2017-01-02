@@ -3,14 +3,28 @@
 <% form_objects = (assignment.new_record?) ? [unit, assignment] : [assignment] %>
 <%= semantic_form_for form_objects do |form| %>
   <%= form.inputs do %>
-    <%= form.input :name %>
-    <%= form.input :order %>
-    <%= form.input :due_at, as: :string, input_html: {class: 'datepicker'} %>
-    <%= form.input :notes_points_possible %>
-    <%= form.input :worksheet_points_possible %>
-    <%= form.input :star_points_possible %>
-    <%= form.input :ixl_points_possible %>
-    <%= form.input :unit_id, as: :hidden %>
+    <div class='row'>
+      <div class='col-xs-12 col-sm-6'>
+        <%= form.input :name %>
+        <%= form.input :notes_points_possible %>
+        <%= form.input :star_points_possible %>
+        <%= form.input :ixl_description %>
+      </div>
+      <div class='col-xs-12 col-sm-6'>
+        <div class='row'>
+          <div class='col-xs-12 col-sm-6'>
+            <%= form.input :due_at, as: :string, input_html: {class: 'datepicker'} %>
+          </div>
+          <div class='col-xs-12 col-sm-6'>
+            <%= form.input :order %>
+          </div>
+        </div>
+        <%= form.input :worksheet_points_possible %>
+        <%= form.input :ixl_points_possible %>
+        <%= form.input :ixl_url %>
+        <%= form.input :unit_id, as: :hidden %>
+      </div>
+    </div>
   <% end %>
   <%= form.actions do %>
     <%= form.action :submit %>

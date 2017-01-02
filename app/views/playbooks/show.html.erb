@@ -47,6 +47,9 @@
               <% if assignment.ixl_points_possible > 0 %>
                 <%= class_assignment.ixl_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
                 <span class='points-possible'> / <%=assignment.ixl_points_possible%></span>
+                <% if assignment.ixl_description %>
+                  <span class='ixl-description'>[<%= link_to("#{assignment.ixl_description}", assignment.ixl_url, target: '_blank') %>]</span>
+                <% end %>
               <% end %>
             </td>
           </tr>
