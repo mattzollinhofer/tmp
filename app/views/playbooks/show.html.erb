@@ -30,7 +30,8 @@
           <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
           <tr class='<%=AssignmentStatus.new(class_assignment).overdue_status%>' >
             <td class='status <%=AssignmentStatus.new(class_assignment).status%>'>
-              <i class='fa fa-battery-<%=AssignmentStatus.new(class_assignment).battery_level%>' aria-hidden='true'></i>
+              <i class='fa fa-battery-<%=AssignmentStatus.new(class_assignment).battery_level%> battery' aria-hidden='true'></i>
+              <i class='fa fa-trophy trophy' aria-hidden='true'></i>
             </td>
             <td class='name'><div><span><%=assignment.name%></span></div></td>
             <td class='due-date'><%= assignment.due_at %></td>

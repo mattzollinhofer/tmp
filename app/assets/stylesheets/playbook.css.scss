@@ -18,8 +18,19 @@ $green: #7A9F35;
 
   .status{
     font-size: 18px;
+    .trophy{
+      display: none;
+    }
     &.perfect{
-      color: $green;
+      color: goldenrod;
+
+      .trophy{
+        font-size: 22px;
+        display: block;
+      }
+      .battery{
+        display: none;
+      }
     }
   }
 }
