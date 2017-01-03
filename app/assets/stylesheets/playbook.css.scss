@@ -15,7 +15,11 @@ $green: #7A9F35;
   .overdue{
     color: red;
   }
-  .perfect{
-    color: $green;
+
+  .status{
+    font-size: 18px;
+    &.perfect{
+      color: $green;
+    }
   }
 }
