@@ -34,7 +34,7 @@ class Gradebook
     #TODO memoize this value?
 
     student_class = student.student_classes.find_by(class_period: class_period)
-    ClassAssignment.all_points_for(student_class, @unit)
+    ClassAssignment.all_points_for_unit(student_class, @unit)
   end
 
   def class_assignment_for(student, assignment)

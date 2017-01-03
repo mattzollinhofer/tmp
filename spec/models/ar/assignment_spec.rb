@@ -47,6 +47,22 @@ RSpec.describe Assignment do
     end
   end
 
+  describe '#possible_type_count' do
+    it 'returns 0 if no assignment types are setup' do
+      expect(Assignment.new().possible_type_count).to eq 0
+    end
+    it 'returns 1 if only a worksheet is setup' do
+      expect(Assignment.new(worksheet_points_possible: 3).possible_type_count).to eq 1
+    end
+    it 'returns 2 if a worksheet and notes are setup' do
+      expect(Assignment.new(worksheet_points_possible: 3, notes_points_possible: 1).possible_type_count).to eq 2
+    end
+    it 'returns 3 if a worksheet, notes, and ixl are setup' do
+      expect(Assignment.new(worksheet_points_possible: 3, notes_points_possible: 1, ixl_points_possible: 2)
+        .possible_type_count).to eq 3
+    end
+  end
+
   #TODO move to student_assignment
   #it { is_expected.not_to have_attribute :time_zone_id }
   #it { is_expected.not_to have_attribute :completed_at }

@@ -17,6 +17,7 @@
     <% student_class = @student.student_classes.find_by(class_period: @class_period) %>
     <table class='table table-striped table-striped-column gradebook'>
       <thead>
+        <th>Status</th>
         <th class='assignment'>Assignment</th>
         <th>Due Date</th>
         <th>Notes</th>
@@ -26,10 +27,13 @@
       </thead>
       <tbody>
         <% assignments.each do |assignment| %>
+          <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
           <tr>
+            <td class='status <%=AssignmentStatus.new(class_assignment).status%> <%=AssignmentStatus.new(class_assignment).overdue_status%> '>
+              <i class='fa fa-battery-<%=AssignmentStatus.new(class_assignment).battery_level%>' aria-hidden='true'></i>
+            </td>
             <td class='name'><div><span><%=assignment.name%></span></div></td>
             <td class='due-date'><%= assignment.due_at %></td>
-            <% class_assignment = ClassAssignment.find_or_create_by(assignment: assignment, student_class: student_class) %>
             <td class='notes-earned'>
               <% if assignment.notes_points_possible > 0 %>
                 <%= class_assignment.notes_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
@@ -47,7 +51,7 @@
               <% if assignment.ixl_points_possible > 0 %>
                 <%= class_assignment.ixl_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
                 <span class='points-possible'> / <%=assignment.ixl_points_possible%></span>
-                <% if assignment.ixl_description %>
+                <% if assignment.ixl_description.present? %>
                   <span class='ixl-description'>[<%= link_to("#{assignment.ixl_description}", assignment.ixl_url, target: '_blank') %>]</span>
                 <% end %>
               <% end %>

@@ -1,3 +1,4 @@
+$green: #7A9F35;
 .playbooks{
   .units-nav{
     margin-top: 8px;
@@ -9,5 +10,12 @@
     &.name, &.assignment{
       text-align: left;
     }
+  }
+
+  .overdue{
+    color: red;
+  }
+  .perfect{
+    color: $green;
   }
 }
