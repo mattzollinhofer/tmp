@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates_inclusion_of :admin, in: [true, false]
 
+  has_settings do |s|
+    s.key :prefs, :defaults => { current: {} }
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

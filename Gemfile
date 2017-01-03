@@ -15,6 +15,8 @@ gem 'jquery-ui-sass-rails'
 #gem 'turbolinks'
 gem 'pg'
 
+gem 'ledermann-rails-settings'
+
 gem 'formtastic', '~> 3.0'
 gem 'bootstrap-sass'
 gem 'formtastic-bootstrap'

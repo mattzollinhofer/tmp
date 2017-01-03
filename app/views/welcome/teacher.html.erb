@@ -5,7 +5,7 @@
       <div class='class-periods list-group'>
         <% @welcome.class_periods.each do |class_period| %>
           <%= link_to(class_period_short_label(class_period),
-                      gradebook_path(class_period, unit_id: class_period.units.first),
+                      gradebook_path(class_period, unit_id: @welcome.teacher.settings(:prefs).current[:"#{class_period.id}"] || class_period.units.first),
                       class:'class-period list-group-item clearfix') %>
         <% end %>
       </div>
