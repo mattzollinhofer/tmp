@@ -12,23 +12,25 @@ $green: #7A9F35;
     }
   }
 
-  .overdue{
-    color: red;
-  }
-
-  .status{
-    font-size: 18px;
-    .trophy{
-      display: none;
-    }
+  tr{
     &.perfect{
-      color: goldenrod;
+      color: $green;
 
-      .trophy{
+      i.trophy{
+        color: goldenrod;
         font-size: 22px;
         display: block;
       }
       .battery{
+        display: none;
+      }
+    }
+    &.overdue{
+      color: red;
+    }
+    .status{
+      font-size: 18px;
+      .trophy{
         display: none;
       }
     }
