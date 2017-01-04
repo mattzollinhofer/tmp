@@ -2,7 +2,7 @@ class ClassAssignment < ActiveRecord::Base
   belongs_to :student_class
   belongs_to :assignment
 
-  before_save :update_completed_at if self.notes_earned_changed?
+  before_save :update_completed_at
 
   delegate :due_at, :ixl_description, :ixl_url, :ixl_points_possible, :worksheet_points_possible, :name,
            :notes_points_possible, :possible_points, :possible_type_count, to: :assignment, allow_nil: true
@@ -32,10 +32,12 @@ class ClassAssignment < ActiveRecord::Base
   end
 
   def update_completed_at
-    if notes_earned > 0
-      self[:completed_at] = Date.today.strftime('%m/%d/%Y')
-    else
-      self[:completed_at] = nil
+    if notes_earned_changed?
+      if notes_earned > 0
+        self[:completed_at] = Date.today.strftime('%m/%d/%Y')
+      else
+        self[:completed_at] = nil
+      end
     end
   end
 
