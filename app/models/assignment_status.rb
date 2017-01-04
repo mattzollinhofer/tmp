@@ -29,10 +29,6 @@ class AssignmentStatus
     end
   end
 
-  def done?
-     [DONE, PERFECT].include? status
-  end
-
   def overdue_status
     if class_assignment.overdue?
       'overdue'
