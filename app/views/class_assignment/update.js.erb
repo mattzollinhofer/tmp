@@ -1,2 +1,2 @@
 $("#student-<%=@student.id%> .total-points").text('<%=@gradebook.points_for(@student)%>');
-$("#student-<%=@student.id%> .percentage").text('<%=@gradebook.percentage_for(@student)%>');
+$("#student-<%=@student.id%> .percentage").text('<%=number_to_percentage(@gradebook.percentage_for(@student), precision: 0)%>');
