@@ -1,5 +1,5 @@
 <div class='row welcome teacher'>
-  <% if @welcome.teacher.class_periods.present? %>
+  <% if @welcome.class_periods? %>
     <div class='col-xs-12 col-md-6'>
       <div class='h4'>Class Periods You're Teaching</div>
       <div class='class-periods list-group'>

@@ -12,4 +12,8 @@ class TeacherWelcome
   def manageable_units
     teacher.class_periods.map(&:units).flatten.uniq
   end
+
+  def class_periods?
+    teacher.class_periods.present?
+  end
 end
