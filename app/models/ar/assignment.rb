@@ -5,6 +5,8 @@ class Assignment < ActiveRecord::Base
   belongs_to :unit, inverse_of: :assignments
   after_initialize :default_order
 
+  validates :order, :name, presence: true
+
   scope :possible_points_for_assignment, -> (assignment) do
     assignment.possible_points
   end
@@ -57,20 +59,4 @@ class Assignment < ActiveRecord::Base
     [worksheet_points_possible, ixl_points_possible, notes_points_possible, star_points_possible]
       .reject{|points| points == 0}.compact.size
   end
-
-  validates :order, :name, presence: true
-  #TODO move to student_class
-  #validates :time_zone_id,
-  #          allow_blank: true,
-  #          inclusion: {
-  #            in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.identifier }
-  #          }
-
-  #def late?
-  #  !complete? && due_at < Date.today
-  #end
-
-  #def complete?
-  #  completed_at.present?
-  #end
 end
