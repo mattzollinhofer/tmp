@@ -48,7 +48,15 @@
                 <i class="fa fa-ban" aria-hidden="true"></i>
               <% end %>
             </td>
-            <td class='stars-earned'><%= class_assignment.stars_earned.presence || '<i class="fa fa-ban" aria-hidden="true"></i>'.html_safe %></td>
+            <td class='stars-earned'>
+              <% if class_assignment.stars_earned.present? %>
+                <% class_assignment.stars_earned.times do %>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <% end %>
+              <% else %>
+                <i class="fa fa-ban" aria-hidden="true"></i>
+              <% end %>
+            </td>
             <td class='ixl-earned'>
               <% if class_assignment.ixl_points_possible > 0 %>
                 <%= class_assignment.ixl_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
