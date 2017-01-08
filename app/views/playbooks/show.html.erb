@@ -36,15 +36,19 @@
               <% if class_assignment.notes_points_possible > 0 %>
                 <%= class_assignment.notes_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
                 <span class='points-possible'> / <%=class_assignment.notes_points_possible%></span>
+              <% else %>
+                <i class="fa fa-ban" aria-hidden="true"></i>
               <% end %>
             </td>
             <td class='points-earned'>
               <% if class_assignment.worksheet_points_possible > 0 %>
                 <%= class_assignment.points_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
                 <span class='points-possible'> / <%=class_assignment.worksheet_points_possible%></span>
+              <% else %>
+                <i class="fa fa-ban" aria-hidden="true"></i>
               <% end %>
             </td>
-            <td class='stars-earned'><%= class_assignment.stars_earned.presence || '' %></td>
+            <td class='stars-earned'><%= class_assignment.stars_earned.presence || '<i class="fa fa-ban" aria-hidden="true"></i>'.html_safe %></td>
             <td class='ixl-earned'>
               <% if class_assignment.ixl_points_possible > 0 %>
                 <%= class_assignment.ixl_earned.presence || '<i class="fa fa-square-o" aria-hidden="true"></i>'.html_safe %>
@@ -52,6 +56,8 @@
                 <% if class_assignment.ixl_description.present? %>
                   <span class='ixl-description'>[<%= link_to("#{class_assignment.ixl_description}", class_assignment.ixl_url, target: '_blank') %>]</span>
                 <% end %>
+              <% else %>
+                <i class="fa fa-ban" aria-hidden="true"></i>
               <% end %>
             </td>
           </tr>
