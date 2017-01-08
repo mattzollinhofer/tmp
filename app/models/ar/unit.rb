@@ -12,6 +12,10 @@ class Unit < ActiveRecord::Base
     self.order = course.units.length + 1
   end
 
+  def possible_points
+    assignments.map(&:possible_points).sum || 0
+  end
+
   def to_s
     name
   end

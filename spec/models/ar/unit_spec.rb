@@ -27,4 +27,20 @@ RSpec.describe Unit do
       expect(unit.order).to eq 4
     end
   end
+
+  describe '#possible_points' do
+    it 'sums all assignment possible points' do
+      assignments = []
+      assignments << Assignment.new(notes_points_possible: 2, ixl_points_possible: 4)
+      assignments << Assignment.new(notes_points_possible: 2, ixl_points_possible: 4)
+      assignments << Assignment.new(worksheet_points_possible: 2, ixl_points_possible: 4)
+      unit = Unit.new(name: 'foo', assignments: assignments)
+
+      expect(unit.possible_points).to eq 18
+    end
+    it 'returns 0 if no assignments' do
+      unit = Unit.new(name: 'foo')
+      expect(unit.possible_points).to eq 0
+    end
+  end
 end
