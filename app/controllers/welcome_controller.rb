@@ -9,12 +9,13 @@ class WelcomeController < ApplicationController
   end
 
   def welcome_student
-    if current_user.class_periods.count == 1
-      redirect_to playbook_path(class_period_id: current_user.class_periods.first.id,
-                                unit_id: current_user.class_periods.first.course.units.first.id,
-                                student_id: current_user.id)
+    student = current_user
+    if student.class_periods.count == 1
+      redirect_to playbook_path(class_period_id: student.class_periods.first.id,
+                                unit_id: CurrentUnitSelector.new(student).select,
+                                student_id: student.id)
     else
-      @welcome = StudentWelcome.new current_user
+      @welcome = StudentWelcome.new student
       render 'welcome/student'
     end
   end

@@ -8,4 +8,14 @@ class StudentWelcome
   def class_periods
     student.student_classes.map(&:class_period)
   end
+
+  def current_unit(class_period: default_class_period)
+    CurrentUnitSelector.new(student_classes).select(class_period: class_period)
+  end
+
+  private
+
+  def default_class_period
+    student.class_periods.first
+  end
 end
