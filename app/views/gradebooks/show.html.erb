@@ -115,6 +115,14 @@
       $(e.target).parents('form').submit();
     });
 
-    $('table.gradebook').arrowTable();
+    $('table.gradebook').arrowTable({
+      afterMove: function(arrow, target, direction){
+        var save_this = $(target);
+        window.setTimeout (function(){
+          console.log(save_this.find('.autosave'));
+          save_this.find('.autosave').select();
+        },10);
+      }
+    })
   });
 </script>
