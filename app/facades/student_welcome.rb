@@ -10,7 +10,7 @@ class StudentWelcome
   end
 
   def current_unit(class_period: default_class_period)
-    CurrentUnitSelector.new(student_classes).select(class_period: class_period)
+    CurrentUnitSelector.new(student).select(class_period: class_period)
   end
 
   private
