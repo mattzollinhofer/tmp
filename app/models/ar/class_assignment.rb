@@ -34,7 +34,7 @@ class ClassAssignment < ActiveRecord::Base
   def update_completed_at
     if notes_earned_changed?
       if notes_earned > 0
-        self[:completed_at] = Date.today.strftime('%m/%d/%Y')
+        self[:completed_at] = Date.today
       else
         self[:completed_at] = nil
       end
