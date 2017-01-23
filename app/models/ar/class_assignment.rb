@@ -4,8 +4,8 @@ class ClassAssignment < ActiveRecord::Base
 
   before_save :update_completed_at
 
-  delegate :due_at, :ixl_description, :ixl_url, :ixl_points_possible, :worksheet_points_possible, :name,
-           :notes_points_possible, :possible_points, :possible_type_count, to: :assignment, allow_nil: true
+  delegate :due_at, :ixl_description, :ixl_url, :ixl_points_possible, :worksheet_points_possible, :name, :notes_points_possible,
+           :star_points_possible, :possible_points, :possible_type_count, to: :assignment, allow_nil: true
 
   scope :all_points_for_unit, -> (student_class, unit) do
     where(student_class: student_class, assignment: unit.assignments).map do |class_assignment|
