@@ -25,7 +25,14 @@
               <th class='assignments-header rotate'><div><span title='<%=assignment.name%> Worksheet'>(<%=assignment.worksheet_points_possible%>) <%=assignment.name%> Worksheet</span></div></th>
             <% end %>
             <% if assignment.star_points_possible > 0 %>
-              <th class='assignments-header rotate'><div><span title='<%=assignment.name%> Stars'>(<%=assignment.star_points_possible%>) <%=assignment.name%> Stars</span></div></th>
+              <th class='assignments-header rotate'>
+                <div>
+                  <span title='<%=assignment.name%> Stars'>
+                    (<%=assignment.star_points_possible%><i class="fa fa-star" aria-hidden="true"></i>)
+                    <%=assignment.name%> Stars
+                  </span>
+                </div>
+              </th>
             <% end %>
             <% if assignment.ixl_points_possible > 0 %>
               <th class='assignments-header rotate'><div><span title='<%=assignment.name%> IXL'>(<%=assignment.ixl_points_possible%>) <%=assignment.name%> IXL</span></div></th>
