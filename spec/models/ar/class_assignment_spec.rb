@@ -35,6 +35,45 @@ describe ClassAssignment do
     end
   end
 
+  describe 'all_points_earned' do
+    it 'totals all the points you earned, does not include stars' do
+      class_assignment = ClassAssignment.new(
+                          notes_earned: 1,
+                          ixl_earned: 2,
+                          points_earned: 3,
+                          stars_earned: 4)
+
+      expect(class_assignment.all_points_earned).to eq 6
+    end
+
+    it 'handles a nil notes_earned value' do
+      class_assignment = ClassAssignment.new(
+                          ixl_earned: 2,
+                          points_earned: 3,
+                          stars_earned: 4)
+
+      expect(class_assignment.all_points_earned).to eq 5
+    end
+
+    it 'handles a nil ixl_earned value' do
+      class_assignment = ClassAssignment.new(
+                          notes_earned: 1,
+                          points_earned: 3,
+                          stars_earned: 4)
+
+      expect(class_assignment.all_points_earned).to eq 4
+    end
+
+    it 'handles a nil points_earned value' do
+      class_assignment = ClassAssignment.new(
+                          notes_earned: 1,
+                          ixl_earned: 2,
+                          stars_earned: 4)
+
+      expect(class_assignment.all_points_earned).to eq 3
+    end
+  end
+
   describe '#overdue?' do
     it 'is true when completed_at is empty and due_date is before today' do
       assignment = Assignment.new(due_at: (Date.today-1).strftime('%m/%d/%Y'))

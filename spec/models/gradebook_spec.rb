@@ -16,14 +16,27 @@ describe Gradebook do
     expect(Gradebook.new(class_period, nil).students.count).to eq 4
   end
 
-  it 'totals the possible points for all assignments' do
-    assignments = FactoryGirl.build_list(:assignment, 3)
-    assignments << FactoryGirl.build_stubbed(:assignment, ixl_points_possible: nil)
-    class_period = FactoryGirl.build_stubbed(:class_period)
-    unit = double('unit')
-    allow(unit).to receive(:assignments).and_return assignments
+  describe '#points_possible' do
+    it 'totals the possible points for all assignments' do
+      assignments = FactoryGirl.build_list(:assignment, 3)
+      assignments << FactoryGirl.build_stubbed(:assignment, ixl_points_possible: nil)
+      class_period = FactoryGirl.build_stubbed(:class_period)
+      unit = double('unit')
+      allow(unit).to receive(:assignments).and_return assignments
 
-    expect(Gradebook.new(class_period, unit).total_points_possible). to eq 39
+      expect(Gradebook.new(class_period, unit).total_points_possible). to eq 27
+    end
+
+    it 'does not include stars in the total' do
+      assignment = Assignment.new(notes_points_possible: 1,
+                                  ixl_points_possible: 2,
+                                  worksheet_points_possible: 3,
+                                  star_points_possible: 4)
+      class_period = FactoryGirl.build_stubbed(:class_period)
+      unit = double('unit')
+      allow(unit).to receive(:assignments).and_return [assignment]
+      expect(Gradebook.new(class_period, unit).total_points_possible). to eq 6
+    end
   end
 
   describe '#percentage_for' do
@@ -43,7 +56,7 @@ describe Gradebook do
       ClassAssignment.create(assignment: class_period.assignments.second, student_class: student.student_classes.first,
                              points_earned: 2, notes_earned: 1)
 
-      expect(Gradebook.new(class_period, class_period.course.units.first).percentage_for(student)).to eq 20
+      expect(Gradebook.new(class_period, class_period.course.units.first).percentage_for(student)).to eq 29
     end
   end
 

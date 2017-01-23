@@ -24,7 +24,7 @@ class ClassAssignment < ActiveRecord::Base
   end
 
   def all_points_earned
-    ((notes_earned || 0) + (ixl_earned || 0) + (points_earned || 0) + (stars_earned || 0))
+    (notes_earned || 0) + (ixl_earned || 0) + (points_earned || 0)
   end
 
   def number_graded

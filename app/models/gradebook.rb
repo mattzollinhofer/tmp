@@ -18,8 +18,7 @@ class Gradebook
     assignments.map do |assignment|
       assignment.notes_points_possible +
       assignment.ixl_points_possible +
-      assignment.worksheet_points_possible +
-      assignment.star_points_possible
+      assignment.worksheet_points_possible
     end.sum
   end
 

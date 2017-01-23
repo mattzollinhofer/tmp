@@ -15,7 +15,7 @@ feature 'Teacher Visits Gradebook' do
     expect(page).to have_css 'table.gradebook'
     expect(page).to have_css 'th.assignments-header'
     expect(page).to have_css 'th', text: "Student"
-    expect(page).to have_css 'th', text: "Total (20)"
+    expect(page).to have_css 'th', text: "Total (14)"
     expect(page).to have_css 'th', text: "#{course.assignments[0].name}"
     expect(page).to have_css 'th', text: "#{course.assignments[1].name}"
 

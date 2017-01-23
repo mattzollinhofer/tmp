@@ -19,7 +19,7 @@ class Assignment < ActiveRecord::Base
   end
 
   def possible_points
-    notes_points_possible + ixl_points_possible + worksheet_points_possible + star_points_possible
+    notes_points_possible + ixl_points_possible + worksheet_points_possible
   end
 
   def due_at

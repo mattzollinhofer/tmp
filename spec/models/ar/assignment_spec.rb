@@ -63,6 +63,17 @@ RSpec.describe Assignment do
     end
   end
 
+  describe '#possible_points' do
+    it 'totals all possible points, not including star points' do
+      assignment = Assignment.new(notes_points_possible: 1,
+                                  ixl_points_possible: 2,
+                                  worksheet_points_possible: 3,
+                                  star_points_possible: 4)
+
+      expect(assignment.possible_points).to equal 6
+    end
+  end
+
   #TODO move to student_assignment
   #it { is_expected.not_to have_attribute :time_zone_id }
   #it { is_expected.not_to have_attribute :completed_at }
