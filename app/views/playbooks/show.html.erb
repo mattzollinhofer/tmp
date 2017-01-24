@@ -49,7 +49,7 @@
               <% end %>
             </td>
             <td class='stars-earned'>
-              <% if class_assignment.star_points_possible.present? %>
+              <% if class_assignment.star_points_possible > 0 %>
                 <% if class_assignment.stars_earned.present? %>
                   <% class_assignment.stars_earned.times do %>
                     <i class="fa fa-star" aria-hidden="true"></i>
