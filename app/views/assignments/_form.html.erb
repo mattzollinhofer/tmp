@@ -7,8 +7,8 @@
       <div class='col-xs-12 col-sm-6'>
         <%= form.input :name %>
         <%= form.input :notes_points_possible %>
+        <%= form.input :worksheet_points_possible %>
         <%= form.input :star_points_possible %>
-        <%= form.input :ixl_description %>
       </div>
       <div class='col-xs-12 col-sm-6'>
         <div class='row'>
@@ -19,7 +19,7 @@
             <%= form.input :order %>
           </div>
         </div>
-        <%= form.input :worksheet_points_possible %>
+        <%= form.input :ixl_description %>
         <%= form.input :ixl_points_possible %>
         <%= form.input :ixl_url %>
         <%= form.input :unit_id, as: :hidden %>
