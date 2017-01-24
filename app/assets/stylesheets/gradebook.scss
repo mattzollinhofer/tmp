@@ -31,8 +31,10 @@ body.gradebooks.show {
     width: 99%;
   }
 
-  .assignments-header .fa-star{
-    color: goldenrod;
+  .assignments-header{
+    .fa{
+      color: #ccc;
+    }
   }
 
   th.rotate {

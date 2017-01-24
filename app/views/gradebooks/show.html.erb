@@ -19,23 +19,41 @@
           <th class='total-points'>Total (<%= @gradebook.total_points_possible%>)</th>
           <% assignments.each do |assignment| %>
             <% if assignment.notes_points_possible > 0 %>
-              <th class='assignments-header rotate'><div><span title='<%=assignment.name%> Notes'><%=truncate("(#{assignment.notes_points_possible}) #{assignment.name} Notes", length: 30)%></span></div></th>
+              <th class='assignments-header rotate'>
+                <div>
+                  <span title='<%=assignment.name%> Notes'>
+                    (<%=assignment.notes_points_possible%> <i class="fa fa-book" aria-hidden="true"></i>)
+                    <%=truncate("#{assignment.name} Notes", length: 20)%>
+                  </span>
+                </div>
+              </th>
             <% end %>
             <% if assignment.worksheet_points_possible > 0 %>
-              <th class='assignments-header rotate'><div><span title='<%=assignment.name%> Worksheet'><%=truncate("(#{assignment.worksheet_points_possible}) #{assignment.name} Worksheet", length: 30)%></span></div></th>
+              <th class='assignments-header rotate'>
+                <div>
+                  <span title='<%=assignment.name%> Worksheet'>
+                    (<%=assignment.worksheet_points_possible%> <i class="fa fa-product-hunt" aria-hidden="true"></i>)
+                    <%=truncate("#{assignment.name} Worksheet", length: 30)%>
+                  </span>
+                </div>
+              </th>
             <% end %>
             <% if assignment.star_points_possible > 0 %>
               <th class='assignments-header rotate'>
                 <div>
                   <span title='<%=assignment.name%> Stars'>
-                    (<%=assignment.star_points_possible%><i class="fa fa-star" aria-hidden="true"></i>)
+                    (<%=assignment.star_points_possible%> <i class="fa fa-star" aria-hidden="true"></i>)
                     <%=truncate("#{assignment.name} Stars", length: 23)%>
                   </span>
                 </div>
               </th>
             <% end %>
             <% if assignment.ixl_points_possible > 0 %>
-              <th class='assignments-header rotate'><div><span title='<%=assignment.name%> IXL'><%=truncate("(#{assignment.ixl_points_possible}) #{assignment.name} IXL", length: 30)%></span></div></th>
+              <th class='assignments-header rotate'>
+                <div>
+                  <span title='<%=assignment.name%> IXL'>
+                    (<%=assignment.ixl_points_possible%> <i class="fa fa-arrow-up" aria-hidden="true"></i>)
+                    <%=truncate("#{assignment.name} IXL", length: 30)%></span></div></th>
             <% end %>
           <% end %>
           <th></th>
