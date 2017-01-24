@@ -33,7 +33,7 @@
                 <div>
                   <span title='<%=assignment.name%> Worksheet'>
                     (<%=assignment.worksheet_points_possible%> <i class="fa fa-product-hunt" aria-hidden="true"></i>)
-                    <%=truncate("#{assignment.name} Worksheet", length: 30)%>
+                    <%=truncate("#{assignment.name} Worksheet", length: 20)%>
                   </span>
                 </div>
               </th>
@@ -43,7 +43,7 @@
                 <div>
                   <span title='<%=assignment.name%> Stars'>
                     (<%=assignment.star_points_possible%> <i class="fa fa-star" aria-hidden="true"></i>)
-                    <%=truncate("#{assignment.name} Stars", length: 23)%>
+                    <%=truncate("#{assignment.name} Stars", length: 20)%>
                   </span>
                 </div>
               </th>
@@ -53,7 +53,10 @@
                 <div>
                   <span title='<%=assignment.name%> IXL'>
                     (<%=assignment.ixl_points_possible%> <i class="fa fa-arrow-up" aria-hidden="true"></i>)
-                    <%=truncate("#{assignment.name} IXL", length: 30)%></span></div></th>
+                    <%=truncate("#{assignment.name} IXL", length: 20)%>
+                  </span>
+                </div>
+              </th>
             <% end %>
           <% end %>
           <th></th>
