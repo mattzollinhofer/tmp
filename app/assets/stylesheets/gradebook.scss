@@ -29,7 +29,6 @@ body.gradebooks.show {
   }
   .greedy{
     width: 99%;
-    background-color: white !important;
   }
 
   .assignments-header .fa-star{
@@ -53,23 +52,5 @@ body.gradebooks.show {
   }
   th.rotate > div > span {
     padding: 5px 10px 5px 0;
-  }
-
-  td{
-    &.total-points{
-      background-color: #ccc;
-    }
-    &.notes{
-      background-color: green;
-    }
-    &.worksheet{
-      background-color: red;
-    }
-    &.stars{
-      background-color: orange;
-    }
-    &.ixl{
-      background-color: blue;
-    }
   }
 }
