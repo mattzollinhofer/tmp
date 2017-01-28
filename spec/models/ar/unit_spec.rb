@@ -19,7 +19,7 @@ RSpec.describe Unit do
     end
 
     it 'defaults the order to the last item for the course it is related to' do
-      course = FactoryGirl.build_stubbed :course
+      course = Course.new
       course.units.build(name: 'one')
       course.units.build(name: 'two')
       course.units << Unit.new(name: 'bla', order: 3)

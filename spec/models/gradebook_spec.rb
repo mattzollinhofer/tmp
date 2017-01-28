@@ -12,8 +12,9 @@ describe Gradebook do
   end
 
   it 'has the students in this class' do
-    class_period = FactoryGirl.build_stubbed(:class_period, :with_students)
-    expect(Gradebook.new(class_period, nil).students.count).to eq 4
+    student = FactoryGirl.build_stubbed(:student)
+    class_period = ClassPeriod.new(students: [student])
+    expect(Gradebook.new(class_period, nil).students.size).to eq 1
   end
 
   describe '#points_possible' do
