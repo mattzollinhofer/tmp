@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
 //= require bootstrap-sprockets
 //= require chosen-jquery
 //= require teachy
 //= require arrow-table
+//= require bootstrap-datepicker
 //= require_tree .
