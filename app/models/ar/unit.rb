@@ -1,4 +1,4 @@
-class Unit < ActiveRecord::Base
+class Unit < ApplicationRecord
   default_scope { order(order: :asc)  }
 
   belongs_to :course, inverse_of: :units

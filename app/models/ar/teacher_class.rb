@@ -1,4 +1,4 @@
-class TeacherClass < ActiveRecord::Base
+class TeacherClass < ApplicationRecord
   belongs_to :teacher
   validates :teacher, presence: true
 

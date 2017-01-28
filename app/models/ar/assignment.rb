@@ -1,4 +1,4 @@
-class Assignment < ActiveRecord::Base
+class Assignment < ApplicationRecord
   default_scope { order(order: :asc)  }
 
   has_many :class_assignments, dependent: :destroy

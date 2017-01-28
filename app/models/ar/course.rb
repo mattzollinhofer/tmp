@@ -1,4 +1,4 @@
-class Course < ActiveRecord::Base
+class Course < ApplicationRecord
   default_scope { order(year: :asc)  }
 
   has_many :units, inverse_of: :course, dependent: :destroy

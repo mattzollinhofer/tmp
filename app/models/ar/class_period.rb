@@ -1,4 +1,4 @@
-class ClassPeriod < ActiveRecord::Base
+class ClassPeriod < ApplicationRecord
   belongs_to :course, inverse_of: :class_periods
 
   has_many   :teacher_classes, dependent: :destroy
