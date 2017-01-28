@@ -59,7 +59,7 @@ class ClassPeriodsController < ApplicationController
     @class_period = ClassPeriod.find(params[:id])
     Registrar.new.enroll(class_period_id: params[:id], students: class_period_params[:student_ids])
 
-    redirect_to :back
+    redirect_back(fallback_location: manage_students_class_period_path(class_period: @class_period))
   end
 
   private
