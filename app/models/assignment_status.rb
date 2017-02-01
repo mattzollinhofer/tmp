@@ -19,7 +19,7 @@ class AssignmentStatus
     when 0
       NOT_STARTED
     when class_assignment.possible_type_count
-      if class_assignment.all_points_earned == class_assignment.possible_points
+      if class_assignment.all_points_earned >= class_assignment.possible_points
         PERFECT
       else
         DONE
