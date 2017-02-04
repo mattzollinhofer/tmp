@@ -6,7 +6,7 @@ feature 'Teacher creates, edits, and deletes an assignment for unit', js: true d
 
     visit unit_path unit
 
-    click_on 'New Assignment'
+    click_on 'Create One'
     fill_in 'assignment_name', with: 'assignment Foo 1'
     fill_in 'assignment_worksheet_points_possible', with: '4'
     fill_in 'assignment_star_points_possible', with: '3'

@@ -1,33 +1,39 @@
-<div class='row'>
-  <div class='col-md-6'>
-    <h2><%= @course %></h2>
-  </div>
-  <div class='col-md-6'>
-    <div class='pull-right'>
-      <%= link_to 'New Unit', new_course_unit_path(@course), class: 'btn btn-primary' %>
+<% if @course.units.present? %>
+  <div class='panel panel-primary list-panel'>
+    <div class='panel-heading'>
+      <div class='panel-title'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <h1><%= @course %></h1>
+          </div>
+          <div class='col-md-6'>
+            <div class='pull-right'>
+              <%= link_to 'New Unit', new_course_unit_path(@course), class: 'new nit btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='panel-body'>
+      <ul class='units list-group'>
+        <% @course.units.each do |unit| %>
+          <li data-unit-id=<%=unit.id%> class='unit list-group-item clearfix'>
+            <%= link_to unit.name, unit_path(unit)%>
+            <small>(<%= unit.possible_points %> points possible)</small>
+            <div class='btn-group pull-right'>
+              <%= link_to edit_unit_path(unit), class: 'btn btn-default' do %>
+                <%= fa_icon 'pencil', text: 'Edit' %>
+              <% end %>
+              <%= link_to unit_path(unit), method: :delete, class: 'btn btn-default',
+                  data: { confirm: "Are you sure you want to delete: #{unit.name}" } do %>
+                    <%= fa_icon 'times', text: 'Delete' %>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
-</div>
-
-<% if @course.units.present? %>
-  <h3>Units</h3>
-  <ul class='units list-group '>
-    <% @course.units.each do |unit| %>
-      <li data-unit-id=<%=unit.id%> class='unit list-group-item clearfix'>
-        <%= link_to unit.name, unit_path(unit)%>
-        <small>(<%= unit.possible_points %> points possible)</small>
-        <div class='btn-group pull-right'>
-          <%= link_to edit_unit_path(unit), class: 'btn btn-default' do %>
-            <%= fa_icon 'pencil', text: 'Edit' %>
-          <% end %>
-          <%= link_to unit_path(unit), method: :delete, class: 'btn btn-default',
-                      data: { confirm: "Are you sure you want to delete: #{unit.name}" } do %>
-            <%= fa_icon 'times', text: 'Delete' %>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
 <% else %>
   <%= render partial: 'shared/jumbo',
                       locals: {

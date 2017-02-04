@@ -1,32 +1,40 @@
-<h2><%= assignment.name %></h2>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <div class='panel-title'>
+      <h1><%= (assignment.new_record?) ? 'New Assignment' : assignment.name %></h1>
+    </div>
+  </div>
 
-<% form_objects = (assignment.new_record?) ? [unit, assignment] : [assignment] %>
-<%= semantic_form_for form_objects do |form| %>
-  <%= form.inputs do %>
-    <div class='row'>
-      <div class='col-xs-12 col-sm-6'>
-        <%= form.input :name %>
-        <%= form.input :notes_points_possible %>
-        <%= form.input :worksheet_points_possible %>
-        <%= form.input :star_points_possible %>
-      </div>
-      <div class='col-xs-12 col-sm-6'>
+  <div class='panel-body'>
+    <% form_objects = (assignment.new_record?) ? [unit, assignment] : [assignment] %>
+    <%= semantic_form_for form_objects do |form| %>
+      <%= form.inputs do %>
         <div class='row'>
           <div class='col-xs-12 col-sm-6'>
-            <%= form.input :due_at, as: :string, input_html: {class: 'datepicker'} %>
+            <%= form.input :name %>
+            <%= form.input :notes_points_possible %>
+            <%= form.input :worksheet_points_possible %>
+            <%= form.input :star_points_possible %>
           </div>
           <div class='col-xs-12 col-sm-6'>
-            <%= form.input :order %>
+            <div class='row'>
+              <div class='col-xs-12 col-sm-6'>
+                <%= form.input :due_at, as: :string, input_html: {class: 'datepicker'} %>
+              </div>
+              <div class='col-xs-12 col-sm-6'>
+                <%= form.input :order %>
+              </div>
+            </div>
+            <%= form.input :ixl_description %>
+            <%= form.input :ixl_points_possible %>
+            <%= form.input :ixl_url %>
+            <%= form.input :unit_id, as: :hidden %>
           </div>
         </div>
-        <%= form.input :ixl_description %>
-        <%= form.input :ixl_points_possible %>
-        <%= form.input :ixl_url %>
-        <%= form.input :unit_id, as: :hidden %>
-      </div>
-    </div>
-  <% end %>
-  <%= form.actions do %>
-    <%= form.action :submit %>
-  <% end %>
-<% end %>
+      <% end %>
+      <%= form.actions do %>
+        <%= form.action :submit %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

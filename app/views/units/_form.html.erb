@@ -1,11 +1,20 @@
-<h2><%= unit.name %></h2>
-<%= semantic_form_for [course, unit] do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :name %>
-    <%= form.input :order %>
-    <%= form.input :course_id, as: :hidden %>
-  <% end %>
-  <%= form.actions do %>
-    <%= form.action :submit %>
-  <% end %>
-<% end %>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <div class='panel-title'>
+      <h1><%= (unit.new_record?) ? 'New Unit' : unit.name %></h1>
+    </div>
+  </div>
+
+  <div class='panel-body'>
+    <%= semantic_form_for [course, unit] do |form| %>
+      <%= form.inputs do %>
+        <%= form.input :name %>
+        <%= form.input :order %>
+        <%= form.input :course_id, as: :hidden %>
+      <% end %>
+      <%= form.actions do %>
+        <%= form.action :submit %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

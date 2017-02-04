@@ -1,11 +1,1 @@
-<h2><%= @unit.name %></h2>
-<%= semantic_form_for @unit do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :name %>
-    <%= form.input :order %>
-    <%= form.input :course_id, as: :hidden %>
-  <% end %>
-  <%= form.actions do %>
-    <%= form.action :submit %>
-  <% end %>
-<% end %>
+<%= render partial: 'form', locals: { course: @course, unit: @unit } %>

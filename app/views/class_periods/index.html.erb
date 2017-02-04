@@ -1,34 +1,42 @@
-<div class='row'>
-  <div class='col-md-6'>
-    <h2>All Class Periods</h2>
-  </div>
-  <div class='col-md-6'>
-    <div class='pull-right'>
-      <%= link_to 'New Class Period', new_class_period_path, class: 'btn btn-primary' %>
+<% if @class_periods.present? %>
+  <div class='panel panel-primary list-panel'>
+    <div class='panel-heading'>
+      <div class='panel-title'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <h1>Class Periods</h1>
+          </div>
+          <div class='col-md-6'>
+            <div class='pull-right'>
+              <%= link_to 'New Class Period', new_class_period_path, class: 'new btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='panel-body'>
+      <ul class='class-periods list-group'>
+        <% @class_periods.each do |class_period| %>
+          <li class='class-period list-group-item clearfix'>
+            <%= link_to class_period_label(class_period), class_period_path(class_period) %>
+            <div class='btn-group pull-right'>
+              <%= link_to edit_class_period_path(class_period), class: 'btn btn-default' do %>
+                <%= fa_icon 'pencil', text: 'Edit' %>
+              <% end %>
+              <%= link_to manage_students_class_period_path(class_period) , class: 'btn btn-default' do %>
+                <%= fa_icon 'users', text: 'Manage Students' %>
+              <% end %>
+              <%= link_to class_period_path(class_period), method: :delete, class: 'btn btn-default',
+                          data: { confirm: "Are you sure you want to delete class period: #{class_period.period}" } do %>
+                <%= fa_icon 'times', text: 'Delete' %>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
-</div>
-
-<% if @class_periods.present? %>
-  <ul class='class-periods list-group'>
-    <% @class_periods.each do |class_period| %>
-      <li class='class-period list-group-item clearfix'>
-        <%= link_to class_period_label(class_period), class_period_path(class_period) %>
-        <div class='btn-group pull-right'>
-          <%= link_to edit_class_period_path(class_period), class: 'btn btn-default' do %>
-            <%= fa_icon 'pencil', text: 'Edit' %>
-          <% end %>
-          <%= link_to manage_students_class_period_path(class_period) , class: 'btn btn-default' do %>
-            <%= fa_icon 'users', text: 'Manage Students' %>
-          <% end %>
-          <%= link_to class_period_path(class_period), method: :delete, class: 'btn btn-default',
-                      data: { confirm: "Are you sure you want to delete class period: #{class_period.period}" } do %>
-            <%= fa_icon 'times', text: 'Delete' %>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
 <% else %>
   <% if Course.blank? %>
     <%= render partial: 'shared/jumbo',

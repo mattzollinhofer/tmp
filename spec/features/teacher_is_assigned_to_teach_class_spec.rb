@@ -13,7 +13,7 @@ feature 'Teacher is Assigned to Teach Class' do
     click_on 'Manage Class Periods'
     expect(page).to have_css '.jumbotron', text: 'There are no class periods!'
 
-    click_on 'New Class Period'
+    click_on 'Create One'
     select teacher1.name, from: 'class_period_teacher_ids'
     select course.name, from: 'class_period[course_id]'
     fill_in 'class_period[period]', with: '2'
@@ -24,7 +24,7 @@ feature 'Teacher is Assigned to Teach Class' do
     visit class_periods_path
 
     click_link "#{course.name} Period: 2"
-    expect(page).to have_css 'h2', text: "#{course.name} Period: 2"
+    expect(page).to have_css 'h1', text: "#{course.name} Period: 2"
     expect(page).to have_css 'span', text: "Taught by: #{teacher1.name}"
 
     visit class_periods_path

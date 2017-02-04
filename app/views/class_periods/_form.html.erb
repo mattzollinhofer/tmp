@@ -1,10 +1,20 @@
-<%= semantic_form_for class_period do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :course, input_html: {class: 'chosen-select'} %>
-    <%= form.input :teachers, input_html: {class: 'chosen-select'} %>
-    <%= form.input :period %>
-  <% end %>
-  <%= form.actions do %>
-    <%= form.action :submit %>
-  <% end %>
-<% end %>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <div class='panel-title'>
+      <h1><%= (class_period.new_record?) ? 'New Class Period' : class_period_short_label(class_period) %></h1>
+    </div>
+  </div>
+
+  <div class='panel-body'>
+    <%= semantic_form_for class_period do |form| %>
+      <%= form.inputs do %>
+        <%= form.input :course, input_html: {class: 'chosen-select'} %>
+        <%= form.input :teachers, input_html: {class: 'chosen-select'} %>
+        <%= form.input :period %>
+      <% end %>
+      <%= form.actions do %>
+        <%= form.action :submit %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

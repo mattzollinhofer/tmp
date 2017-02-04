@@ -1,26 +1,51 @@
-<h2>Students</h2>
-<ul class='students list-group'>
-  <% @class_period.students.each do |student| %>
-    <li id='student-<%=student.id%>'class='list-group-item'>
-      <div class='row'>
-        <div class='col-xs-6 col-md-8'>
-          <%= student.display_name %>
-        </div>
-        <div class='col-xs-6 col-md-4'>
-          <%= link_to class_period_student_path(@class_period, student), remote: true, method: :delete, class: 'pull-right btn btn-default',
-            data: { confirm: "Removing #{student.name} from #{class_period_short_label(@class_period)} will permanently erase all assignment and grade records, are you sure?" } do %>
-            <%= fa_icon 'times', text: 'Remove' %>
-          <% end %>
+<div class='row'>
+  <div class='col-xs-12 col-md-8'>
+    <div class='panel panel-primary list-panel'>
+      <div class='panel-heading'>
+        <div class='panel-title'>
+          <h1>Students in <%= @class_period.course.name%></h1>
         </div>
       </div>
-    </li>
-  <% end %>
-</ul>
-<%= semantic_form_for @class_period, url: add_students_class_period_path do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :students, label: 'Add Students', as: :select, collection: @class_period.addable_students, input_html: {multiple: 'multiple', class: 'chosen-select'} %>
-  <% end %>
-  <%= form.actions do %>
-    <%= form.action :submit, label: 'Add Students' %>
-  <% end %>
-<% end %>
+
+      <div class='panel-body'>
+        <ul class='students list-group'>
+          <% @class_period.students.each do |student| %>
+            <li id='student-<%=student.id%>'class='list-group-item'>
+              <div class='row'>
+                <div class='col-xs-6 col-md-8'>
+                  <%= student.display_name %>
+                </div>
+                <div class='col-xs-6 col-md-4'>
+                  <%= link_to class_period_student_path(@class_period, student), remote: true, method: :delete, class: 'pull-right btn btn-default',
+                    data: { confirm: "Removing #{student.name} from #{class_period_short_label(@class_period)} will permanently erase all assignment and grade records, are you sure?" } do %>
+                    <%= fa_icon 'times', text: 'Remove' %>
+                  <% end %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-xs-12 col-md-4'>
+    <div class='panel panel-default add-students'>
+      <div class='panel-heading'>
+        <div class='panel-title'>
+          <h2><small>Add Students</small></h2>
+        </div>
+      </div>
+      <div class='panel-body'>
+        <%= semantic_form_for @class_period, url: add_students_class_period_path do |form| %>
+          <%= form.inputs do %>
+            <%= form.input :students, as: :select, collection: @class_period.addable_students, input_html: {multiple: 'multiple', class: 'chosen-select'} %>
+          <% end %>
+          <%= form.actions do %>
+            <%= form.action :submit, label: 'Add Students' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
