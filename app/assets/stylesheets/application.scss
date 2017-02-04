@@ -14,9 +14,12 @@
  *= require_self
  */
 @import 'font-awesome';
-@import 'bootstrap-updates';
+@import 'bootstrap-custom/variables'; // include before default bootstrap styles (bootstrap-sprockets)
+
 @import 'bootstrap-sprockets';
 @import 'bootstrap-custom';
+
+@import 'bootstrap-custom/panel';
 @import 'formtastic-bootstrap';
 @import 'chosen';
 @import 'bootstrap-chosen';

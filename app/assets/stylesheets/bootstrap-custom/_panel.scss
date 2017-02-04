@@ -1,0 +1,44 @@
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+.panel {
+  &.panel-default, &.panel-primary{
+    border: none;
+    .panel-heading {
+      padding: $panel-heading-padding;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: 1px solid inherit;
+
+      h2,.h2{
+        padding-top: .2em;
+      }
+
+      @include border-top-radius(($panel-border-radius - 1));
+
+      > .dropdown .dropdown-toggle {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.list-panel{
+  .panel-body{
+    padding-top: 0;
+  }
+
+  .list-group-item:first-child{
+    border-top: none;
+    border-radius: initial;
+  }
+}
+
+.list-group-item{
+  border-left: none;
+  border-right: none;
+  border-radius: initial;
+
+  padding-left: 5px;
+}
