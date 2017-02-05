@@ -18,8 +18,6 @@
       <ul class='units list-group'>
         <% @course.units.each do |unit| %>
           <li data-unit-id=<%=unit.id%> class='unit list-group-item clearfix'>
-            <%= link_to unit.name, unit_path(unit)%>
-            <small>(<%= unit.possible_points %> points possible)</small>
             <div class='btn-group pull-right'>
               <%= link_to edit_unit_path(unit), class: 'btn btn-default' do %>
                 <%= fa_icon 'pencil', text: 'Edit' %>
@@ -29,6 +27,13 @@
                     <%= fa_icon 'times', text: 'Delete' %>
               <% end %>
             </div>
+            <strong class='block'>
+              <%= link_to unit.name, unit_path(unit)%>
+              <small>[<%= unit.possible_points %> points possible]</small>
+            </strong>
+            <small class='hide-overflow'>
+              <strong>Assignments:</strong> <%= unit.assignments.map(&:name).join(', ').presence || 'none' %>
+            </small>
           </li>
         <% end %>
       </ul>
