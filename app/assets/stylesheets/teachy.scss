@@ -13,6 +13,11 @@ form label {
   }
 }
 
+.btn{
+  font-family: $font-family-narrow;
+  text-transform: uppercase;
+}
+
 .add-students{
   label{
     display: none;
