@@ -14,7 +14,7 @@ feature 'Teacher creates, edits, and deletes an assignment for unit', js: true d
     fill_in 'assignment_notes_points_possible', with: '1'
     click_on 'Create Assignment'
 
-    expect(page).to have_css '.assignments li', text: 'assignment Foo 1'
+    expect(page).to have_css '.assignments li', text: 'Assignment Foo 1'
     expect(page).to have_css '.assignments li', text: 'Points: 4'
     expect(page).to have_css '.assignments li', text: 'Stars: 3'
     expect(page).to have_css '.assignments li', text: 'IXL: 2'
@@ -28,7 +28,7 @@ feature 'Teacher creates, edits, and deletes an assignment for unit', js: true d
     fill_in 'assignment_notes_points_possible', with: '3'
     click_on 'Update Assignment'
 
-    expect(page).to have_css '.assignments li', text: 'assignment 1'
+    expect(page).to have_css '.assignments li', text: 'Assignment 1'
     expect(page).to have_css '.assignments li', text: 'Points: 5'
     expect(page).to have_css '.assignments li', text: 'Stars: 2'
     expect(page).to have_css '.assignments li', text: 'IXL: 1'
@@ -37,6 +37,6 @@ feature 'Teacher creates, edits, and deletes an assignment for unit', js: true d
     page.accept_confirm do
       click_link 'Delete'
     end
-    expect(page).not_to have_css '.assignments li', text: 'assignment 1'
+    expect(page).not_to have_css '.assignments li', text: 'Assignment 1'
   end
 end
