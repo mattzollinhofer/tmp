@@ -10,6 +10,6 @@ feature 'Teacher creates a new course' do
     fill_in 'course[year]', with: '1999'
     click_on 'Create Course'
 
-    expect(page).to have_css '.courses li', text: 'Course Name 101 (1999-2000)'
+    expect(page).to have_css '.courses li', text: 'Course Name 101 [1999-2000]'
   end
 end

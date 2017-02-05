@@ -17,7 +17,7 @@ RSpec.describe Course do
     let (:subject) { Course.new(name: 'Math 100', year: 1999) }
 
     it 'should print a friendly version of itself' do
-      expect(subject.to_s).to eq "Math 100 (1999-2000)"
+      expect(subject.to_s).to eq "Math 100 [1999-2000]"
     end
   end
 

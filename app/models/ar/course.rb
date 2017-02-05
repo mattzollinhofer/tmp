@@ -24,7 +24,7 @@ class Course < ApplicationRecord
   end
 
   def to_s
-    "#{name} (#{display_year})"
+    "#{name} [#{display_year}]"
   end
 
   def assignments
