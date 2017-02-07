@@ -6,8 +6,8 @@ class Unit < ApplicationRecord
   after_initialize :default_order
 
   def default_order
-    return nil if course.blank?
     return order if order.present?
+    return nil if course.blank?
 
     self.order = course.units.length + 1
   end

@@ -16,7 +16,7 @@
     </div>
     <div class='panel-body'>
       <ul class='units list-group'>
-        <% @course.units.each do |unit| %>
+        <% @units.each do |unit| %>
           <li data-unit-id=<%=unit.id%> class='unit list-group-item clearfix'>
             <div class='btn-group pull-right'>
               <%= link_to edit_unit_path(unit), class: 'btn btn-default' do %>
