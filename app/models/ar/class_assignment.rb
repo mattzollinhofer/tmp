@@ -13,12 +13,6 @@ class ClassAssignment < ApplicationRecord
     end.sum
   end
 
-  scope :all_points_for_assignment, -> (student_class, assignment) do
-    where(student_class: student_class, assignment: assignment).map do |class_assignment|
-      class_assignment.all_points_earned
-    end.sum
-  end
-
   scope :points_for, -> (student_class, assignment) do
     find_by(student_class: student_class, assignment: assignment).points_earned
   end
@@ -42,10 +36,10 @@ class ClassAssignment < ApplicationRecord
   end
 
   def overdue?
-    if completed_at.present? || due_at.blank? || Date.strptime(due_at, '%m/%d/%Y') > Date.today
-      false
-    else
-      true
-    end
+    return false if completed_at.present?
+    return false if due_at.blank?
+    return false if Date.strptime(due_at, '%m/%d/%Y') >= Date.today
+
+    return true
   end
 end

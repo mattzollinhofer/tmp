@@ -75,18 +75,23 @@ describe ClassAssignment do
   end
 
   describe '#overdue?' do
-    it 'is true when completed_at is empty and due_date is before today' do
+    it 'is false when due_date is today' do
+      assignment = Assignment.new(due_at: (Date.today).strftime('%m/%d/%Y'))
+      class_assignment = ClassAssignment.new(assignment: assignment)
+      expect(class_assignment.overdue?).to eq false
+    end
+    it 'is false when due_date is after today' do
+      assignment = Assignment.new(due_at: (Date.today+1).strftime('%m/%d/%Y'))
+      class_assignment = ClassAssignment.new(assignment: assignment)
+      expect(class_assignment.overdue?).to eq false
+    end
+    it 'is true when due_date is before today' do
       assignment = Assignment.new(due_at: (Date.today-1).strftime('%m/%d/%Y'))
       class_assignment = ClassAssignment.new(assignment: assignment)
       expect(class_assignment.overdue?).to eq true
     end
     it 'is false when due_at is not set' do
       expect(ClassAssignment.new.overdue?).to eq false
-    end
-    it 'is false when due_at has not yet come' do
-      assignment = Assignment.new(due_at: (Date.today+1).strftime('%m/%d/%Y'))
-      ca = ClassAssignment.new(assignment: assignment)
-      expect(ca.overdue?).to eq false
     end
     it 'is false when completed_at has a value' do
       assignment = Assignment.create(due_at: (Date.today-1).strftime('%m/%d/%Y'))
