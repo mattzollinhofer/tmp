@@ -61,7 +61,8 @@ RSpec.describe Student do
 
     it 'returns first name if nickname does not exist' do
       subject.first_name = 'John'
-      expect(subject.display_name).to eq 'John'
+      subject.last_name = 'King'
+      expect(subject.display_name).to eq 'King, John'
     end
   end
 end

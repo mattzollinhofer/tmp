@@ -13,7 +13,7 @@ class Student < User
 #                                message: 'must be a four digit year'
 #                              }
   def display_name
-    nickname || first_name
+    nickname || "#{last_name}, #{first_name}"
   end
 
   def graduation_year
