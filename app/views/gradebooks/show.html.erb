@@ -143,13 +143,20 @@
       $(e.target).parents('form').submit();
     });
 
+    $('body.gradebooks.show').on('focus', '.assignment input', function(e){
+      //set active for column coloring
+      $('td.highlight').removeClass('highlight');
+      var index = $(e.target).closest('td').index();
+      $('.gradebook tbody').find('td:nth-child(' + (index+1) + ')').addClass('highlight');
+    });
+
     $('table.gradebook').arrowTable({
       afterMove: function(arrow, target, direction){
         var save_this = $(target);
         window.setTimeout (function(){
-          console.log(save_this.find('.autosave'));
           save_this.find('.autosave').select();
         },10);
+
       }
     })
   });
