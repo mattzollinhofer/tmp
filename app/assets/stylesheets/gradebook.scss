@@ -1,11 +1,12 @@
 body.gradebooks.show {
+  table{
+    font-size: $font-size-small;
+  }
+
   .units-nav{
     margin-top: 110px;
   }
 
-  td.name {
-    width: 100px;
-  }
   .total-points, .percentage{
     text-align: center;
   }
@@ -37,22 +38,26 @@ body.gradebooks.show {
     }
   }
 
-  th.rotate {
-    /* Something you can count on */
-    height: 200px;
-    white-space: nowrap;
+  th{
+    &.name{
+      min-width: 170px;
+    }
+    &.rotate {
+      /* Something you can count on */
+      height: 200px;
+      white-space: nowrap;
+    }
 
-  }
-
-  th.rotate > div {
-    transform:
-    /* Magic Numbers */
-    translate(0, 0)
-    /* 45 is really 360 - 45 */
-    rotate(270deg);
-    width: 10px;
-  }
-  th.rotate > div > span {
-    padding: 5px 10px 5px 0;
+    &.rotate > div {
+      transform:
+      /* Magic Numbers */
+      translate(0, 0)
+      /* 45 is really 360 - 45 */
+      rotate(270deg);
+      width: 10px;
+    }
+    &.rotate > div > span {
+      padding: 5px 10px 5px 0;
+    }
   }
 }

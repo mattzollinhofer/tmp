@@ -31,3 +31,8 @@ form label {
   text-overflow:ellipsis;
   display:block;
 }
+
+.form-control{
+  font-size: $font-size-small;
+  height: 2em;
+}

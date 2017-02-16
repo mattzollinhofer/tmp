@@ -14,7 +14,7 @@
     <% if @gradebook.setup_complete? %>
       <table class='table table-striped gradebook'>
         <thead>
-          <th class=''>Students</th>
+          <th class='name'>Students</th>
           <th class='percentage'>%</th>
           <th class='total-points'>Total (<%= @gradebook.total_points_possible%>)</th>
           <% assignments.each do |assignment| %>
