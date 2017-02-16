@@ -5,7 +5,7 @@ class ClassPeriod < ApplicationRecord
   has_many   :teachers, -> { order(:last_name) }, through: :teacher_classes
 
   has_many   :student_classes, dependent: :destroy
-  has_many   :students, through: :student_classes
+  has_many   :students, -> { order(:last_name) }, through: :student_classes
 
   delegate :assignments, :units, to: :course
 
