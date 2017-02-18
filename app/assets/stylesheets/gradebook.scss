@@ -22,6 +22,8 @@ body.gradebooks.show {
       //display: inline;
     }
     .form-control{
+      font-size: $font-size-small;
+      height: 2em;
       display: inline;
       width: 24px;
       text-align: center;
