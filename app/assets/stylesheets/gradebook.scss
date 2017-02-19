@@ -40,6 +40,11 @@ body.gradebooks.show {
     }
   }
 
+  .overdue{
+    background-color: $state-danger-bg;
+    color: $state-danger-text;
+  }
+
   th{
     &.name{
       min-width: 170px;

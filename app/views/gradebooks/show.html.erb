@@ -73,8 +73,10 @@
 
                 <% if assignment.notes_points_possible > 0 %>
                   <td class='assignment notes'>
+                    <% overdue_class = class_assignment.overdue? ? 'overdue' : '' %>
+                    <% notes_classes = "autosave notes_earned #{overdue_class}" %>
                     <%= semantic_form_for class_assignment, remote: true do |f| %>
-                      <%= f.input :notes_earned, as: :string, label: false, input_html: {class: 'autosave notes_earned'} %>
+                      <%= f.input :notes_earned, as: :string, label: false, input_html: {class: notes_classes} %>
                       <noscript>
                         <%= f.actions %>
                       </noscript>
