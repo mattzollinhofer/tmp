@@ -15,9 +15,11 @@ RSpec.describe Student do
   end
 
   describe 'display_name' do
-    it 'returns nickname if it exists' do
-      subject.nickname = 'Bob'
-      expect(subject.display_name).to eq 'Bob'
+    it 'uses nickname if it exists' do
+      subject.last_name = 'King'
+      subject.first_name = 'William'
+      subject.nickname = 'Bill'
+      expect(subject.display_name).to eq 'King, Bill'
     end
 
     it 'returns first name if nickname does not exist' do

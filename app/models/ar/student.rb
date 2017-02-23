@@ -3,7 +3,7 @@ class Student < User
   has_many :class_periods, through: :student_classes
 
   def display_name
-    nickname || "#{last_name}, #{first_name}"
+    "#{last_name}, #{nickname || first_name}"
   end
 
   def graduation_year

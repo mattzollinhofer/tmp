@@ -16,4 +16,10 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
+  def to_s
+    display_user = name
+    display_user += nickname.present? ? " (#{nickname})" : ''
+    display_user += " - #{email.downcase}"
+  end
 end

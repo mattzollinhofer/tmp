@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :assignments, only: [:new, :create]
   end
   resources :assignments, only: [:show, :edit, :destroy, :update]
+  resources :users, only: [:show, :edit, :index, :update]
 
   resources :class_periods, only: [:index, :new, :create, :edit, :show, :update, :destroy] do
     resources :students, only: :destroy, to: 'class_periods#remove_student'
