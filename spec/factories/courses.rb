@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :course do
     sequence(:name) { |n| "Math 10#{n}" }
   end

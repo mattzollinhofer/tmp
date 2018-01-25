@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User Logs Out' do
   scenario 'successfully' do
-    student = FactoryGirl.create(:student)
+    student = FactoryBot.create(:student)
     login_as(student, scope: :user)
     visit '/'
 

@@ -4,9 +4,9 @@ feature 'Teacher Visits Gradebook' do
   include ClassPeriodHelper
 
   scenario 'successfully' do
-    course = FactoryGirl.create(:course_with_units_and_assignments)
-    teacher = FactoryGirl.create(:teacher)
-    class_period = FactoryGirl.create(:class_period, :with_students, course: course, teachers: [teacher])
+    course = FactoryBot.create(:course_with_units_and_assignments)
+    teacher = FactoryBot.create(:teacher)
+    class_period = FactoryBot.create(:class_period, :with_students, course: course, teachers: [teacher])
     login_as(teacher, scope: :user)
 
     visit gradebook_path class_period, course.units.first

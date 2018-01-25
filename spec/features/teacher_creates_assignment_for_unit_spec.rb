@@ -1,7 +1,7 @@
 feature 'Teacher creates, edits, and deletes an assignment for unit', js: true do
   scenario 'successfully' do
-    unit = FactoryGirl.create(:unit)
-    teacher = FactoryGirl.create(:teacher)
+    unit = FactoryBot.create(:unit)
+    teacher = FactoryBot.create(:teacher)
     login_as(teacher, scope: :user)
 
     visit unit_path unit

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :assignment do
     sequence(:name)    { |n| "Assignment Bar #{n}" }
     worksheet_points_possible 4

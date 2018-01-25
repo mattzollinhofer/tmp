@@ -3,8 +3,8 @@ require 'spec_helper'
 describe CurrentUnitSelector do
   context 'Teacher' do
     it "selects the user's setting if it exists" do
-      unit = FactoryGirl.create(:unit)
-      class_period = FactoryGirl.create(:class_period, :with_teachers, :with_curriculum)
+      unit = FactoryBot.create(:unit)
+      class_period = FactoryBot.create(:class_period, :with_teachers, :with_curriculum)
       class_period.units << unit
       class_period.save!
 
@@ -15,8 +15,8 @@ describe CurrentUnitSelector do
     end
 
     it "selects the first unit in the class period if no setting exists" do
-      unit = FactoryGirl.create(:unit)
-      class_period = FactoryGirl.create(:class_period, :with_teachers, :with_curriculum)
+      unit = FactoryBot.create(:unit)
+      class_period = FactoryBot.create(:class_period, :with_teachers, :with_curriculum)
       class_period.units << unit
       class_period.save!
 
@@ -26,8 +26,8 @@ describe CurrentUnitSelector do
 
   context 'Student' do
     it "selects the user's setting if it exists" do
-      unit = FactoryGirl.create(:unit)
-      class_period = FactoryGirl.create(:class_period, :with_students, :with_curriculum)
+      unit = FactoryBot.create(:unit)
+      class_period = FactoryBot.create(:class_period, :with_students, :with_curriculum)
       class_period.units << unit
       class_period.save!
 
@@ -42,9 +42,9 @@ describe CurrentUnitSelector do
     #      out why
     #it "selects the first unit in the class period if no setting exists" do
     #  #byebug
-    #  unit = FactoryGirl.create(:unit)
-    #  student = FactoryGirl.create(:student)
-    #  class_period = FactoryGirl.create(:class_period, :with_curriculum)
+    #  unit = FactoryBot.create(:unit)
+    #  student = FactoryBot.create(:student)
+    #  class_period = FactoryBot.create(:class_period, :with_curriculum)
     #  class_period.units << unit
     #  class_period.students = [student]
     #  class_period.save!

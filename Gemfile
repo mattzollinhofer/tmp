@@ -7,13 +7,13 @@ end
 
 gem 'font-awesome-rails'
 
-gem 'rails', '~> 5.0'
+gem 'rails', '~> 5.1'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 #gem 'turbolinks'
-gem 'pg'
+gem 'pg', '~> 0.18'
 
 gem 'ledermann-rails-settings'
 
@@ -37,7 +37,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'launchy'
   gem 'bullet'

@@ -5,7 +5,7 @@ RSpec.describe UserCreator do
     context 'when user exists' do
       it 'returns the existing user' do
         email = 'test@test.com'
-        user = FactoryGirl.create(:user, email: email)
+        user = FactoryBot.create(:user, email: email)
 
         # Act like you're in prod
         allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))

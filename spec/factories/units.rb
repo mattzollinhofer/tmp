@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :unit do
     sequence(:name)    { |n| "Unit Foo#{n}" }
     sequence(:order)    { |n| n }

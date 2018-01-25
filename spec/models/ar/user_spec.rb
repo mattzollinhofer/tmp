@@ -13,8 +13,8 @@ RSpec.describe User do
   end
 
   it 'validates the uniqueness of email' do
-    original = FactoryGirl.create(:user, email: 'test@test.com')
-    duplicate = FactoryGirl.build(:user, email: original.email)
+    original = FactoryBot.create(:user, email: 'test@test.com')
+    duplicate = FactoryBot.build(:user, email: original.email)
     duplicate.valid?
     expect(duplicate.errors[:email]).to include 'has already been taken'
   end

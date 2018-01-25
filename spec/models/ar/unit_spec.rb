@@ -13,7 +13,7 @@ RSpec.describe Unit do
     end
 
     it 'returns order if already set' do
-      unit = FactoryGirl.build_stubbed :unit, order: 7
+      unit = FactoryBot.build_stubbed :unit, order: 7
       expect(unit.order).to eq 7
 
     end

@@ -9,7 +9,7 @@ RSpec.describe Student do
   end
 
   it 'has a valid factory' do
-    student = FactoryGirl.build_stubbed(:student)
+    student = FactoryBot.build_stubbed(:student)
     student.valid?
     expect(student.errors).to be_empty
   end

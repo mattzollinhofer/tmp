@@ -1,9 +1,9 @@
 feature 'Teacher is Assigned to Teach Class' do
   scenario 'successfully' do
-    teacher1 = FactoryGirl.create(:teacher)
-    teacher2 = FactoryGirl.create(:teacher)
+    teacher1 = FactoryBot.create(:teacher)
+    teacher2 = FactoryBot.create(:teacher)
     login_as(teacher1, scope: :user)
-    course = FactoryGirl.create(:course_with_units_and_assignments)
+    course = FactoryBot.create(:course_with_units_and_assignments)
 
     visit courses_path
 

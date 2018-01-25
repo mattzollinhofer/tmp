@@ -1,7 +1,7 @@
 feature 'Teacher creates unit for course' do
   scenario 'successfully' do
-    course = FactoryGirl.create(:course)
-    teacher = FactoryGirl.create(:teacher)
+    course = FactoryBot.create(:course)
+    teacher = FactoryBot.create(:teacher)
     login_as(teacher, scope: :user)
 
     visit courses_path

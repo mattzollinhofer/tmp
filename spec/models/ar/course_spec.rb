@@ -12,8 +12,8 @@ RSpec.describe Course do
   it { is_expected.to have_many :units }
 
   describe 'to_s' do
-    let (:brian)   { FactoryGirl.build_stubbed(:teacher) }
-    let (:christi)   { FactoryGirl.build_stubbed(:teacher) }
+    let (:brian)   { FactoryBot.build_stubbed(:teacher) }
+    let (:christi)   { FactoryBot.build_stubbed(:teacher) }
     let (:subject) { Course.new(name: 'Math 100', year: 1999) }
 
     it 'should print a friendly version of itself' do
@@ -30,9 +30,9 @@ RSpec.describe Course do
   describe 'assignments' do
     it 'returns assignments for all units' do
       unit1 = Unit.new(name: 'foo',
-                       assignments: FactoryGirl.build_stubbed_list(:assignment, 3))
+                       assignments: FactoryBot.build_stubbed_list(:assignment, 3))
       unit2 = Unit.new(name: 'foo',
-                       assignments: FactoryGirl.build_stubbed_list(:assignment, 1))
+                       assignments: FactoryBot.build_stubbed_list(:assignment, 1))
 
       course = Course.new(units: [unit1, unit2])
 
@@ -43,8 +43,8 @@ RSpec.describe Course do
 
   describe 'total_assignments' do
     it 'reports the total number of assignments for all units' do
-      unit1 = FactoryGirl.build_stubbed(:unit, assignments: FactoryGirl.build_stubbed_list(:assignment, 2))
-      unit2 = FactoryGirl.build_stubbed(:unit, assignments: [FactoryGirl.build_stubbed(:assignment)])
+      unit1 = FactoryBot.build_stubbed(:unit, assignments: FactoryBot.build_stubbed_list(:assignment, 2))
+      unit2 = FactoryBot.build_stubbed(:unit, assignments: [FactoryBot.build_stubbed(:assignment)])
       course = Course.new(units: [unit1, unit2])
 
       total_assignments = unit1.assignments.size + unit2.assignments.size

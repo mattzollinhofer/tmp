@@ -8,18 +8,18 @@ describe Registrar do
     end
 
     it 'assigns new students to the class period' do
-      new_student = FactoryGirl.create(:student)
-      students = FactoryGirl.create_list(:student, 3)
-      class_period = FactoryGirl.create(:class_period, students: students)
+      new_student = FactoryBot.create(:student)
+      students = FactoryBot.create_list(:student, 3)
+      class_period = FactoryBot.create(:class_period, students: students)
 
       Registrar.new.enroll(class_period_id: class_period.id, students: (students << new_student))
       expect(class_period.reload.students).to include new_student
     end
 
     it 'creates assignments for new students' do
-      student = FactoryGirl.create(:student)
-      course = FactoryGirl.create(:course_with_units_and_assignments)
-      class_period = FactoryGirl.create(:class_period, students: [student], course: course)
+      student = FactoryBot.create(:student)
+      course = FactoryBot.create(:course_with_units_and_assignments)
+      class_period = FactoryBot.create(:class_period, students: [student], course: course)
 
       expect(ClassAssignment.count).to eq 0
       registrar = Registrar.new.enroll(class_period_id: class_period.id, students: [student])
@@ -29,8 +29,8 @@ describe Registrar do
     end
 
     it 'does not duplicate students already assigned to the class period' do
-      students = FactoryGirl.create_list(:student, 3)
-      class_period = FactoryGirl.create(:class_period, students: students)
+      students = FactoryBot.create_list(:student, 3)
+      class_period = FactoryBot.create(:class_period, students: students)
 
       expect(class_period.students.count).to eq 3
       Registrar.new.enroll(class_period_id: class_period.id, students: students)
@@ -38,9 +38,9 @@ describe Registrar do
     end
 
     it 'does not create duplicate assignments for students previously enrolled' do
-      student = FactoryGirl.create(:student)
-      course = FactoryGirl.create(:course_with_units_and_assignments)
-      class_period = FactoryGirl.create(:class_period, students: [student], course: course)
+      student = FactoryBot.create(:student)
+      course = FactoryBot.create(:course_with_units_and_assignments)
+      class_period = FactoryBot.create(:class_period, students: [student], course: course)
 
       expect(ClassAssignment.count).to eq 0
       registrar = Registrar.new
@@ -51,10 +51,10 @@ describe Registrar do
     end
 
     it 'does not remove previous students when adding new students' do
-      old_student = FactoryGirl.create(:student)
-      new_student = FactoryGirl.create(:student)
-      course = FactoryGirl.create(:course_with_units_and_assignments)
-      class_period = FactoryGirl.create(:class_period, course: course)
+      old_student = FactoryBot.create(:student)
+      new_student = FactoryBot.create(:student)
+      course = FactoryBot.create(:course_with_units_and_assignments)
+      class_period = FactoryBot.create(:class_period, course: course)
 
       expect(class_period.students.count).to eq 0
       registrar = Registrar.new
@@ -68,8 +68,8 @@ describe Registrar do
 
   describe '#unenroll' do
     it 'destroys the student_class record associated with the student and class period' do
-      student = FactoryGirl.create(:student)
-      class_period = FactoryGirl.create(:class_period, students: [student])
+      student = FactoryBot.create(:student)
+      class_period = FactoryBot.create(:class_period, students: [student])
       expect(StudentClass.count).to eq 1
       expect(Registrar.new.unenroll(class_period_id: class_period.id, student_id: student.id))
         .to be_an_instance_of(StudentClass)
@@ -85,8 +85,8 @@ describe Registrar do
 
   #TODO lookup how to throw and expect exceptions
   #it 'does not save students in class period if ClassAssignment raise an exception' do
-  #    new_student = FactoryGirl.create(:student)
-  #    class_period = FactoryGirl.create(:class_period)
+  #    new_student = FactoryBot.create(:student)
+  #    class_period = FactoryBot.create(:class_period)
   #    expect(class_period).to receive(:course).and_throw('error!!')
 
   #    expect(Registrar.new(class_period_id: class_period).enroll(students: new_student)).to raise { 'error!!' }

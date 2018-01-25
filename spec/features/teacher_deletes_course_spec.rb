@@ -1,7 +1,7 @@
 feature 'Teacher deletes a course', js: true do
   scenario 'successfully' do
-    teacher = FactoryGirl.create(:teacher)
-    course  = FactoryGirl.create(:course)
+    teacher = FactoryBot.create(:teacher)
+    course  = FactoryBot.create(:course)
 
     login_as(teacher, scope: :user)
 

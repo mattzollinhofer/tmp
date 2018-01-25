@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :class_period do
     sequence(:period)       { |n| n }
     association :course, strategy: :build

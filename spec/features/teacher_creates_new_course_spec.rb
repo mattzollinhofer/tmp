@@ -1,6 +1,6 @@
 feature 'Teacher creates a new course' do
   scenario 'successfully' do
-    teacher = FactoryGirl.create(:teacher)
+    teacher = FactoryBot.create(:teacher)
     login_as(teacher, scope: :user)
 
     visit courses_path

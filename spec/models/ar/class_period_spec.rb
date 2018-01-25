@@ -13,7 +13,7 @@ RSpec.describe ClassPeriod do
   describe 'teacher_names' do
     it "prints a comma delimted list of teacher names" do
       class_period = ClassPeriod.new
-      class_period.teachers = FactoryGirl.build_list(:teacher, 3)
+      class_period.teachers = FactoryBot.build_list(:teacher, 3)
 
       expect(class_period.teachers.present?).to be true
       expect(class_period.teacher_names).to eq "#{class_period.teachers.first.name}, #{class_period.teachers.second.name}, and #{class_period.teachers.third.name}"
