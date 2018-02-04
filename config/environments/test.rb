@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # keep log files no bigger than 5MB
+  config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 5 * 1024 * 1024)
 end

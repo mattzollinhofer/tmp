@@ -50,4 +50,7 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.add_footer = true
   end
+
+  # keep log files no bigger than 5MB
+  config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 5 * 1024 * 1024)
 end
