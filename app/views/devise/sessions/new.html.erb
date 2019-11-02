@@ -1,6 +1,6 @@
 <% gmail_provider = resource_class.omniauth_providers.first %>
 <%= render partial: 'shared/jumbo',
                     locals: {
-                    jumbo_text: 'Sign In!!',
+                    jumbo_text: 'Sign In!',
                     button_text: 'With Gmail',
                     url: omniauth_authorize_path(resource_name, gmail_provider) } %>
