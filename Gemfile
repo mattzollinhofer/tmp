@@ -7,7 +7,7 @@ end
 
 gem 'font-awesome-rails'
 
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
@@ -15,9 +15,9 @@ gem 'jquery-rails'
 #gem 'turbolinks'
 gem 'pg', '~> 0.18'
 
-gem 'ledermann-rails-settings'
+gem 'ledermann-rails-settings', '~>2.5'
 
-gem 'formtastic', '~> 3.0'
+gem 'formtastic'
 gem 'bootstrap-sass'
 gem 'formtastic-bootstrap'
 gem 'chosen-rails'
@@ -27,6 +27,8 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 
 gem "skylight"
+
+gem 'puma'
 
 group :production do
   gem 'rails_12factor'
