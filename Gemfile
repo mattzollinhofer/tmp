@@ -36,6 +36,8 @@ end
 
 group :development, :test do
   gem 'capybara'
+  gem 'guard'
+  gem 'guard-rspec', require: false
   gem 'poltergeist'
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
