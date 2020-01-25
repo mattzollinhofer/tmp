@@ -9,6 +9,7 @@ gem 'font-awesome-rails'
 
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
+gem 'bootsnap', require: false
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
