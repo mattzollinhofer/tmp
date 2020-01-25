@@ -361,6 +361,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg (~> 0.18)
   poltergeist
+  pry
   puma
   rack-mini-profiler
   rails (~> 5.2.3)

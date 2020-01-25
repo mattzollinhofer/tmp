@@ -46,6 +46,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'launchy'
   gem 'bullet'
+  gem 'pry'
 end
 
 group :development do
