@@ -21,6 +21,6 @@ class CurrentUnitSelector
   end
 
   def default_unit(class_period)
-    class_period.units.first.id
+    class_period.units.visible&.first&.id
   end
 end

@@ -15,7 +15,7 @@ describe CurrentUnitSelector do
     end
 
     it "selects the first unit in the class period if no setting exists" do
-      unit = FactoryBot.create(:unit)
+      unit = FactoryBot.create(:unit, :visible)
       class_period = FactoryBot.create(:class_period, :with_teachers, :with_curriculum)
       class_period.units << unit
       class_period.save!

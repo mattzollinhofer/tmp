@@ -43,4 +43,20 @@ RSpec.describe Unit do
       expect(unit.possible_points).to eq 0
     end
   end
+
+  context 'visible or hidden from students' do
+    it 'is hidden by default' do
+      unit = Unit.new()
+      expect(unit.visible).to eq false
+    end
+    it 'can be hidden' do
+      unit = Unit.new(visible: true)
+      unit.visible = false
+      expect(unit.visible).to eq false
+    end
+    it 'can can be visible' do
+      unit = Unit.new(visible: true)
+      expect(unit.visible).to eq true
+    end
+  end
 end

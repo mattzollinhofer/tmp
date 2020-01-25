@@ -1,6 +1,7 @@
 class Unit < ApplicationRecord
   default_scope { order(order: :asc)  }
 
+  scope :visible, -> { where(visible: true) }
   belongs_to :course, inverse_of: :units
   has_many :assignments, inverse_of: :unit, dependent: :destroy
   after_initialize :default_order

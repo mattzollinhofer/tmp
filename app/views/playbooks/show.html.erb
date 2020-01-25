@@ -2,7 +2,7 @@
   <div class='col-xs-2'>
     <ul class='units-nav nav nav-stacked nav-pills'>
       <p role='presentation'><strong><%= class_period_short_label @playbook.class_period %></strong></p>
-      <% @playbook.class_period.units.each do |unit| %>
+      <% @playbook.class_period.units.visible.each do |unit| %>
         <li role='presentation' class="<%='active' if @playbook.unit.id == unit.id %>">
           <%= link_to(unit.name,
                       playbook_path(unit_id: unit.id,

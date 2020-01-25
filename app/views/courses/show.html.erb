@@ -19,6 +19,13 @@
         <% @units.each do |unit| %>
           <li data-unit-id=<%=unit.id%> class='unit list-group-item clearfix'>
             <div class='btn-group pull-right'>
+              <%= link_to unit_toggle_visibility_path(unit), class: 'btn btn-default toggle_visibility' do %>
+                <% if unit.visible %>
+                  Hide from Students
+                <% else %>
+                  Show to Students
+                <% end %>
+              <% end %>
               <%= link_to edit_unit_path(unit), class: 'btn btn-default' do %>
                 <%= fa_icon 'pencil', text: 'Edit' %>
               <% end %>
@@ -31,6 +38,7 @@
               <%= link_to unit.name, unit_path(unit)%>
               <small>[<%= unit.possible_points %> points possible]</small>
             </strong>
+            <span class="visiblitiy"><%=unit.visible ? 'Visible to Students' : 'Hidden from Students' %></span>
             <small class='hide-overflow'>
               <strong>Assignments:</strong> <%= unit.assignments.map(&:name).join(', ').presence || 'none' %>
             </small>

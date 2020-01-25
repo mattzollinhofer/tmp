@@ -6,6 +6,10 @@ FactoryBot.define do
     association :course, strategy: :build
   end
 
+  trait :visible do
+    visible { true }
+  end
+
   factory :unit_with_assignments, parent: :unit do
     after(:build) do |unit|
       unit.assignments = build_list(:assignment, 2, unit: unit)

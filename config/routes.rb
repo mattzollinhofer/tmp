@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :units, only: [:new, :create]
   end
   resources :units, only: [:show, :edit, :destroy, :update] do
+    get 'toggle_visibility'
     resources :assignments, only: [:new, :create]
   end
   resources :assignments, only: [:show, :edit, :destroy, :update]

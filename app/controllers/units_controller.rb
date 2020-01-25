@@ -36,6 +36,12 @@ class UnitsController < ApplicationController
     redirect_to course_path @unit.course
   end
 
+  def toggle_visibility
+    @unit = Unit.find(params[:unit_id])
+    @unit.toggle(:visible).save!
+    redirect_to course_path @unit.course
+  end
+
   private
 
   def unit_params
