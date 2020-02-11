@@ -11,7 +11,7 @@ Devise.setup do |config|
   #Google omniauth config
 
   config.omniauth :google_oauth2,
-                  '1051677852822-llvi1ide2fm54j33stg09mbrsnalhutj.apps.googleusercontent.com',
+                  '961425347147-mujf9es52rohsqd4sob54blvsltbnf69.apps.googleusercontent.com',
                   ENV['GOOGLE_API_KEY'],
                   { }
 
@@ -19,7 +19,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'zollinhm@gmail.com'
+  config.mailer_sender = 'zollinhoferb@stcva.org'
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
